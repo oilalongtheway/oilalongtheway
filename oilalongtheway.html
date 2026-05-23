@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Oil Along The Way</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --warm: #F0EAE0;
+    --dark: #1A1614;
+    --mid: #6B5F58;
+    --accent: #C97B4B;
+    --accent-light: #F2D9C4;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(180,160,140,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--mid); font-size: 0.9rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 60% 30%, rgba(201,123,75,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--mid);
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.85rem 2.2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,123,75,0.3); }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    color: var(--mid); font-size: 0.78rem; letter-spacing: 0.1em;
+  }
+  .scroll-hint::after {
+    content: '';
+    display: block; width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--mid), transparent);
+  }
+
+  /* SECTION COMMON */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--dark); margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--mid); max-width: 520px; font-weight: 300; }
+
+  /* ABOUT */
+  .about {
+    background: var(--warm);
+    border-radius: 2rem;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .about-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    padding: 4rem;
+  }
+  .about-img {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover;
+    border-radius: 1.5rem;
+    background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); font-size: 3rem;
+  }
+  .about-img img { width:100%; height:100%; object-fit:cover; border-radius:1.5rem; }
+  .about-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; line-height: 1.6;
+    color: var(--dark); margin: 1.5rem 0;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+  }
+
+  /* PRODUCTS */
+  .products-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .product-card {
+    background: var(--white);
+    border-radius: 1.2rem;
+    overflow: hidden;
+    border: 1px solid rgba(180,160,140,0.2);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.08); }
+  .product-thumb {
+    width: 100%; aspect-ratio: 16/10;
+    background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+  }
+  .product-body { padding: 1.25rem 1.5rem 1.5rem; }
+  .product-badge {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.25rem 0.75rem;
+    border-radius: 100px; margin-bottom: 0.75rem;
+  }
+  .product-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .product-desc { font-size: 0.88rem; color: var(--mid); margin-bottom: 1.2rem; font-weight: 300; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; }
+  .product-price { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+  .product-price.free { color: #3A9B6F; }
+  .btn-buy {
+    background: var(--dark); color: #fff;
+    padding: 0.5rem 1.2rem; border-radius: 100px;
+    text-decoration: none; font-size: 0.82rem; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .btn-buy:hover { background: var(--accent); }
+
+  /* SOCIALS */
+  .socials-section { text-align: center; }
+  .socials-row {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.5rem;
+  }
+  .social-btn {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.65rem 1.4rem; border-radius: 100px;
+    border: 1.5px solid rgba(180,160,140,0.35);
+    text-decoration: none; color: var(--dark); font-size: 0.9rem;
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .social-btn:hover { border-color: var(--accent); box-shadow: 0 4px 14px rgba(201,123,75,0.15); }
+  .social-icon { font-size: 1.1rem; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(180,160,140,0.2);
+    color: var(--mid); font-size: 0.85rem;
+  }
+
+  @media (max-width: 680px) {
+    .about-inner { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
+    nav { padding: 1rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">oil alongtheway</a>
+  <ul class="nav-links">
+    <li><a href="#about">เกี่ยวกับฉัน</a></li>
+    <li><a href="#products">คอร์ส & สินค้า</a></li>
+    <li><a href="#contact">ติดต่อ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-tag">oil alongtheway</p>
+  <h1>กล้าที่จะ<span>ก้าว</span><br/>แม้มันไม่สมบูรณ์</h1>
+  <p class="hero-sub">
+    แบ่งปันความรู้และประสบการณ์จริง<br/>
+    เพื่อชวนพวกมึงทุกคนให้ลงมือทำ<br/>
+    ไม่ว่าจะพร้อมแค่ไหนก็ตาม
+  </p>
+  <a href="#products" class="btn-primary">ดูคอร์สและสินค้า →</a>
+  <div class="scroll-hint">เลื่อนลง</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding: 4rem 1.5rem;">
+  <div class="about">
+    <div class="about-inner">
+      <div class="about-img">
+        <!-- ใส่รูปตัวเองตรงนี้ได้เลย -->
+        <span>📸</span>
+      </div>
+      <div>
+        <p class="section-tag">เกี่ยวกับฉัน</p>
+        <h2 class="section-title">สวัสดี ฉันคือ<br/>Oil ✌️</h2>
+        <blockquote class="about-quote">
+          "เวลาไม่เคยรอใคร มึงและกูก็เช่นกัน"
+        </blockquote>
+        <p style="color: var(--mid); font-weight: 300; line-height: 1.9;">
+          กูเป็นคนที่เชื่อว่าการลงมือทำ แม้มันจะไม่สวยงาม ไม่เหมือนใคร ไม่สม่ำเสมอ
+          ดีกว่าการรอให้พร้อม เพราะวันนั้นอาจไม่มาถึงเลย
+        </p>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
+          <a href="https://www.instagram.com/oil.alongtheway" target="_blank" class="btn-primary" style="font-size:0.85rem; padding:0.65rem 1.5rem;">ติดตามบน IG</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" style="padding: 5rem 1.5rem;">
+  <div class="container">
+    <p class="section-tag">คอร์ส & สินค้าดิจิทัล</p>
+    <h2 class="section-title">เรียนรู้กับกู</h2>
+    <p class="section-sub">เลือกสิ่งที่เหมาะกับมึงได้เลย ทั้งฟรีและมีค่าใช้จ่าย</p>
+
+    <div class="products-grid">
+
+      <!-- Product 1 — ฟรี -->
+      <div class="product-card">
+        <div class="product-thumb">📖</div>
+        <div class="product-body">
+          <span class="product-badge">ฟรี</span>
+          <p class="product-name">ชื่อคอร์ส / อีบุ๊ก</p>
+          <p class="product-desc">คำอธิบายสั้นๆ ว่าคอร์สนี้สอนอะไร ได้อะไรกลับไปบ้าง</p>
+          <div class="product-footer">
+            <span class="product-price free">ฟรี</span>
+            <a href="#" class="btn-buy">รับเลย</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-thumb">🎯</div>
+        <div class="product-body">
+          <span class="product-badge">คอร์ส</span>
+          <p class="product-name">ชื่อคอร์ส</p>
+          <p class="product-desc">คำอธิบายสั้นๆ ว่าคอร์สนี้สอนอะไร ใครเหมาะกับคอร์สนี้</p>
+          <div class="product-footer">
+            <span class="product-price">฿XXX</span>
+            <a href="#" class="btn-buy">ซื้อเลย</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-thumb">✨</div>
+        <div class="product-body">
+          <span class="product-badge">สินค้าดิจิทัล</span>
+          <p class="product-name">ชื่อสินค้า</p>
+          <p class="product-desc">คำอธิบายสั้นๆ ว่าสินค้านี้คืออะไร ใช้ทำอะไร</p>
+          <div class="product-footer">
+            <span class="product-price">฿XXX</span>
+            <a href="#" class="btn-buy">ซื้อเลย</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SOCIALS / CONTACT -->
+<section id="contact" style="padding: 5rem 1.5rem; background: var(--warm); border-radius: 2rem; max-width: 1040px; margin: 0 auto 4rem;">
+  <div style="text-align:center; padding: 2rem 1rem;">
+    <p class="section-tag">ติดต่อ & ติดตาม</p>
+    <h2 class="section-title">มาคุยกันได้เลย</h2>
+    <p class="section-sub" style="margin: 0 auto;">ติดตามกูได้ทุกช่องทาง ไม่มีตัวไหนที่กูไม่ตอบ (แต่อาจช้าหน่อย 555)</p>
+
+    <div class="socials-row">
+      <a href="https://www.instagram.com/oil.alongtheway" target="_blank" class="social-btn">
+        <span class="social-icon">📸</span> Instagram
+      </a>
+      <a href="https://www.tiktok.com/@oil.alongtheway" target="_blank" class="social-btn">
+        <span class="social-icon">🎵</span> TikTok
+      </a>
+      <a href="https://www.facebook.com/share/1HkWmfQ2Ak/" target="_blank" class="social-btn">
+        <span class="social-icon">📘</span> Facebook
+      </a>
+      <a href="https://x.com/oil_alongtheway" target="_blank" class="social-btn">
+        <span class="social-icon">🐦</span> X / Twitter
+      </a>
+      <a href="https://youtu.be/m9c5tHEu37A" target="_blank" class="social-btn">
+        <span class="social-icon">▶️</span> YouTube
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Oil Along The Way · ทำด้วยใจ ❤️</p>
+</footer>
+
+</body>
+</html>
