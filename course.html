@@ -366,8 +366,12 @@ function showDonate() {
 function selectAmount(btn) {
   document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
+  const amount = btn.textContent.replace('฿','');
+  const phone = 'เบอร์มึง'; // ← ใส่เบอร์ PromptPay ตรงนี้ เช่น '0812345678'
+  document.getElementById('qr-img').src = 
+    'https://promptpay.io/' + phone + '/' + amount + '.png';
+  document.getElementById('qr-box').style.display = 'block';
 }
-
 renderLesson(0);
 </script>
 </body>
