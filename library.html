@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Oil — คลังคอร์ส</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#FAF7F2;--warm:#F0EAE0;--dark:#1A1614;--mid:#6B5F58;--accent:#C97B4B;--accent-light:#F2D9C4;--white:#fff}
+body{font-family:'Sarabun',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;border-bottom:1px solid rgba(180,160,140,0.2);background:var(--cream)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;text-decoration:none;color:var(--dark)}
+.hero{text-align:center;padding:5rem 2rem 3rem}
+.hero-tag{font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);margin-bottom:1rem}
+.hero p{color:var(--mid);font-weight:300;font-size:1.05rem}
+.courses{padding:2rem 2.5rem 5rem;max-width:1000px;margin:0 auto}
+.section-label{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);font-weight:600;margin-bottom:1.5rem}
+.course-card{background:var(--white);border-radius:1.5rem;border:1px solid rgba(180,160,140,0.2);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;transition:transform 0.25s,box-shadow 0.25s}
+.course-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,0.07)}
+.course-thumb{background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:4rem;min-height:240px}
+.course-body{padding:2.5rem}
+.badge{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:100px;margin-bottom:1rem}
+.badge.free{background:#E8F5EE;color:#3A9B6F}
+.course-title{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:0.75rem;line-height:1.3}
+.course-desc{color:var(--mid);font-weight:300;line-height:1.8;margin-bottom:1.5rem;font-size:0.95rem}
+.course-meta{display:flex;gap:1.5rem;margin-bottom:2rem}
+.meta-item{display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;color:var(--mid)}
+.btn-start{display:inline-block;background:var(--accent);color:#fff;padding:0.85rem 2rem;border-radius:100px;text-decoration:none;font-size:0.95rem;font-weight:600;transition:transform 0.2s,box-shadow 0.2s}
+.btn-start:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,123,75,0.3)}
+footer{text-align:center;padding:2rem;border-top:1px solid rgba(180,160,140,0.2);color:var(--mid);font-size:0.85rem}
+@media(max-width:680px){.course-card{grid-template-columns:1fr}.course-thumb{min-height:160px}nav{padding:1rem 1.5rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">oil alongtheway</a>
+  <span style="font-size:0.85rem;color:var(--mid)">คลังคอร์ส</span>
+</nav>
+
+<div class="hero">
+  <p class="hero-tag">library</p>
+  <h1>เรียนรู้กับกู</h1>
+  <p>คอร์สทั้งหมดที่กูทำไว้ให้ เลือกเริ่มได้เลย</p>
+</div>
+
+<div class="courses">
+  <p class="section-label">คอร์สทั้งหมด</p>
+  <div class="course-card">
+    <div class="course-thumb">🏗️</div>
+    <div class="course-body">
+      <span class="badge free">ฟรี 100%</span>
+      <h2 class="course-title">สร้างระบบธุรกิจหลังบ้านเริ่มต้น</h2>
+      <p class="course-desc">เรียนรู้การสร้างระบบหลังบ้านที่ทำให้ธุรกิจดิจิทัลของมึงรันได้จริง ตั้งแต่ศูนย์ ไม่ต้องมีพื้นฐาน</p>
+      <div class="course-meta">
+        <span class="meta-item">📚 2 โมดูล</span>
+        <span class="meta-item">🎬 5 คลิป</span>
+        <span class="meta-item">⏱ ~60 นาที</span>
+      </div>
+      <a href="course.html" class="btn-start">เริ่มเรียนเลย →</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 Oil Along The Way · ทำด้วยใจ ❤️</footer>
+</body>
+</html>
