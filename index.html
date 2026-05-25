@@ -7,98 +7,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --cream: #FAF7F2;
-    --warm: #F0EAE0;
-    --dark: #1A1614;
-    --mid: #6B5F58;
-    --accent: #C97B4B;
-    --accent-light: #F2D9C4;
-    --white: #FFFFFF;
+    --cream: #FAF7F2; --warm: #F0EAE0; --dark: #1A1614;
+    --mid: #6B5F58; --accent: #C97B4B; --accent-light: #F2D9C4; --white: #FFFFFF;
   }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'Sarabun', sans-serif; background: var(--cream); color: var(--dark); font-size: 16px; line-height: 1.7; }
 
-  body {
-    font-family: 'Sarabun', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
-    font-size: 16px;
-    line-height: 1.7;
-  }
-
-  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1rem 2rem;
-    background: rgba(250,247,242,0.92);
-    backdrop-filter: blur(8px);
+    background: rgba(250,247,242,0.92); backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(180,160,140,0.2);
   }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    letter-spacing: 0.04em;
-    color: var(--dark);
-    text-decoration: none;
-  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; letter-spacing: 0.04em; color: var(--dark); text-decoration: none; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { text-decoration: none; color: var(--mid); font-size: 0.9rem; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
 
-  /* HERO */
   .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center;
-    padding: 6rem 2rem 4rem;
-    position: relative;
-    overflow: hidden;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 4rem; position: relative; overflow: hidden;
   }
   .hero::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     background: radial-gradient(ellipse at 60% 30%, rgba(201,123,75,0.08) 0%, transparent 65%);
     pointer-events: none;
   }
-  .hero-tag {
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    line-height: 1.1;
-    color: var(--dark);
-    margin-bottom: 1.5rem;
-    max-width: 700px;
-  }
+  .hero-tag { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; font-weight: 600; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 7vw, 5.5rem); line-height: 1.1; color: var(--dark); margin-bottom: 1.5rem; max-width: 700px; }
   .hero h1 span { color: var(--accent); }
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--mid);
-    max-width: 500px;
-    margin: 0 auto 2.5rem;
-    font-weight: 300;
-    line-height: 1.8;
-  }
+  .hero-sub { font-size: 1.05rem; color: var(--mid); max-width: 500px; margin: 0 auto 2.5rem; font-weight: 300; line-height: 1.8; }
   .btn-primary {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    padding: 0.85rem 2.2rem;
-    border-radius: 100px;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block; background: var(--accent); color: #fff;
+    padding: 0.85rem 2.2rem; border-radius: 100px; text-decoration: none;
+    font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em; transition: transform 0.2s, box-shadow 0.2s;
   }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,123,75,0.3); }
   .scroll-hint {
@@ -106,117 +50,66 @@
     display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
     color: var(--mid); font-size: 0.78rem; letter-spacing: 0.1em;
   }
-  .scroll-hint::after {
-    content: '';
-    display: block; width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--mid), transparent);
-  }
+  .scroll-hint::after { content: ''; display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--mid), transparent); }
 
-  /* SECTION COMMON */
   section { padding: 5rem 2rem; }
   .container { max-width: 1000px; margin: 0 auto; }
-  .section-tag {
-    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent); font-weight: 600; margin-bottom: 0.8rem;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: var(--dark); margin-bottom: 1rem;
-  }
+  .section-tag { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--dark); margin-bottom: 1rem; }
   .section-sub { color: var(--mid); max-width: 520px; font-weight: 300; }
 
-  /* ABOUT */
-  .about {
-    background: var(--warm);
-    border-radius: 2rem;
-    max-width: 1040px;
-    margin: 0 auto;
-  }
-  .about-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
-    padding: 4rem;
-  }
-  .about-img {
-    width: 100%; aspect-ratio: 4/5; object-fit: cover;
-    border-radius: 1.5rem;
-    background: var(--accent-light);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--accent); font-size: 3rem;
-  }
+  .about { background: var(--warm); border-radius: 2rem; max-width: 1040px; margin: 0 auto; }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 4rem; }
+  .about-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 1.5rem; background: var(--accent-light); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 3rem; }
   .about-img img { width:100%; height:100%; object-fit:cover; border-radius:1.5rem; }
-  .about-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; line-height: 1.6;
-    color: var(--dark); margin: 1.5rem 0;
-    border-left: 3px solid var(--accent);
-    padding-left: 1.2rem;
-  }
+  .about-quote { font-family: 'Playfair Display', serif; font-size: 1.4rem; line-height: 1.6; color: var(--dark); margin: 1.5rem 0; border-left: 3px solid var(--accent); padding-left: 1.2rem; }
 
-  /* PRODUCTS */
-  .products-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem; margin-top: 3rem;
-  }
-  .product-card {
-    background: var(--white);
-    border-radius: 1.2rem;
-    overflow: hidden;
-    border: 1px solid rgba(180,160,140,0.2);
-    transition: transform 0.25s, box-shadow 0.25s;
-    cursor: pointer;
-  }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .product-card { background: var(--white); border-radius: 1.2rem; overflow: hidden; border: 1px solid rgba(180,160,140,0.2); transition: transform 0.25s, box-shadow 0.25s; cursor: pointer; }
   .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.08); }
-  .product-thumb {
-    width: 100%; aspect-ratio: 16/10;
-    background: var(--accent-light);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2.5rem;
-  }
+  .product-thumb { width: 100%; aspect-ratio: 16/10; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
   .product-body { padding: 1.25rem 1.5rem 1.5rem; }
-  .product-badge {
-    display: inline-block;
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; padding: 0.25rem 0.75rem;
-    border-radius: 100px; margin-bottom: 0.75rem;
-  }
+  .product-badge { display: inline-block; background: var(--accent-light); color: var(--accent); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 100px; margin-bottom: 0.75rem; }
   .product-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
   .product-desc { font-size: 0.88rem; color: var(--mid); margin-bottom: 1.2rem; font-weight: 300; }
   .product-footer { display: flex; align-items: center; justify-content: space-between; }
   .product-price { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
   .product-price.free { color: #3A9B6F; }
-  .btn-buy {
-    background: var(--dark); color: #fff;
-    padding: 0.5rem 1.2rem; border-radius: 100px;
-    text-decoration: none; font-size: 0.82rem; font-weight: 600;
-    transition: background 0.2s;
-  }
+  .btn-buy { background: var(--dark); color: #fff; padding: 0.5rem 1.2rem; border-radius: 100px; text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: background 0.2s; }
   .btn-buy:hover { background: var(--accent); }
 
-  /* SOCIALS */
-  .socials-section { text-align: center; }
-  .socials-row {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.5rem;
-  }
-  .social-btn {
-    display: flex; align-items: center; gap: 0.6rem;
-    padding: 0.65rem 1.4rem; border-radius: 100px;
-    border: 1.5px solid rgba(180,160,140,0.35);
-    text-decoration: none; color: var(--dark); font-size: 0.9rem;
-    background: var(--white);
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
+  .socials-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.5rem; }
+  .social-btn { display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1.4rem; border-radius: 100px; border: 1.5px solid rgba(180,160,140,0.35); text-decoration: none; color: var(--dark); font-size: 0.9rem; background: var(--white); transition: border-color 0.2s, box-shadow 0.2s; }
   .social-btn:hover { border-color: var(--accent); box-shadow: 0 4px 14px rgba(201,123,75,0.15); }
   .social-icon { font-size: 1.1rem; }
 
-  /* FOOTER */
-  footer {
-    text-align: center; padding: 2.5rem 2rem;
-    border-top: 1px solid rgba(180,160,140,0.2);
-    color: var(--mid); font-size: 0.85rem;
+  footer { text-align: center; padding: 2.5rem 2rem; border-top: 1px solid rgba(180,160,140,0.2); color: var(--mid); font-size: 0.85rem; }
+
+  /* NOTIF */
+  #notif {
+    position: fixed; top: 5rem; left: 50%;
+    transform: translateX(-50%) translateY(-200%);
+    z-index: 9999; background: #fff; border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    min-width: 220px; max-width: 300px;
+    display: flex; align-items: center; gap: 0.75rem;
+    font-family: 'Sarabun', sans-serif;
+    opacity: 0; pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
   }
+  #notif.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  #notif-icon-wrap {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #F2D9C4; display: flex; align-items: center;
+    justify-content: center; font-size: 1rem; flex-shrink: 0;
+  }
+  #notif-name { font-weight: 700; font-size: 0.85rem; color: #1A1614; line-height: 1.3; }
+  #notif-msg { font-size: 0.78rem; color: #6B5F58; font-weight: 300; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
 
   @media (max-width: 680px) {
     .about-inner { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
@@ -226,6 +119,15 @@
 </style>
 </head>
 <body>
+
+<!-- NOTIF -->
+<div id="notif">
+  <div id="notif-icon-wrap">🎉</div>
+  <div>
+    <div id="notif-name"></div>
+    <div id="notif-msg"></div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -255,15 +157,12 @@
   <div class="about">
     <div class="about-inner">
       <div class="about-img">
-        <!--https://github.com/oilalongtheway/oilalongtheway/blob/main/profile.jpg-->
         <img src="https://raw.githubusercontent.com/oilalongtheway/oilalongtheway/main/profile.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:1.5rem;" />
       </div>
       <div>
         <p class="section-tag">เกี่ยวกับฉัน</p>
         <h2 class="section-title">กูชื่อ ออย<br/></h2>
-        <blockquote class="about-quote">
-          "เวลาไม่เคยรอใคร มึงและกูก็เช่นกัน"
-        </blockquote>
+        <blockquote class="about-quote">"เวลาไม่เคยรอใคร มึงและกูก็เช่นกัน"</blockquote>
         <p style="color: var(--mid); font-weight: 300; line-height: 1.9;">
           กูเป็นคนที่เชื่อว่าการลงมือทำ แม้มันจะไม่สวยงาม ไม่เหมือนใคร ไม่สม่ำเสมอ
           ดีกว่าการรอให้พร้อม เพราะวันนั้นอาจไม่มาถึงเลย
@@ -283,10 +182,7 @@
     <p class="section-tag">คอร์ส & สินค้าดิจิทัล</p>
     <h2 class="section-title">เรียนรู้กับกู</h2>
     <p class="section-sub">เลือกสิ่งที่เหมาะกับมึงได้เลย ทั้งฟรีและมีค่าใช้จ่าย</p>
-
     <div class="products-grid">
-
-      <!-- Product 1 — ฟรี -->
       <div class="product-card">
         <div class="product-thumb">📖</div>
         <div class="product-body">
@@ -295,12 +191,10 @@
           <p class="product-desc">คำอธิบายสั้นๆ ว่าคอร์สนี้สอนอะไร ได้อะไรกลับไปบ้าง</p>
           <div class="product-footer">
             <span class="product-price free">ฟรี</span>
-            <a href="library.html"class="btn-buy">รับเลย</a>
+            <a href="library.html" class="btn-buy">รับเลย</a>
           </div>
         </div>
       </div>
-
-      <!-- Product 2 -->
       <div class="product-card">
         <div class="product-thumb">🎯</div>
         <div class="product-body">
@@ -313,8 +207,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Product 3 -->
       <div class="product-card">
         <div class="product-thumb">✨</div>
         <div class="product-body">
@@ -327,200 +219,120 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- SOCIALS / CONTACT -->
+<!-- CONTACT -->
 <section id="contact" style="padding: 5rem 1.5rem; background: var(--warm); border-radius: 2rem; max-width: 1040px; margin: 0 auto 4rem;">
   <div style="text-align:center; padding: 2rem 1rem;">
     <p class="section-tag">ติดต่อ & ติดตาม</p>
     <h2 class="section-title">มาคุยกันได้เลย</h2>
     <p class="section-sub" style="margin: 0 auto;">ติดตามกูได้ทุกช่องทาง ไม่มีตัวไหนที่กูไม่ตอบ (แต่อาจช้าหน่อย 555)</p>
-
     <div class="socials-row">
-      <a href="https://www.instagram.com/oil.alongtheway" target="_blank" class="social-btn">
-        <span class="social-icon">📸</span> Instagram
-      </a>
-      <a href="https://www.tiktok.com/@oil.alongtheway" target="_blank" class="social-btn">
-        <span class="social-icon">🎵</span> TikTok
-      </a>
-      <a href="https://www.facebook.com/share/1HkWmfQ2Ak/" target="_blank" class="social-btn">
-        <span class="social-icon">📘</span> Facebook
-      </a>
-      <a href="https://x.com/oil_alongtheway" target="_blank" class="social-btn">
-        <span class="social-icon">🐦</span> X / Twitter
-      </a>
-      <a href="https://youtu.be/m9c5tHEu37A" target="_blank" class="social-btn">
-        <span class="social-icon">▶️</span> YouTube
-      </a>
-    </div>
-  </div>
-
-<!-- NOTIFICATION กลางจอ -->
-<div id="notif" style="
-  position:fixed; top:5rem; left:50%; 
-  transform:translateX(-50%) translateY(-150%);
-  z-index:9999; background:#fff; border-radius:1rem;
-  padding:0.75rem 1rem;
-  box-shadow:0 4px 20px rgba(0,0,0,0.1);
-  width:fit-content; min-width:220px; max-width:300px;
-  display:flex; align-items:center; gap:0.75rem;
-  font-family:'Sarabun',sans-serif;
-  opacity:0; pointer-events:none;
-  transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);
-">
-  <div id="notif-icon" style="
-    max-width:260px;
-overflow:hidden;
-white-space:nowrap;
-text-overflow:ellipsis;
-  ">🎉</div>
-  <div>
-    <div id="notif-name" style="font-weight:700;font-size:0.85rem;color:#1A1614;line-height:1.3"></div>
-    <div id="notif-msg" style="font-size:0.78rem;color:#6B5F58;font-weight:300;line-height:1.3"></div>
-  </div>
-</div>
-  <div id="notif-icon" style="font-size:2rem;margin-bottom:0.5rem">🎉</div>
-  <div id="notif-name" style="font-weight:700;font-size:1rem;color:#1A1614;margin-bottom:0.25rem"></div>
-  <div id="notif-score" style="color:#C97B4B;font-size:0.9rem;margin-bottom:0.4rem"></div>
-  <div id="notif-msg" style="color:#6B5F58;font-size:0.88rem;line-height:1.6;font-weight:300"></div>
-</div>
-<!-- FORM กรอกข้อความ -->
-<section style="padding:4rem 2rem;background:#F0EAE0;margin:2rem auto;border-radius:2rem;max-width:1040px">
-  <div style="max-width:480px;margin:0 auto;text-align:center">
-    <p style="font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:#C97B4B;font-weight:600;margin-bottom:0.75rem">เขียนถึงกู</p>
-    <h2 style="font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:0.75rem;color:#1A1614">บอกกูด้วยนะ 💬</h2>
-    <p style="color:#6B5F58;font-weight:300;margin-bottom:2rem">ความรู้สึก คำถาม หรือแค่อยากทักก็ได้เลย</p>
-
-    <div style="background:#fff;border-radius:1.25rem;padding:1.75rem;text-align:left">
-
-      <div style="margin-bottom:1rem">
-        <label style="font-size:0.85rem;font-weight:600;color:#1A1614;display:block;margin-bottom:0.4rem">ชื่อ</label>
-        <input id="f-name" type="text" placeholder="ชื่อของมึง" style="
-          width:100%;padding:0.75rem 1rem;border-radius:0.75rem;
-          border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;
-          font-size:0.95rem;outline:none;background:#FAF7F2;
-        "/>
-      </div>
-
-      <div style="margin-bottom:1rem">
-        <label style="font-size:0.85rem;font-weight:600;color:#1A1614;display:block;margin-bottom:0.4rem">ให้คะแนนกูหน่อย</label>
-        <div id="star-row" style="display:flex;gap:0.5rem">
-          <span class="star" data-v="1" onclick="setStar(1)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
-          <span class="star" data-v="2" onclick="setStar(2)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
-          <span class="star" data-v="3" onclick="setStar(3)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
-          <span class="star" data-v="4" onclick="setStar(4)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
-          <span class="star" data-v="5" onclick="setStar(5)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
-        </div>
-      </div>
-
-      <div style="margin-bottom:1.25rem">
-        <label style="font-size:0.85rem;font-weight:600;color:#1A1614;display:block;margin-bottom:0.4rem">ข้อความถึงกู</label>
-        <textarea id="f-msg" placeholder="เขียนอะไรก็ได้เลย..." rows="3" style="
-          width:100%;padding:0.75rem 1rem;border-radius:0.75rem;
-          border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;
-          font-size:0.95rem;outline:none;resize:none;background:#FAF7F2;
-        "></textarea>
-      </div>
-
-      <button onclick="submitForm()" style="
-        width:100%;background:#C97B4B;color:#fff;
-        padding:0.85rem;border-radius:100px;border:none;
-        font-size:1rem;font-weight:600;font-family:'Sarabun',sans-serif;
-        cursor:pointer;transition:all 0.2s;
-      " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
-        ส่งข้อความ ❤️
-      </button>
-      <p id="f-status" style="text-align:center;font-size:0.85rem;color:#3A9B6F;margin-top:0.75rem;display:none">
-        ✓ ส่งแล้ว ขอบคุณนะ! 🙏
-      </p>
+      <a href="https://www.instagram.com/oil.alongtheway" target="_blank" class="social-btn"><span class="social-icon">📸</span> Instagram</a>
+      <a href="https://www.tiktok.com/@oil.alongtheway" target="_blank" class="social-btn"><span class="social-icon">🎵</span> TikTok</a>
+      <a href="https://www.facebook.com/share/1HkWmfQ2Ak/" target="_blank" class="social-btn"><span class="social-icon">📘</span> Facebook</a>
+      <a href="https://x.com/oil_alongtheway" target="_blank" class="social-btn"><span class="social-icon">🐦</span> X / Twitter</a>
+      <a href="https://youtu.be/m9c5tHEu37A" target="_blank" class="social-btn"><span class="social-icon">▶️</span> YouTube</a>
     </div>
   </div>
 </section>
 
+<!-- FORM -->
+<section style="padding:4rem 2rem; max-width:1040px; margin:0 auto 4rem;">
+  <div style="max-width:480px;margin:0 auto;text-align:center">
+    <p class="section-tag">เขียนถึงกู</p>
+    <h2 class="section-title">บอกกูด้วยนะ 💬</h2>
+    <p style="color:var(--mid);font-weight:300;margin-bottom:2rem">ความรู้สึก คำถาม หรือแค่อยากทักก็ได้เลย</p>
+    <div style="background:#fff;border-radius:1.25rem;padding:1.75rem;text-align:left;border:1px solid rgba(180,160,140,0.2)">
+      <div style="margin-bottom:1rem">
+        <label style="font-size:0.85rem;font-weight:600;color:var(--dark);display:block;margin-bottom:0.4rem">ชื่อ</label>
+        <input id="f-name" type="text" placeholder="ชื่อของมึง" style="width:100%;padding:0.75rem 1rem;border-radius:0.75rem;border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;font-size:0.95rem;outline:none;background:var(--cream);" />
+      </div>
+      <div style="margin-bottom:1rem">
+        <label style="font-size:0.85rem;font-weight:600;color:var(--dark);display:block;margin-bottom:0.4rem">ให้คะแนนกูหน่อย</label>
+        <div id="star-row" style="display:flex;gap:0.5rem">
+          <span class="star" onclick="setStar(1)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+          <span class="star" onclick="setStar(2)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+          <span class="star" onclick="setStar(3)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+          <span class="star" onclick="setStar(4)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+          <span class="star" onclick="setStar(5)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+        </div>
+      </div>
+      <div style="margin-bottom:1.25rem">
+        <label style="font-size:0.85rem;font-weight:600;color:var(--dark);display:block;margin-bottom:0.4rem">ข้อความถึงกู</label>
+        <textarea id="f-msg" placeholder="เขียนอะไรก็ได้เลย..." rows="3" style="width:100%;padding:0.75rem 1rem;border-radius:0.75rem;border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;font-size:0.95rem;outline:none;resize:none;background:var(--cream);"></textarea>
+      </div>
+      <button onclick="submitForm()" style="width:100%;background:var(--accent);color:#fff;padding:0.85rem;border-radius:100px;border:none;font-size:1rem;font-weight:600;font-family:'Sarabun',sans-serif;cursor:pointer;transition:all 0.2s;">
+        ส่งข้อความ ❤️
+      </button>
+      <p id="f-status" style="text-align:center;font-size:0.85rem;color:#3A9B6F;margin-top:0.75rem;display:none">✓ ส่งแล้ว ขอบคุณนะ! 🙏</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Oil Along The Way · ทำด้วยใจ ❤️</p>
+</footer>
+
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxxxc7J80Hv2iCMX1lYlG_UBuCHAX1lsBgEvSNE7NkwbF3vPMDZVy-UWIeq80AJnhlbCQ/exec';
 let starVal = 0;
+let notifTimer = null;
+
 function setStar(n) {
   starVal = n;
-  document.querySelectorAll('.star').forEach((s,i) => {
+  document.querySelectorAll('.star').forEach((s, i) => {
     s.textContent = i < n ? '❤️' : '🤍';
     s.style.transform = i < n ? 'scale(1.15)' : 'scale(1)';
   });
 }
 
-// ส่งข้อมูลไป Google Sheets
+function showNotif(data) {
+  const icons = ['🎉','💬','🙏','✨','❤️'];
+  document.getElementById('notif-icon-wrap').textContent = icons[Math.floor(Math.random() * icons.length)];
+  document.getElementById('notif-name').textContent = data.name;
+  document.getElementById('notif-msg').textContent = data.message;
+  const notif = document.getElementById('notif');
+  notif.classList.add('show');
+  if (notifTimer) clearTimeout(notifTimer);
+  notifTimer = setTimeout(() => notif.classList.remove('show'), 4000);
+}
+
 async function submitForm() {
   const name = document.getElementById('f-name').value.trim();
   const msg = document.getElementById('f-msg').value.trim();
-  if (!name || !msg || !starVal) {
-    alert('กรอกให้ครบนะ! ชื่อ คะแนน และข้อความ');
-    return;
-  }
-  const stars = '⭐'.repeat(starVal);
+  if (!name || !msg || !starVal) { alert('กรอกให้ครบนะ! ชื่อ คะแนน และข้อความ'); return; }
+  const hearts = '❤️'.repeat(starVal);
   await fetch(SCRIPT_URL, {
-    method:'POST', mode:'no-cors',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({name, score: stars, message: msg})
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, score: hearts, message: msg })
   });
   document.getElementById('f-name').value = '';
   document.getElementById('f-msg').value = '';
   setStar(0);
   document.getElementById('f-status').style.display = 'block';
   setTimeout(() => document.getElementById('f-status').style.display = 'none', 3000);
-
-  // เด้งโนติทันทีเลย
-  showNotif({name, score: stars, message: msg});
+  showNotif({ name, message: msg });
 }
 
-// แสดงโนติ
-function showNotif(data) {
-  const icons = ['🎉','💬','⭐','🙏','✨'];
-  document.getElementById('notif-icon').textContent = icons[Math.floor(Math.random()*icons.length)];
-  document.getElementById('notif-name').textContent = data.name;
-  document.getElementById('notif-score').textContent = data.score;
-  document.getElementById('notif-msg').textContent = '"' + data.message + '"';
-
-  const notif = document.getElementById('notif');
-  notif.style.opacity = '1';
-notif.style.transform = 'translateX(-50%) translateY(0)';
-  notif.style.pointerEvents = 'auto';
-}
-  setTimeout(hideNotif, 4000);
-}
-
-function hideNotif() {
-  const notif = document.getElementById('notif');
-  const overlay = document.getElementById('notif-overlay');
-  notif.style.opacity = '0';
-notif.style.transform = 'translateX(-50%) translateY(-150%)';
-  notif.style.pointerEvents = 'none';
-
-// ดึงข้อมูลจาก Sheets มาเด้งทุก 8 วิ
 async function fetchAndShow() {
   try {
     const res = await fetch(SCRIPT_URL);
     const data = await res.json();
     const real = data.filter(d => d.name && d.message);
     if (real.length > 0) {
-      const pick = real[Math.floor(Math.random() * real.length)];
-      showNotif(pick);
+      showNotif(real[Math.floor(Math.random() * real.length)]);
     }
   } catch(e) {}
 }
 
-// เริ่มเด้งหลังจาก 5 วิ แล้วทุก 8 วิ
 setTimeout(() => {
   fetchAndShow();
-  setInterval(fetchAndShow, 15000); // ← เปลี่ยนตรงนี้ได้ (8000 = 8วิ)
+  setInterval(fetchAndShow, 15000);
 }, 5000);
 </script>
- </section>
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 Oil Along The Way · ทำด้วยใจ ❤️</p>
-</footer>
 </body>
 </html>
