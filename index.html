@@ -358,51 +358,170 @@
     </div>
   </div>
 </section>
-<a href="https://forms.gle/jJDBVHdyWkSYUYMV9" target="_blank" class="btn-primary">
-  ✍️ เขียนข้อความถึงกู
-</a>
 <!-- FOOTER -->
 <footer>
   <p>© 2025 Oil Along The Way · ทำด้วยใจ ❤️</p>
 </footer>
 
-<!-- NOTIFICATION -->
+<!-- NOTIFICATION กลางจอ -->
 <div id="notif" style="
-  position:fixed; bottom:1.5rem; left:1.5rem; z-index:999;
-  background:#fff; border-radius:1rem; padding:0.85rem 1.25rem;
-  box-shadow:0 8px 32px rgba(0,0,0,0.12); max-width:280px;
-  display:flex; align-items:center; gap:0.75rem;
-  transform:translateY(120%); transition:transform 0.4s ease;
-  border-left:3px solid #C97B4B; font-family:'Sarabun',sans-serif;
+  position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.8);
+  z-index:9999; background:#fff; border-radius:1.25rem;
+  padding:1.25rem 1.75rem; box-shadow:0 16px 48px rgba(0,0,0,0.15);
+  max-width:320px; width:90%; text-align:center;
+  font-family:'Sarabun',sans-serif;
+  opacity:0; pointer-events:none;
+  transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  border-top:4px solid #C97B4B;
 ">
-  <span id="notif-icon" style="font-size:1.3rem">🎉</span>
-  <span id="notif-text" style="font-size:0.88rem;color:#1A1614;line-height:1.4"></span>
+  <div id="notif-icon" style="font-size:2rem;margin-bottom:0.5rem">🎉</div>
+  <div id="notif-name" style="font-weight:700;font-size:1rem;color:#1A1614;margin-bottom:0.25rem"></div>
+  <div id="notif-score" style="color:#C97B4B;font-size:0.9rem;margin-bottom:0.4rem"></div>
+  <div id="notif-msg" style="color:#6B5F58;font-size:0.88rem;line-height:1.6;font-weight:300"></div>
 </div>
+<div id="notif-overlay" style="
+  position:fixed;inset:0;background:rgba(0,0,0,0.25);
+  z-index:9998;opacity:0;pointer-events:none;transition:opacity 0.3s;
+"></div>
+
+<!-- FORM กรอกข้อความ -->
+<section style="padding:4rem 2rem;background:#F0EAE0;margin:2rem auto;border-radius:2rem;max-width:1040px">
+  <div style="max-width:480px;margin:0 auto;text-align:center">
+    <p style="font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:#C97B4B;font-weight:600;margin-bottom:0.75rem">เขียนถึงกู</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:0.75rem;color:#1A1614">บอกกูด้วยนะ 💬</h2>
+    <p style="color:#6B5F58;font-weight:300;margin-bottom:2rem">ความรู้สึก คำถาม หรือแค่อยากทักก็ได้เลย</p>
+
+    <div style="background:#fff;border-radius:1.25rem;padding:1.75rem;text-align:left">
+
+      <div style="margin-bottom:1rem">
+        <label style="font-size:0.85rem;font-weight:600;color:#1A1614;display:block;margin-bottom:0.4rem">ชื่อ</label>
+        <input id="f-name" type="text" placeholder="ชื่อของมึง" style="
+          width:100%;padding:0.75rem 1rem;border-radius:0.75rem;
+          border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;
+          font-size:0.95rem;outline:none;background:#FAF7F2;
+        "/>
+      </div>
+
+      <div style="margin-bottom:1rem">
+        <label style="font-size:0.85rem;font-weight:600;color:#1A1614;display:block;margin-bottom:0.4rem">ให้คะแนนกูหน่อย</label>
+        <div id="star-row" style="display:flex;gap:0.5rem">
+          <span class="star" data-v="1" onclick="setStar(1)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+          <span class="star" data-v="2" onclick="setStar(2)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+          <span class="star" data-v="3" onclick="setStar(3)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+          <span class="star" data-v="4" onclick="setStar(4)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+          <span class="star" data-v="5" onclick="setStar(5)" style="font-size:1.75rem;cursor:pointer;transition:transform 0.15s">🤍</span>
+        </div>
+      </div>
+
+      <div style="margin-bottom:1.25rem">
+        <label style="font-size:0.85rem;font-weight:600;color:#1A1614;display:block;margin-bottom:0.4rem">ข้อความถึงกู</label>
+        <textarea id="f-msg" placeholder="เขียนอะไรก็ได้เลย..." rows="3" style="
+          width:100%;padding:0.75rem 1rem;border-radius:0.75rem;
+          border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;
+          font-size:0.95rem;outline:none;resize:none;background:#FAF7F2;
+        "></textarea>
+      </div>
+
+      <button onclick="submitForm()" style="
+        width:100%;background:#C97B4B;color:#fff;
+        padding:0.85rem;border-radius:100px;border:none;
+        font-size:1rem;font-weight:600;font-family:'Sarabun',sans-serif;
+        cursor:pointer;transition:all 0.2s;
+      " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+        ส่งข้อความ ❤️
+      </button>
+      <p id="f-status" style="text-align:center;font-size:0.85rem;color:#3A9B6F;margin-top:0.75rem;display:none">
+        ✓ ส่งแล้ว ขอบคุณนะ! 🙏
+      </p>
+    </div>
+  </div>
+</section>
 
 <script>
-const messages = [
-  { icon: "🎉", text: "น้องมิ้น เข้าร่วมคอร์สแล้ว!" },
-  { icon: "⭐", text: "พี่เจม ให้คะแนน 5 ดาว" },
-  { icon: "💬", text: "แนน: ขอบคุณมากเลยนะคะ!" },
-  { icon: "🎉", text: "คุณโอ๊ต เริ่มเรียนคอร์สแล้ว!" },
-  { icon: "⭐", text: "น้องเฟิร์น ให้คะแนน 5 ดาว" },
-  // ← เพิ่มข้อความเองตรงนี้ได้เลย
-];
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxxxc7J80Hv2iCMX1lYlG_UBuCHAX1lsBgEvSNE7NkwbF3vPMDZVy-UWIeq80AJnhlbCQ/exec';
 
-let idx = 0;
-const notif = document.getElementById('notif');
-
-function showNotif() {
-  const m = messages[idx % messages.length];
-  document.getElementById('notif-icon').textContent = m.icon;
-  document.getElementById('notif-text').textContent = m.text;
-  notif.style.transform = 'translateY(0)';
-  setTimeout(() => { notif.style.transform = 'translateY(120%)'; }, 3500);
-  idx++;
+let starVal = 0;
+function setStar(n) {
+  starVal = n;
+  document.querySelectorAll('.star').forEach((s,i) => {
+    s.textContent = i < n ? '❤️' : '🤍';
+    s.style.transform = i < n ? 'scale(1.15)' : 'scale(1)';
+  });
 }
 
-showNotif();
-setInterval(showNotif, 7000); // ← เปลี่ยนเลขนี้ = กี่มิลลิวินาที (7000 = 7วิ)
+// ส่งข้อมูลไป Google Sheets
+async function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const msg = document.getElementById('f-msg').value.trim();
+  if (!name || !msg || !starVal) {
+    alert('กรอกให้ครบนะ! ชื่อ คะแนน และข้อความ');
+    return;
+  }
+  const stars = '⭐'.repeat(starVal);
+  await fetch(SCRIPT_URL, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({name, score: stars, message: msg})
+  });
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-msg').value = '';
+  setStar(0);
+  document.getElementById('f-status').style.display = 'block';
+  setTimeout(() => document.getElementById('f-status').style.display = 'none', 3000);
+
+  // เด้งโนติทันทีเลย
+  showNotif({name, score: stars, message: msg});
+}
+
+// แสดงโนติ
+function showNotif(data) {
+  const icons = ['🎉','💬','⭐','🙏','✨'];
+  document.getElementById('notif-icon').textContent = icons[Math.floor(Math.random()*icons.length)];
+  document.getElementById('notif-name').textContent = data.name;
+  document.getElementById('notif-score').textContent = data.score;
+  document.getElementById('notif-msg').textContent = '"' + data.message + '"';
+
+  const notif = document.getElementById('notif');
+  const overlay = document.getElementById('notif-overlay');
+  notif.style.opacity = '1';
+  notif.style.transform = 'translate(-50%,-50%) scale(1)';
+  notif.style.pointerEvents = 'auto';
+  overlay.style.opacity = '1';
+  overlay.style.pointerEvents = 'auto';
+
+  setTimeout(hideNotif, 4000);
+}
+
+function hideNotif() {
+  const notif = document.getElementById('notif');
+  const overlay = document.getElementById('notif-overlay');
+  notif.style.opacity = '0';
+  notif.style.transform = 'translate(-50%,-50%) scale(0.8)';
+  notif.style.pointerEvents = 'none';
+  overlay.style.opacity = '0';
+  overlay.style.pointerEvents = 'none';
+}
+
+document.getElementById('notif-overlay').addEventListener('click', hideNotif);
+
+// ดึงข้อมูลจาก Sheets มาเด้งทุก 8 วิ
+async function fetchAndShow() {
+  try {
+    const res = await fetch(SCRIPT_URL);
+    const data = await res.json();
+    const real = data.filter(d => d.name && d.message);
+    if (real.length > 0) {
+      const pick = real[Math.floor(Math.random() * real.length)];
+      showNotif(pick);
+    }
+  } catch(e) {}
+}
+
+// เริ่มเด้งหลังจาก 5 วิ แล้วทุก 8 วิ
+setTimeout(() => {
+  fetchAndShow();
+  setInterval(fetchAndShow, 8000); // ← เปลี่ยนตรงนี้ได้ (8000 = 8วิ)
+}, 5000);
 </script>
 </body>
 </html>
