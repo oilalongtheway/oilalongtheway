@@ -358,11 +358,51 @@
     </div>
   </div>
 </section>
-
+<a href="https://forms.gle/jJDBVHdyWkSYUYMV9" target="_blank" class="btn-primary">
+  ✍️ เขียนข้อความถึงกู
+</a>
 <!-- FOOTER -->
 <footer>
   <p>© 2025 Oil Along The Way · ทำด้วยใจ ❤️</p>
 </footer>
 
+<!-- NOTIFICATION -->
+<div id="notif" style="
+  position:fixed; bottom:1.5rem; left:1.5rem; z-index:999;
+  background:#fff; border-radius:1rem; padding:0.85rem 1.25rem;
+  box-shadow:0 8px 32px rgba(0,0,0,0.12); max-width:280px;
+  display:flex; align-items:center; gap:0.75rem;
+  transform:translateY(120%); transition:transform 0.4s ease;
+  border-left:3px solid #C97B4B; font-family:'Sarabun',sans-serif;
+">
+  <span id="notif-icon" style="font-size:1.3rem">🎉</span>
+  <span id="notif-text" style="font-size:0.88rem;color:#1A1614;line-height:1.4"></span>
+</div>
+
+<script>
+const messages = [
+  { icon: "🎉", text: "น้องมิ้น เข้าร่วมคอร์สแล้ว!" },
+  { icon: "⭐", text: "พี่เจม ให้คะแนน 5 ดาว" },
+  { icon: "💬", text: "แนน: ขอบคุณมากเลยนะคะ!" },
+  { icon: "🎉", text: "คุณโอ๊ต เริ่มเรียนคอร์สแล้ว!" },
+  { icon: "⭐", text: "น้องเฟิร์น ให้คะแนน 5 ดาว" },
+  // ← เพิ่มข้อความเองตรงนี้ได้เลย
+];
+
+let idx = 0;
+const notif = document.getElementById('notif');
+
+function showNotif() {
+  const m = messages[idx % messages.length];
+  document.getElementById('notif-icon').textContent = m.icon;
+  document.getElementById('notif-text').textContent = m.text;
+  notif.style.transform = 'translateY(0)';
+  setTimeout(() => { notif.style.transform = 'translateY(120%)'; }, 3500);
+  idx++;
+}
+
+showNotif();
+setInterval(showNotif, 7000); // ← เปลี่ยนเลขนี้ = กี่มิลลิวินาที (7000 = 7วิ)
+</script>
 </body>
 </html>
