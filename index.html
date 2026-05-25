@@ -484,12 +484,9 @@ function showNotif(data) {
   document.getElementById('notif-msg').textContent = '"' + data.message + '"';
 
   const notif = document.getElementById('notif');
-  const overlay = document.getElementById('notif-overlay');
   notif.style.opacity = '1';
 notif.style.transform = 'translateX(-50%) translateY(0)';
   notif.style.pointerEvents = 'auto';
-  overlay.style.opacity = '1';
-  overlay.style.pointerEvents = 'auto';
 
   setTimeout(hideNotif, 4000);
 }
@@ -500,11 +497,6 @@ function hideNotif() {
   notif.style.opacity = '0';
 notif.style.transform = 'translateX(-50%) translateY(-150%)';
   notif.style.pointerEvents = 'none';
-  overlay.style.opacity = '0';
-  overlay.style.pointerEvents = 'none';
-}
-
-document.getElementById('notif-overlay').addEventListener('click', hideNotif);
 
 // ดึงข้อมูลจาก Sheets มาเด้งทุก 8 วิ
 async function fetchAndShow() {
