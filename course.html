@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="https://www.youtube.com/iframe_api"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
 <title>สร้างระบบธุรกิจหลังบ้าน — Oil Along The Way</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
 <style>
@@ -42,9 +42,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
 .main{display:flex;flex-direction:column;overflow-y:auto}
 
 /* VIDEO AREA */
-.video-area{background:#000;aspect-ratio:16/9;width:100%;display:flex;align-items:center;justify-content:center;position:relative}
-.video-area iframe{width:100%;height:100%;border:none}
-.video-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:rgba(255,255,255,0.5);text-align:center;padding:2rem}
+.video-area{background:#000;aspect-ratio:16/9;width:100%;position:relative}
+#yt-player{width:100%;height:100%;position:absolute;top:0;left:0}
+.video-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:rgba(255,255,255,0.5);text-align:center;padding:2rem;position:absolute;top:0;left:0;width:100%;height:100%}
 .video-placeholder .play-icon{width:64px;height:64px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
 .video-placeholder p{font-size:0.9rem}
 
@@ -159,8 +159,13 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
     <!-- VIDEO + CONTENT (lessons 0-4) -->
     <div id="lesson-view">
       <div class="video-area">
+        <!-- YouTube IFrame API จะ inject ตรงนี้ -->
         <div id="yt-player"></div>
-  style="width:100%;height:100%;border:none;position:absolute;top:0;left:0"></iframe>
+        <!-- Placeholder สำหรับบทที่ยังไม่มีคลิป -->
+        <div class="video-placeholder hidden" id="video-placeholder">
+          <div class="play-icon">▶</div>
+          <p>ยังไม่มีวิดีโอสำหรับบทนี้</p>
+        </div>
       </div>
 
       <div class="content-area">
@@ -202,10 +207,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
           <button class="amount-btn selected" onclick="selectAmount(this)">฿99</button>
           <button class="amount-btn" onclick="selectAmount(this)">฿189</button>
         </div>
-       <div id="qr-box" style="display:none; margin-bottom:1rem">
-  <img id="qr-img" style="width:200px; border-radius:1rem;" />
-  <p style="font-size:0.8rem; color:var(--mid); margin-top:0.5rem">สแกน QR เพื่อโอนได้เลย</p>
-</div>
+        <div id="qr-box" style="display:none; margin-bottom:1rem; text-align:center">
+          <img id="qr-img" style="width:200px; border-radius:1rem;" />
+          <p style="font-size:0.8rem; color:var(--mid); margin-top:0.5rem">สแกน QR เพื่อโอนได้เลย</p>
+        </div>
         <p style="font-size:0.75rem;color:var(--mid);margin-top:1rem">* </p>
       </div>
       <a href="library.html" class="skip-link">กลับหน้าคลังคอร์ส →</a>
@@ -220,7 +225,7 @@ const lessons = [
     badge: "โมดูล 1 · บทที่ 1",
     title: "บทนำ — ทำไมต้องมีระบบ",
     desc: "ก่อนจะสร้างอะไร กูอยากให้มึงเข้าใจก่อนว่าทำไมธุรกิจดิจิทัลถึงต้องการ 'ระบบหลังบ้าน' และมันคืออะไรกันแน่",
-    yt: "pJfdsUGNa2U" // ใส่ YouTube video ID เช่น "dQw4w9WgXcQ"
+    yt: "pJfdsUGNa2U"
   },
   {
     badge: "โมดูล 1 · บทที่ 2",
@@ -248,33 +253,30 @@ const lessons = [
   }
 ];
 
+// ✅ ประกาศตัวแปรครั้งเดียว
 let current = 0;
-  let current = 0;
 let done = new Set(JSON.parse(localStorage.getItem('done') || '[]'));
-
-// ← วางตรงนี้เลย
 let player = null;
+let playerReady = false;
 
+// ✅ YouTube API callback
 function onYouTubeIframeAPIReady() {
-  loadPlayer(lessons[current].yt);
+  const ytId = lessons[current].yt;
+  if (!ytId) return;
+  createPlayer(ytId);
 }
 
-function loadPlayer(ytId) {
-  if (player) {
-    if (ytId) {
-      player.loadVideoById(ytId);
-    } else {
-      player.stopVideo();
-    }
-    return;
-  }
-  if (!ytId) return;
+function createPlayer(ytId) {
   player = new YT.Player('yt-player', {
     width: '100%',
     height: '100%',
     videoId: ytId,
     playerVars: { rel: 0, modestbranding: 1 },
     events: {
+      onReady: function() {
+        playerReady = true;
+      },
+      // ✅ จุดหลัก: ดูจบ → ติ๊กถูกอัตโนมัติ
       onStateChange: function(e) {
         if (e.data === YT.PlayerState.ENDED) {
           if (!done.has(current)) {
@@ -287,7 +289,33 @@ function loadPlayer(ytId) {
     }
   });
 }
-let done = new Set(JSON.parse(localStorage.getItem('done') || '[]'));
+
+function loadVideo(ytId) {
+  const placeholder = document.getElementById('video-placeholder');
+
+  if (!ytId) {
+    // ไม่มีคลิป — แสดง placeholder
+    placeholder.classList.remove('hidden');
+    if (player && playerReady) {
+      player.stopVideo();
+    }
+    return;
+  }
+
+  placeholder.classList.add('hidden');
+
+  if (!player) {
+    // ยัง init ไม่ได้ (API ยังโหลด) — รอก่อน
+    const interval = setInterval(() => {
+      if (typeof YT !== 'undefined' && YT.Player) {
+        clearInterval(interval);
+        createPlayer(ytId);
+      }
+    }, 200);
+  } else if (playerReady) {
+    player.loadVideoById(ytId);
+  }
+}
 
 function saveDone() {
   localStorage.setItem('done', JSON.stringify([...done]));
@@ -311,8 +339,6 @@ function updateSidebar() {
     const check = el.querySelector('.check');
     if (done.has(idx)) {
       check.textContent = '✓';
-    } else if (idx === current) {
-      check.textContent = '▶';
     } else {
       check.textContent = '▶';
     }
@@ -325,11 +351,7 @@ function renderLesson(idx) {
   document.getElementById('lesson-title').textContent = l.title;
   document.getElementById('lesson-desc').textContent = l.desc;
 
- loadPlayer(l.yt || ''); else {
-    frame.src = '';
-    frame.classList.add('hidden');
-    placeholder.classList.remove('hidden');
-  }
+  loadVideo(l.yt || '');
 
   document.getElementById('btn-prev').disabled = idx === 0;
   document.getElementById('btn-next').textContent = idx === lessons.length - 1 ? 'กล่าวจบ →' : 'ถัดไป →';
@@ -361,9 +383,6 @@ function goLesson(idx) {
   document.getElementById('lesson-view').classList.remove('hidden');
   document.getElementById('donate-view').classList.add('hidden');
   renderLesson(idx);
-  document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active'));
-  const el = document.querySelector('[data-lesson="' + idx + '"]');
-  if (el) el.classList.add('active');
 }
 
 function nextLesson() {
@@ -399,13 +418,13 @@ function showDonate() {
 function selectAmount(btn) {
   document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
-  const amount = btn.textContent.replace('฿','');
-  const phone = '0828642113'; //
-  document.getElementById('qr-img').src = 
-    'https://promptpay.io/' + phone + '/' + amount + '.png';
+  const amount = btn.textContent.replace('฿', '');
+  const phone = '0828642113';
+  document.getElementById('qr-img').src = 'https://promptpay.io/' + phone + '/' + amount + '.png';
   document.getElementById('qr-box').style.display = 'block';
 }
 
+// เริ่มต้น
 renderLesson(0);
 </script>
 </body>
