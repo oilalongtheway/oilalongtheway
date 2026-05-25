@@ -10,16 +10,16 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--cream:#FAF7F2;--warm:#F0EAE0;--dark:#1A1614;--mid:#6B5F58;--accent:#C97B4B;--accent-light:#F2D9C4;--white:#fff;--green:#3A9B6F;--green-light:#E8F5EE}
 body{font-family:'Sarabun',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh;display:flex;flex-direction:column}
- 
+
 /* NAV */
 nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid rgba(180,160,140,0.2);background:var(--cream);position:sticky;top:0;z-index:100}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1rem;text-decoration:none;color:var(--dark)}
 .nav-back{font-size:0.85rem;color:var(--mid);text-decoration:none;display:flex;align-items:center;gap:0.4rem}
 .nav-back:hover{color:var(--accent)}
- 
+
 /* LAYOUT */
 .app{display:grid;grid-template-columns:300px 1fr;flex:1;min-height:calc(100vh - 57px)}
- 
+
 /* SIDEBAR */
 .sidebar{background:var(--white);border-right:1px solid rgba(180,160,140,0.2);overflow-y:auto;padding:1.5rem 0}
 .sidebar-title{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);font-weight:600;padding:0 1.5rem;margin-bottom:1rem}
@@ -33,14 +33,14 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
 .check{width:18px;height:18px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.65rem;transition:all 0.2s}
 .lesson-item.done .check{background:var(--green);border-color:var(--green);color:#fff}
 .lesson-title-text{flex:1;line-height:1.3}
- 
+
 /* SPECIAL ITEMS */
 .lesson-item.special-module .module-label{font-size:0.68rem;background:var(--accent-light);color:var(--accent);padding:0.15rem 0.5rem;border-radius:100px;font-weight:700;flex-shrink:0}
 .lesson-item.finale{color:var(--accent)}
- 
+
 /* MAIN */
 .main{display:flex;flex-direction:column;overflow-y:auto}
- 
+
 /* VIDEO AREA */
 .video-area{background:#000;width:100%;position:relative;padding-top:56.25%}/* 16:9 */
 #yt-player{position:absolute;top:0;left:0;width:100%;height:100%}
@@ -48,18 +48,18 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
 .video-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:rgba(255,255,255,0.5);text-align:center;padding:2rem;position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
 .video-placeholder .play-icon{width:64px;height:64px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
 .video-placeholder p{font-size:0.9rem}
- 
+
 /* CONTENT AREA */
 .content-area{padding:2rem 2.5rem;flex:1}
 .lesson-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.75rem}
 .lesson-main-title{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:0.75rem;line-height:1.3}
 .lesson-desc{color:var(--mid);font-weight:300;line-height:1.9;max-width:620px}
- 
+
 /* PROGRESS BAR */
 .progress-bar-wrap{background:var(--warm);border-radius:100px;height:6px;margin:1.5rem 0;max-width:400px}
 .progress-bar-fill{height:6px;border-radius:100px;background:var(--accent);transition:width 0.4s ease}
 .progress-label{font-size:0.8rem;color:var(--mid);margin-bottom:0.5rem}
- 
+
 /* NAV BUTTONS */
 .nav-btns{display:flex;align-items:center;gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(180,160,140,0.15)}
 .btn{padding:0.75rem 1.75rem;border-radius:100px;font-size:0.9rem;font-weight:600;cursor:pointer;border:none;font-family:'Sarabun',sans-serif;transition:all 0.2s}
@@ -72,7 +72,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
 .mark-done-btn{margin-left:auto;background:var(--green-light);color:var(--green);border:1.5px solid rgba(58,155,111,0.3);padding:0.6rem 1.2rem;border-radius:100px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;transition:all 0.2s;display:flex;align-items:center;gap:0.4rem}
 .mark-done-btn:hover{background:var(--green);color:#fff}
 .mark-done-btn.marked{background:var(--green);color:#fff}
- 
+
 /* DONATE PAGE */
 .donate-page{padding:3rem 2.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1}
 .donate-emoji{font-size:4rem;margin-bottom:1.5rem}
@@ -86,10 +86,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
 .donate-link:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,123,75,0.3)}
 .skip-link{margin-top:1rem;font-size:0.85rem;color:var(--mid);text-decoration:none}
 .skip-link:hover{color:var(--accent)}
- 
+
 /* HIDDEN */
 .hidden{display:none!important}
- 
+
 @media(max-width:768px){
   .app{grid-template-columns:1fr}
   .sidebar{display:none}
@@ -99,19 +99,19 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
 </style>
 </head>
 <body>
- 
+
 <nav>
   <a href="library.html" class="nav-back">← กลับคลังคอร์ส</a>
   <a href="library.html" class="nav-logo">oil alongtheway</a>
   <span style="font-size:0.82rem;color:var(--mid)" id="nav-progress">0 / 5 บท</span>
 </nav>
- 
+
 <div class="app" id="course-app">
- 
+
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <p class="sidebar-title">สร้างระบบธุรกิจหลังบ้าน</p>
- 
+
     <div class="module-group">
       <div class="module-header">
         <span class="module-num">1</span>
@@ -134,7 +134,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
         <span class="lesson-title-text">สอน — ส่วนที่ 3</span>
       </div>
     </div>
- 
+
     <div class="module-group">
       <div class="module-header">
         <span class="module-num">2</span>
@@ -145,7 +145,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
         <span class="lesson-title-text">เพิ่มความพิเศษให้ระบบ</span>
       </div>
     </div>
- 
+
     <div class="module-group" style="margin-top:0.5rem">
       <div class="lesson-item finale" data-lesson="5" onclick="goLesson(5)" style="padding-left:1.5rem">
         <span class="check" style="color:var(--accent)">❤️</span>
@@ -153,10 +153,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
       </div>
     </div>
   </aside>
- 
+
   <!-- MAIN -->
   <main class="main" id="main-content">
- 
+
     <!-- VIDEO + CONTENT (lessons 0-4) -->
     <div id="lesson-view">
       <div class="video-area">
@@ -168,19 +168,19 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
           <p>ยังไม่มีวิดีโอสำหรับบทนี้</p>
         </div>
       </div>
- 
+
       <div class="content-area">
         <p class="lesson-badge" id="lesson-badge">โมดูล 1</p>
         <h1 class="lesson-main-title" id="lesson-title">บทนำ — ทำไมต้องมีระบบ</h1>
         <p class="lesson-desc" id="lesson-desc">ก่อนจะสร้างอะไร กูอยากให้มึงเข้าใจก่อนว่าทำไมธุรกิจดิจิทัลถึงต้องการ "ระบบหลังบ้าน" และมันคืออะไรกันแน่</p>
- 
+
         <div style="margin-top:1.5rem">
           <p class="progress-label" id="progress-label">ความคืบหน้า: 0 / 5 บท</p>
           <div class="progress-bar-wrap">
             <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
           </div>
         </div>
- 
+
         <div class="nav-btns">
           <button class="btn btn-secondary" id="btn-prev" onclick="prevLesson()">← ก่อนหน้า</button>
           <button class="btn btn-primary" id="btn-next" onclick="nextLesson()">ถัดไป →</button>
@@ -191,7 +191,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
         </div>
       </div>
     </div>
- 
+
     <!-- DONATE PAGE (lesson 5) -->
     <div id="donate-view" class="donate-page hidden">
       <div class="donate-emoji">🙏</div>
@@ -216,10 +216,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
       </div>
       <a href="library.html" class="skip-link">กลับหน้าคลังคอร์ส →</a>
     </div>
- 
+
   </main>
 </div>
- 
+
 <script>
 const lessons = [
   {
@@ -253,20 +253,20 @@ const lessons = [
     yt: ""
   }
 ];
- 
+
 // ✅ ประกาศตัวแปรครั้งเดียว
 let current = 0;
 let done = new Set(JSON.parse(localStorage.getItem('done') || '[]'));
 let player = null;
 let playerReady = false;
- 
+
 // ✅ YouTube API callback
 function onYouTubeIframeAPIReady() {
   const ytId = lessons[current].yt;
   if (!ytId) return;
   createPlayer(ytId);
 }
- 
+
 function createPlayer(ytId) {
   player = new YT.Player('yt-player', {
     width: '100%',
@@ -290,10 +290,10 @@ function createPlayer(ytId) {
     }
   });
 }
- 
+
 function loadVideo(ytId) {
   const placeholder = document.getElementById('video-placeholder');
- 
+
   if (!ytId) {
     // ไม่มีคลิป — แสดง placeholder
     placeholder.classList.remove('hidden');
@@ -302,9 +302,9 @@ function loadVideo(ytId) {
     }
     return;
   }
- 
+
   placeholder.classList.add('hidden');
- 
+
   if (!player) {
     // ยัง init ไม่ได้ (API ยังโหลด) — รอก่อน
     const interval = setInterval(() => {
@@ -317,11 +317,11 @@ function loadVideo(ytId) {
     player.loadVideoById(ytId);
   }
 }
- 
+
 function saveDone() {
   localStorage.setItem('done', JSON.stringify([...done]));
 }
- 
+
 function updateProgress() {
   const count = done.size;
   const total = lessons.length;
@@ -330,7 +330,7 @@ function updateProgress() {
   document.getElementById('progress-label').textContent = 'ความคืบหน้า: ' + count + ' / ' + total + ' บท';
   document.getElementById('nav-progress').textContent = count + ' / ' + total + ' บท';
 }
- 
+
 function updateSidebar() {
   document.querySelectorAll('.lesson-item[data-lesson]').forEach(el => {
     const idx = parseInt(el.dataset.lesson);
@@ -345,18 +345,18 @@ function updateSidebar() {
     }
   });
 }
- 
+
 function renderLesson(idx) {
   const l = lessons[idx];
   document.getElementById('lesson-badge').textContent = l.badge;
   document.getElementById('lesson-title').textContent = l.title;
   document.getElementById('lesson-desc').textContent = l.desc;
- 
+
   loadVideo(l.yt || '');
- 
+
   document.getElementById('btn-prev').disabled = idx === 0;
   document.getElementById('btn-next').textContent = idx === lessons.length - 1 ? 'กล่าวจบ →' : 'ถัดไป →';
- 
+
   const marked = done.has(idx);
   const markBtn = document.getElementById('btn-mark');
   const markIcon = document.getElementById('mark-icon');
@@ -370,11 +370,11 @@ function renderLesson(idx) {
     markIcon.textContent = '○';
     markLabel.textContent = 'ทำเสร็จแล้ว';
   }
- 
+
   updateSidebar();
   updateProgress();
 }
- 
+
 function goLesson(idx) {
   if (idx === 5) {
     showDonate();
@@ -385,7 +385,7 @@ function goLesson(idx) {
   document.getElementById('donate-view').classList.add('hidden');
   renderLesson(idx);
 }
- 
+
 function nextLesson() {
   if (current < lessons.length - 1) {
     goLesson(current + 1);
@@ -393,11 +393,11 @@ function nextLesson() {
     showDonate();
   }
 }
- 
+
 function prevLesson() {
   if (current > 0) goLesson(current - 1);
 }
- 
+
 function markDone() {
   if (done.has(current)) {
     done.delete(current);
@@ -407,7 +407,7 @@ function markDone() {
   saveDone();
   renderLesson(current);
 }
- 
+
 function showDonate() {
   document.getElementById('lesson-view').classList.add('hidden');
   document.getElementById('donate-view').classList.remove('hidden');
@@ -415,7 +415,7 @@ function showDonate() {
   const el = document.querySelector('[data-lesson="5"]');
   if (el) el.classList.add('active');
 }
- 
+
 function selectAmount(btn) {
   document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
@@ -424,7 +424,7 @@ function selectAmount(btn) {
   document.getElementById('qr-img').src = 'https://promptpay.io/' + phone + '/' + amount + '.png';
   document.getElementById('qr-box').style.display = 'block';
 }
- 
+
 // เริ่มต้น
 renderLesson(0);
 </script>
