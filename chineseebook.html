@@ -929,7 +929,7 @@
   <div class="donate-emoji">🙏</div>
   <h1 class="donate-title">ขอบคุณที่เรียนจบ!</h1>
   <p class="donate-sub">
-    กูหวังว่าคอร์สนี้จะเป็นประโยชน์กับมงไม่มากก็น้อย<br/>
+    กูหวังว่าคอร์สนี้จะเป็นประโยชน์กับมึงไม่มากก็น้อย<br/>
     ถ้าอยากสนับสนุนให้กูทำคอนเทนต์ดีๆ ต่อไป<br/>
     โดเนทกาแฟให้กูสักแก้วได้เลย ☕
   </p>
@@ -941,7 +941,7 @@
       <button class="amount-btn" onclick="showQR(189, this)">฿189</button>
     </div>
     <div id="qr-section" style="display:none; margin-top:8px;">
-      <canvas id="qr-canvas" style="border-radius:12px; background:#fff; padding:8px;"></canvas>
+      <canvas id="qr-canvas" style="border-radius:12px;"></canvas>
       <p class="donate-note" style="margin-top:10px;">สแกนจ่ายผ่าน PromptPay ได้เลย 🙏</p>
     </div>
     <p class="donate-note" id="default-note">* กดเลือกจำนวนเพื่อดู QR Code</p>
@@ -949,36 +949,59 @@
   <div class="donate-brand">by <span>oilalongtheway</span></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/promptpay-qr/dist/promptpay-qr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 <script>
+  function generatePromptPayPayload(phone, amount) {
+    const norm = '0066' + phone.substring(1);
+
+    function f(id, val) {
+      const len = val.length.toString().padStart(2, '0');
+      return id + len + val;
+    }
+
+    function crc16(str) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < str.length; i++) {
+        crc ^= str.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+          crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+        }
+      }
+      return ((crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0'));
+    }
+
+    const merchantInfo = f('00', 'A000000677010111') + f('01', norm);
+    const payload =
+      f('00', '01') +
+      f('01', '12') +
+      f('29', merchantInfo) +
+      f('53', '764') +
+      f('54', amount.toFixed(2)) +
+      f('58', 'TH') +
+      f('59', 'N/A') +
+      f('60', 'Bangkok') +
+      '6304';
+
+    return payload + crc16(payload);
+  }
+
   function showQR(amount, btn) {
     document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
 
-    const phone = '0828642113';
-
-    // ลอง log ดูก่อนว่า library โหลดมาเป็นอะไร
-    console.log('promptpay:', window.promptpay);
-    console.log('generatePayload:', window.generatePayload);
-
-    const payload = window.generatePayload
-      ? window.generatePayload(phone, { amount })
-      : window.promptpay(phone, { amount });
-
-    console.log('payload:', payload);
+    const payload = generatePromptPayPayload('0828642113', amount);
 
     QRCode.toCanvas(document.getElementById('qr-canvas'), payload, {
       width: 200,
       margin: 2,
-    }, function(err) {
-      if (err) console.error('QR error:', err);
+      color: { dark: '#000000', light: '#ffffff' }
     });
 
     document.getElementById('qr-section').style.display = 'block';
     document.getElementById('default-note').style.display = 'none';
   }
 </script>
+
 
 
 
