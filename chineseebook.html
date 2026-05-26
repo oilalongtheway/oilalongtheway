@@ -957,18 +957,29 @@
     btn.classList.add('selected');
 
     const phone = '0828642113';
-    const payload = window.generatePayload(phone, { amount });
+
+    // ลอง log ดูก่อนว่า library โหลดมาเป็นอะไร
+    console.log('promptpay:', window.promptpay);
+    console.log('generatePayload:', window.generatePayload);
+
+    const payload = window.generatePayload
+      ? window.generatePayload(phone, { amount })
+      : window.promptpay(phone, { amount });
+
+    console.log('payload:', payload);
 
     QRCode.toCanvas(document.getElementById('qr-canvas'), payload, {
       width: 200,
       margin: 2,
-      color: { dark: '#000000', light: '#ffffff' }
+    }, function(err) {
+      if (err) console.error('QR error:', err);
     });
 
     document.getElementById('qr-section').style.display = 'block';
     document.getElementById('default-note').style.display = 'none';
   }
 </script>
+
 
 
 </body>
