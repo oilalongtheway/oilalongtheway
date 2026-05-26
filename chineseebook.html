@@ -924,7 +924,7 @@
   </div>
 </div>
 
-<!-- ===== DONATE PAGE ===== -->
+<!-- DONATE PAGE -->
 <div class="donate-page">
   <div class="donate-emoji">🙏</div>
   <h1 class="donate-title">ขอบคุณที่เรียนจบ!</h1>
@@ -936,15 +936,31 @@
   <div class="donate-card">
     <p class="donate-card-label">เลือกจำนวนที่อยากโดเนท</p>
     <div class="donate-amounts">
-      <button class="amount-btn">฿49</button>
-      <button class="amount-btn selected">฿99</button>
-      <button class="amount-btn">฿189</button>
+      <button class="amount-btn" onclick="showQR(49, this)">฿49</button>
+      <button class="amount-btn" onclick="showQR(99, this)">฿99</button>
+      <button class="amount-btn" onclick="showQR(189, this)">฿189</button>
     </div>
-    <div class="donate-divider"></div>
-    <p class="0828642113">* PromptPay / QR จะโชว์หลังเลือกจำนวน</p>
+    <div id="qr-section" style="display:none; margin-top:8px;">
+      <img id="qr-img" src="" alt="QR PromptPay"
+        style="width:200px; height:200px; border-radius:12px; background:#fff; padding:8px;">
+      <p class="donate-note" style="margin-top:10px;">สแกนจ่ายผ่าน PromptPay ได้เลย 🙏</p>
+    </div>
+    <p class="donate-note" id="default-note">* กดเลือกจำนวนเพื่อดู QR Code</p>
   </div>
   <div class="donate-brand">by <span>oilalongtheway</span></div>
 </div>
+
+<script>
+  function showQR(amount, btn) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const normalized = '66' + '0828642113'.substring(1);
+    const url = 'https://promptpay.io/' + normalized + '/' + amount + '.png';
+    document.getElementById('qr-img').src = url;
+    document.getElementById('qr-section').style.display = 'block';
+    document.getElementById('default-note').style.display = 'none';
+  }
+</script>
 
 </body>
 </html>
