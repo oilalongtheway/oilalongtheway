@@ -108,10 +108,7 @@
     align-items: center;
   }
 
-  .cover-author {
-    color: rgba(255,255,255,0.5);
-    font-size: 13px;
-  }
+  .cover-author { color: rgba(255,255,255,0.5); font-size: 13px; }
 
   .cover-vol {
     background: rgba(255,255,255,0.1);
@@ -121,15 +118,11 @@
     font-size: 13px;
   }
 
-  .cover-stories {
-    color: rgba(255,255,255,0.5);
-    font-size: 14px;
-  }
+  .cover-stories { color: rgba(255,255,255,0.5); font-size: 14px; }
 
   /* ===== STORY UNIT ===== */
   .story-unit { page-break-before: always; }
 
-  /* PAGE 1 — STORY */
   .page-story {
     page-break-after: always;
     padding: 35px 45px;
@@ -160,22 +153,9 @@
     flex-shrink: 0;
   }
 
-  .story-title-wrap {
-    flex: 1;
-    padding: 0 16px;
-  }
-
-  .story-title-zh {
-    font-size: 20px;
-    font-weight: 700;
-    color: #1a1a2e;
-  }
-
-  .story-title-th {
-    font-size: 13px;
-    color: #888;
-    margin-top: 2px;
-  }
+  .story-title-wrap { flex: 1; padding: 0 16px; }
+  .story-title-zh { font-size: 20px; font-weight: 700; color: #1a1a2e; }
+  .story-title-th { font-size: 13px; color: #888; margin-top: 2px; }
 
   .page-label {
     font-size: 11px;
@@ -184,10 +164,6 @@
     padding: 4px 12px;
     border-radius: 10px;
     letter-spacing: 1px;
-  }
-
-  .story-content {
-    space-y: 18px;
   }
 
   .sentence-block {
@@ -242,11 +218,7 @@
     border-bottom: 2px solid #f0f0f0;
   }
 
-  .vocab-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1a1a2e;
-  }
+  .vocab-title { font-size: 18px; font-weight: 700; color: #1a1a2e; }
 
   .vocab-count {
     font-size: 12px;
@@ -256,15 +228,9 @@
     border-radius: 10px;
   }
 
-  .vocab-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  .vocab-table { width: 100%; border-collapse: collapse; }
 
-  .vocab-table thead tr {
-    background: #1a1a2e;
-    color: white;
-  }
+  .vocab-table thead tr { background: #1a1a2e; color: white; }
 
   .vocab-table thead th {
     padding: 10px 14px;
@@ -276,11 +242,8 @@
 
   .vocab-table thead th:first-child { border-radius: 8px 0 0 0; }
   .vocab-table thead th:last-child { border-radius: 0 8px 0 0; }
-
   .vocab-table tbody tr:nth-child(odd) { background: #f9f9f9; }
   .vocab-table tbody tr:nth-child(even) { background: #fff; }
-
-  .vocab-table tbody tr:hover { background: #fff5f7; }
 
   .vocab-table td {
     padding: 10px 14px;
@@ -319,11 +282,7 @@
     border-bottom: 2px solid #f0f0f0;
   }
 
-  .translate-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1a1a2e;
-  }
+  .translate-title { font-size: 18px; font-weight: 700; color: #1a1a2e; }
 
   .trans-tip {
     font-size: 11px;
@@ -341,12 +300,7 @@
     background: #fff;
   }
 
-  .trans-zh-mini {
-    font-size: 15px;
-    color: #1a1a2e;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
+  .trans-zh-mini { font-size: 15px; color: #1a1a2e; font-weight: 600; margin-bottom: 6px; }
 
   .trans-divider-line {
     width: 30px;
@@ -356,11 +310,7 @@
     border-radius: 1px;
   }
 
-  .trans-thai {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.7;
-  }
+  .trans-thai { font-size: 16px; color: #333; line-height: 1.7; }
 
   .review-box {
     margin-top: 28px;
@@ -384,7 +334,117 @@
     margin-left: 16px;
   }
 
-  /* ===== FOOTER on each page ===== */
+  /* ===== DONATE PAGE ===== */
+  .donate-page {
+    page-break-before: always;
+    width: 100%;
+    min-height: 297mm;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .donate-page::before {
+    content: '☕';
+    position: absolute;
+    font-size: 280px;
+    opacity: 0.04;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .donate-emoji { font-size: 64px; margin-bottom: 20px; position: relative; }
+
+  .donate-title {
+    font-size: 34px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .donate-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.65);
+    line-height: 2.2;
+    margin-bottom: 44px;
+    position: relative;
+  }
+
+  .donate-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 36px 52px;
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+  }
+
+  .donate-card-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .donate-amounts {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .amount-btn {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 12px;
+    padding: 12px 26px;
+    font-size: 17px;
+    font-family: 'Sarabun', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .amount-btn.selected {
+    background: #e94560;
+    color: white;
+    border-color: #e94560;
+    font-weight: 700;
+  }
+
+  .donate-divider {
+    width: 40px;
+    height: 2px;
+    background: rgba(255,255,255,0.15);
+    margin: 0 auto 20px;
+    border-radius: 2px;
+  }
+
+  .donate-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 4px;
+  }
+
+  .donate-brand {
+    margin-top: 48px;
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    position: relative;
+  }
+
+  .donate-brand span { color: #e94560; font-weight: 700; }
+
+  /* ===== FOOTER ===== */
   .page-footer {
     position: fixed;
     bottom: 0;
@@ -433,8 +493,6 @@
 <!-- STORY 1: ซื้อกาแฟ -->
 <!-- ============================================================ -->
 <div class="story-unit">
-
-<!-- PAGE 1 -->
 <div class="page-story">
   <div class="page-header">
     <div class="story-num">1</div>
@@ -473,22 +531,13 @@
   </div>
 </div>
 
-<!-- PAGE 2 -->
 <div class="page-vocab">
   <div class="vocab-header">
     <div class="vocab-title">📚 คำศัพท์สำคัญ — เรื่องที่ 1</div>
     <div class="vocab-count">8 คำ</div>
   </div>
   <table class="vocab-table">
-    <thead>
-      <tr>
-        <th>ตัวจีน</th>
-        <th>พินอิน</th>
-        <th>อ่านไทย</th>
-        <th>ความหมาย</th>
-        <th>ชนิด</th>
-      </tr>
-    </thead>
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
     <tbody>
       <tr><td class="vocab-zh">早上</td><td class="vocab-pinyin">zǎoshang</td><td class="vocab-thai-ph">เจ่าซ่าง</td><td class="vocab-meaning">ตอนเช้า</td><td><span class="vocab-type">น.</span></td></tr>
       <tr><td class="vocab-zh">咖啡店</td><td class="vocab-pinyin">kāfēidiàn</td><td class="vocab-thai-ph">คาเฟยเตี้ยน</td><td class="vocab-meaning">ร้านกาแฟ</td><td><span class="vocab-type">น.</span></td></tr>
@@ -502,37 +551,16 @@
   </table>
 </div>
 
-<!-- PAGE 3 -->
 <div class="page-translate">
   <div class="translate-header">
     <div class="translate-title">🇹🇭 แปลไทย — เรื่องที่ 1</div>
     <div class="trans-tip">เช็กความเข้าใจของตัวเอง</div>
   </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">今天早上，我去咖啡店买咖啡。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">เช้าวันนี้ ฉันไปร้านกาแฟเพื่อซื้อกาแฟ</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">我点了一杯热拿铁。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ฉันสั่งลาเต้ร้อนหนึ่งแก้ว</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">服务员问我："要糖吗？"</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">พนักงานถามฉันว่า "เอาน้ำตาลไหม?"</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">我说："不要，谢谢。"</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ฉันบอกว่า "ไม่เอา ขอบคุณนะ"</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">咖啡很香，我很开心。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">กาแฟหอมมาก ฉันดีใจมาก</div>
-  </div>
+  <div class="trans-block"><div class="trans-zh-mini">今天早上，我去咖啡店买咖啡。</div><div class="trans-divider-line"></div><div class="trans-thai">เช้าวันนี้ ฉันไปร้านกาแฟเพื่อซื้อกาแฟ</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">我点了一杯热拿铁。</div><div class="trans-divider-line"></div><div class="trans-thai">ฉันสั่งลาเต้ร้อนหนึ่งแก้ว</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">服务员问我："要糖吗？"</div><div class="trans-divider-line"></div><div class="trans-thai">พนักงานถามฉันว่า "เอาน้ำตาลไหม?"</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">我说："不要，谢谢。"</div><div class="trans-divider-line"></div><div class="trans-thai">ฉันบอกว่า "ไม่เอา ขอบคุณนะ"</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">咖啡很香，我很开心。</div><div class="trans-divider-line"></div><div class="trans-thai">กาแฟหอมมาก ฉันดีใจมาก</div></div>
   <div class="review-box">
     <div class="review-box-title">💡 ลองคิดต่อ</div>
     <ul class="review-questions">
@@ -541,14 +569,12 @@
     </ul>
   </div>
 </div>
-
 </div><!-- end story 1 -->
 
 <!-- ============================================================ -->
 <!-- STORY 2: นัดเพื่อน -->
 <!-- ============================================================ -->
 <div class="story-unit">
-
 <div class="page-story">
   <div class="page-header">
     <div class="story-num">2</div>
@@ -593,9 +619,7 @@
     <div class="vocab-count">8 คำ</div>
   </div>
   <table class="vocab-table">
-    <thead>
-      <tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr>
-    </thead>
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
     <tbody>
       <tr><td class="vocab-zh">周末</td><td class="vocab-pinyin">zhōumò</td><td class="vocab-thai-ph">โจวม่อ</td><td class="vocab-meaning">วันหยุดสุดสัปดาห์</td><td><span class="vocab-type">น.</span></td></tr>
       <tr><td class="vocab-zh">朋友</td><td class="vocab-pinyin">péngyǒu</td><td class="vocab-thai-ph">เพิงโหยว</td><td class="vocab-meaning">เพื่อน</td><td><span class="vocab-type">น.</span></td></tr>
@@ -614,31 +638,11 @@
     <div class="translate-title">🇹🇭 แปลไทย — เรื่องที่ 2</div>
     <div class="trans-tip">เช็กความเข้าใจของตัวเอง</div>
   </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">周末，我和朋友约好一起吃饭。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">วันหยุดสุดสัปดาห์ ฉันนัดกับเพื่อนว่าจะไปกินข้าวด้วยกัน</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">她发微信问我："几点见？"</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">เธอส่งข้อความ WeChat มาถามฉันว่า "เจอกันกี่โมง?"</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">我回复："六点，在地铁站旁边。"</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ฉันตอบไปว่า "หกโมงเย็น ข้างๆ สถานีรถไฟฟ้าใต้ดิน"</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">她说："好的，我不会迟到。"</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">เธอบอกว่า "โอเค ฉันจะไม่มาสาย"</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">我们见面后，一起去吃火锅。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">หลังจากเจอกันแล้ว เราก็ไปกินหม้อไฟด้วยกัน</div>
-  </div>
+  <div class="trans-block"><div class="trans-zh-mini">周末，我和朋友约好一起吃饭。</div><div class="trans-divider-line"></div><div class="trans-thai">วันหยุดสุดสัปดาห์ ฉันนัดกับเพื่อนว่าจะไปกินข้าวด้วยกัน</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">她发微信问我："几点见？"</div><div class="trans-divider-line"></div><div class="trans-thai">เธอส่งข้อความ WeChat มาถามฉันว่า "เจอกันกี่โมง?"</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">我回复："六点，在地铁站旁边。"</div><div class="trans-divider-line"></div><div class="trans-thai">ฉันตอบไปว่า "หกโมงเย็น ข้างๆ สถานีรถไฟฟ้าใต้ดิน"</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">她说："好的，我不会迟到。"</div><div class="trans-divider-line"></div><div class="trans-thai">เธอบอกว่า "โอเค ฉันจะไม่มาสาย"</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">我们见面后，一起去吃火锅。</div><div class="trans-divider-line"></div><div class="trans-thai">หลังจากเจอกันแล้ว เราก็ไปกินหม้อไฟด้วยกัน</div></div>
   <div class="review-box">
     <div class="review-box-title">💡 ลองคิดต่อ</div>
     <ul class="review-questions">
@@ -647,14 +651,12 @@
     </ul>
   </div>
 </div>
-
 </div><!-- end story 2 -->
 
 <!-- ============================================================ -->
 <!-- STORY 3: ไปซุปเปอร์มาร์เก็ต -->
 <!-- ============================================================ -->
 <div class="story-unit">
-
 <div class="page-story">
   <div class="page-header">
     <div class="story-num">3</div>
@@ -699,9 +701,7 @@
     <div class="vocab-count">9 คำ</div>
   </div>
   <table class="vocab-table">
-    <thead>
-      <tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr>
-    </thead>
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
     <tbody>
       <tr><td class="vocab-zh">下班</td><td class="vocab-pinyin">xiàbān</td><td class="vocab-thai-ph">เซี่ยปาน</td><td class="vocab-meaning">เลิกงาน</td><td><span class="vocab-type">ก.</span></td></tr>
       <tr><td class="vocab-zh">超市</td><td class="vocab-pinyin">chāoshì</td><td class="vocab-thai-ph">เชาซื่อ</td><td class="vocab-meaning">ซูเปอร์มาร์เก็ต</td><td><span class="vocab-type">น.</span></td></tr>
@@ -721,31 +721,11 @@
     <div class="translate-title">🇹🇭 แปลไทย — เรื่องที่ 3</div>
     <div class="trans-tip">เช็กความเข้าใจของตัวเอง</div>
   </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">下班后，我去超市买东西。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">หลังเลิกงาน ฉันไปซูเปอร์มาร์เก็ตเพื่อซื้อของ</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">我需要买水果和蔬菜。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ฉันต้องการซื้อผลไม้และผัก</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">苹果一斤十块钱。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">แอปเปิ้ลราคาหนึ่งจิน (ครึ่งกิโล) สิบหยวน</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">我买了两斤苹果和一把菠菜。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ฉันซื้อแอปเปิ้ลสองจิน และผักโขมหนึ่งมัด</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">结账的时候，我用手机付钱。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ตอนชำระเงิน ฉันใช้โทรศัพท์จ่ายเงิน</div>
-  </div>
+  <div class="trans-block"><div class="trans-zh-mini">下班后，我去超市买东西。</div><div class="trans-divider-line"></div><div class="trans-thai">หลังเลิกงาน ฉันไปซูเปอร์มาร์เก็ตเพื่อซื้อของ</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">我需要买水果和蔬菜。</div><div class="trans-divider-line"></div><div class="trans-thai">ฉันต้องการซื้อผลไม้และผัก</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">苹果一斤十块钱。</div><div class="trans-divider-line"></div><div class="trans-thai">แอปเปิ้ลราคาหนึ่งจิน (ครึ่งกิโล) สิบหยวน</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">我买了两斤苹果和一把菠菜。</div><div class="trans-divider-line"></div><div class="trans-thai">ฉันซื้อแอปเปิ้ลสองจิน และผักโขมหนึ่งมัด</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">结账的时候，我用手机付钱。</div><div class="trans-divider-line"></div><div class="trans-thai">ตอนชำระเงิน ฉันใช้โทรศัพท์จ่ายเงิน</div></div>
   <div class="review-box">
     <div class="review-box-title">💡 ลองคิดต่อ</div>
     <ul class="review-questions">
@@ -754,14 +734,12 @@
     </ul>
   </div>
 </div>
-
 </div><!-- end story 3 -->
 
 <!-- ============================================================ -->
 <!-- STORY 4: บนรถไฟฟ้า -->
 <!-- ============================================================ -->
 <div class="story-unit">
-
 <div class="page-story">
   <div class="page-header">
     <div class="story-num">4</div>
@@ -806,9 +784,7 @@
     <div class="vocab-count">8 คำ</div>
   </div>
   <table class="vocab-table">
-    <thead>
-      <tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr>
-    </thead>
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
     <tbody>
       <tr><td class="vocab-zh">每天</td><td class="vocab-pinyin">měitiān</td><td class="vocab-thai-ph">เหมยเทียน</td><td class="vocab-meaning">ทุกวัน</td><td><span class="vocab-type">วิ.</span></td></tr>
       <tr><td class="vocab-zh">地铁</td><td class="vocab-pinyin">dìtiě</td><td class="vocab-thai-ph">ตี้เที่ย</td><td class="vocab-meaning">รถไฟฟ้าใต้ดิน</td><td><span class="vocab-type">น.</span></td></tr>
@@ -827,31 +803,11 @@
     <div class="translate-title">🇹🇭 แปลไทย — เรื่องที่ 4</div>
     <div class="trans-tip">เช็กความเข้าใจของตัวเอง</div>
   </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">每天早上我坐地铁去公司。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ทุกเช้าฉันนั่งรถไฟฟ้าใต้ดินไปบริษัท</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">今天地铁很挤，我只好站着。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">วันนี้รถไฟฟ้าแออัดมาก ฉันก็เลยต้องยืน</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">我戴上耳机，听音乐。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ฉันใส่หูฟังแล้วฟังเพลง</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">大概二十分钟后，我到站了。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ประมาณยี่สิบนาทีต่อมา ฉันก็ถึงสถานี</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">我快步走出站，准时到公司。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ฉันเดินเร็วออกจากสถานี และถึงบริษัทตรงเวลา</div>
-  </div>
+  <div class="trans-block"><div class="trans-zh-mini">每天早上我坐地铁去公司。</div><div class="trans-divider-line"></div><div class="trans-thai">ทุกเช้าฉันนั่งรถไฟฟ้าใต้ดินไปบริษัท</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">今天地铁很挤，我只好站着。</div><div class="trans-divider-line"></div><div class="trans-thai">วันนี้รถไฟฟ้าแออัดมาก ฉันก็เลยต้องยืน</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">我戴上耳机，听音乐。</div><div class="trans-divider-line"></div><div class="trans-thai">ฉันใส่หูฟังแล้วฟังเพลง</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">大概二十分钟后，我到站了。</div><div class="trans-divider-line"></div><div class="trans-thai">ประมาณยี่สิบนาทีต่อมา ฉันก็ถึงสถานี</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">我快步走出站，准时到公司。</div><div class="trans-divider-line"></div><div class="trans-thai">ฉันเดินเร็วออกจากสถานี และถึงบริษัทตรงเวลา</div></div>
   <div class="review-box">
     <div class="review-box-title">💡 ลองคิดต่อ</div>
     <ul class="review-questions">
@@ -860,14 +816,12 @@
     </ul>
   </div>
 </div>
-
 </div><!-- end story 4 -->
 
 <!-- ============================================================ -->
 <!-- STORY 5: วันฝนตก -->
 <!-- ============================================================ -->
 <div class="story-unit">
-
 <div class="page-story">
   <div class="page-header">
     <div class="story-num">5</div>
@@ -912,9 +866,7 @@
     <div class="vocab-count">8 คำ</div>
   </div>
   <table class="vocab-table">
-    <thead>
-      <tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr>
-    </thead>
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
     <tbody>
       <tr><td class="vocab-zh">下雨</td><td class="vocab-pinyin">xià yǔ</td><td class="vocab-thai-ph">เซี่ย ยู่</td><td class="vocab-meaning">ฝนตก</td><td><span class="vocab-type">ก.</span></td></tr>
       <tr><td class="vocab-zh">出门</td><td class="vocab-pinyin">chūmén</td><td class="vocab-thai-ph">ชูเหมิน</td><td class="vocab-meaning">ออกจากบ้าน</td><td><span class="vocab-type">ก.</span></td></tr>
@@ -933,31 +885,11 @@
     <div class="translate-title">🇹🇭 แปลไทย — เรื่องที่ 5</div>
     <div class="trans-tip">เช็กความเข้าใจของตัวเอง</div>
   </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">今天下雨，我不想出门。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">วันนี้ฝนตก ฉันไม่อยากออกจากบ้าน</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">我窝在沙发上，看了一部电影。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ฉันนอนขดอยู่บนโซฟา แล้วดูหนังหนึ่งเรื่อง</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">电影很好看，我笑了很多次。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">หนังสนุกมาก ฉันหัวเราะหลายครั้งมาก</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">下午，我泡了一杯茶，看书。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">ตอนบ่าย ฉันชงชาหนึ่งถ้วย แล้วก็อ่านหนังสือ</div>
-  </div>
-  <div class="trans-block">
-    <div class="trans-zh-mini">雨天也可以很幸福。</div>
-    <div class="trans-divider-line"></div>
-    <div class="trans-thai">วันฝนตกก็มีความสุขได้เหมือนกันนะ</div>
-  </div>
+  <div class="trans-block"><div class="trans-zh-mini">今天下雨，我不想出门。</div><div class="trans-divider-line"></div><div class="trans-thai">วันนี้ฝนตก ฉันไม่อยากออกจากบ้าน</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">我窝在沙发上，看了一部电影。</div><div class="trans-divider-line"></div><div class="trans-thai">ฉันนอนขดอยู่บนโซฟา แล้วดูหนังหนึ่งเรื่อง</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">电影很好看，我笑了很多次。</div><div class="trans-divider-line"></div><div class="trans-thai">หนังสนุกมาก ฉันหัวเราะหลายครั้งมาก</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">下午，我泡了一杯茶，看书。</div><div class="trans-divider-line"></div><div class="trans-thai">ตอนบ่าย ฉันชงชาหนึ่งถ้วย แล้วก็อ่านหนังสือ</div></div>
+  <div class="trans-block"><div class="trans-zh-mini">雨天也可以很幸福。</div><div class="trans-divider-line"></div><div class="trans-thai">วันฝนตกก็มีความสุขได้เหมือนกันนะ</div></div>
   <div class="review-box">
     <div class="review-box-title">💡 ลองคิดต่อ</div>
     <ul class="review-questions">
@@ -966,7 +898,6 @@
     </ul>
   </div>
 </div>
-
 </div><!-- end story 5 -->
 
 <!-- ===== BACK COVER ===== -->
@@ -992,27 +923,28 @@
     <div style="color:rgba(255,255,255,0.3); font-size:12px; margin-top:8px;">Vol. 01 • 2025</div>
   </div>
 </div>
-<!-- DONATE PAGE (lesson 5) -->
-    <div id="donate-view" class="donate-page hidden">
-      <div class="donate-emoji">🙏</div>
-      <h1 class="donate-title">ขอบคุณที่เรียนจบ!</h1>
-      <p class="donate-sub">
-        กูหวังว่าคอร์สนี้จะเป็นประโยชน์กับมึงไม่มากก็น้อย<br/>
-        ถ้าอยากสนับสนุนให้กูทำคอนเทนต์ดีๆ ต่อไป<br/>
-        โดเนทกาแฟให้กูสักแก้วได้เลย ☕
-      </p>
-      <div class="donate-card">
-        <p style="font-size:0.85rem;color:var(--mid);margin-bottom:1rem">เลือกจำนวนที่อยากโดเนท</p>
-        <div class="donate-amounts">
-          <button class="amount-btn" onclick="selectAmount(this)">฿49</button>
-          <button class="amount-btn selected" onclick="selectAmount(this)">฿99</button>
-          <button class="amount-btn" onclick="selectAmount(this)">฿189</button>
-        </div>
-        <div id="qr-box" style="display:none; margin-bottom:1rem; text-align:center">
-          <img id="qr-img" style="width:200px; border-radius:1rem;" />
-          <p style="font-size:0.8rem; color:var(--mid); margin-top:0.5rem">สแกน QR เพื่อโอนได้เลย</p>
-        </div>
-        <p style="font-size:0.75rem;color:var(--mid);margin-top:1rem">* </p>
-      </div>
+
+<!-- ===== DONATE PAGE ===== -->
+<div class="donate-page">
+  <div class="donate-emoji">🙏</div>
+  <h1 class="donate-title">ขอบคุณที่เรียนจบ!</h1>
+  <p class="donate-sub">
+    กูหวังว่าคอร์สนี้จะเป็นประโยชน์กับมึงไม่มากก็น้อย<br/>
+    ถ้าอยากสนับสนุนให้กูทำคอนเทนต์ดีๆ ต่อไป<br/>
+    โดเนทกาแฟให้กูสักแก้วได้เลย ☕
+  </p>
+  <div class="donate-card">
+    <p class="donate-card-label">เลือกจำนวนที่อยากโดเนท</p>
+    <div class="donate-amounts">
+      <button class="amount-btn">฿49</button>
+      <button class="amount-btn selected">฿99</button>
+      <button class="amount-btn">฿189</button>
+    </div>
+    <div class="donate-divider"></div>
+    <p class="donate-note">* PromptPay / QR จะโชว์หลังเลือกจำนวน</p>
+  </div>
+  <div class="donate-brand">by <span>oilalongtheway</span></div>
+</div>
+
 </body>
 </html>
