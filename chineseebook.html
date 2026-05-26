@@ -992,6 +992,27 @@
     <div style="color:rgba(255,255,255,0.3); font-size:12px; margin-top:8px;">Vol. 01 • 2025</div>
   </div>
 </div>
-
+<!-- DONATE PAGE (lesson 5) -->
+    <div id="donate-view" class="donate-page hidden">
+      <div class="donate-emoji">🙏</div>
+      <h1 class="donate-title">ขอบคุณที่เรียนจบ!</h1>
+      <p class="donate-sub">
+        กูหวังว่าคอร์สนี้จะเป็นประโยชน์กับมึงไม่มากก็น้อย<br/>
+        ถ้าอยากสนับสนุนให้กูทำคอนเทนต์ดีๆ ต่อไป<br/>
+        โดเนทกาแฟให้กูสักแก้วได้เลย ☕
+      </p>
+      <div class="donate-card">
+        <p style="font-size:0.85rem;color:var(--mid);margin-bottom:1rem">เลือกจำนวนที่อยากโดเนท</p>
+        <div class="donate-amounts">
+          <button class="amount-btn" onclick="selectAmount(this)">฿49</button>
+          <button class="amount-btn selected" onclick="selectAmount(this)">฿99</button>
+          <button class="amount-btn" onclick="selectAmount(this)">฿189</button>
+        </div>
+        <div id="qr-box" style="display:none; margin-bottom:1rem; text-align:center">
+          <img id="qr-img" style="width:200px; border-radius:1rem;" />
+          <p style="font-size:0.8rem; color:var(--mid); margin-top:0.5rem">สแกน QR เพื่อโอนได้เลย</p>
+        </div>
+        <p style="font-size:0.75rem;color:var(--mid);margin-top:1rem">* </p>
+      </div>
 </body>
 </html>
