@@ -292,10 +292,6 @@ footer a { color: var(--rust); text-decoration: none; }
     <div class="cover-story-item"><span class="cover-story-num">4</span> ซื้อของฝากที่สนามบิน</div>
     <div class="cover-story-item"><span class="cover-story-num">5</span> ทำงานที่ร้านกาแฟ</div>
   </div>
-  <div class="cover-price-banner">
-    <div>ราคาพิเศษ <span class="price-now">฿99</span> <span class="price-was">฿199</span></div>
-    <div style="font-size:0.8rem; color:rgba(255,255,255,0.45); margin-top:0.25rem;">HSK 1-2 · 5 เรื่อง · 40+ คำศัพท์</div>
-  </div>
   <a href="#story1" class="btn-scroll">เริ่มอ่านเลย →</a>
   <div class="cover-by" style="margin-top:2.5rem;">สร้างโดย <strong>oilalongtheway</strong> · Vol. 02 · 2025</div>
 </section>
@@ -686,14 +682,15 @@ footer a { color: var(--rust); text-decoration: none; }
       <p class="donate-title">ขอบคุณที่ซื้อ Vol.2! ☕</p>
       <p class="donate-sub">ถ้าอยากสนับสนุนให้ทำ Vol.3 ต่อไป โดเนทกาแฟให้กูได้เลย</p>
       <div class="donate-btns">
-        <button class="donate-btn" onclick="selectDonate(this,'49')">฿49</button>
-        <button class="donate-btn" onclick="selectDonate(this,'99')">฿99</button>
-        <button class="donate-btn" onclick="selectDonate(this,'189')">฿189</button>
+        <button class="donate-btn" onclick="showQR(49, this)">฿49</button>
+        <button class="donate-btn" onclick="showQR(99, this)">฿99</button>
+        <button class="donate-btn" onclick="showQR(189, this)">฿189</button>
       </div>
-      <div id="qr-area" style="display:none; text-align:center; margin-top:1.5rem;">
-        <p id="qr-amount" style="font-size:0.85rem; color:rgba(255,255,255,0.5); margin-bottom:0.75rem;"></p>
-        <p style="font-size:0.8rem; color:rgba(255,255,255,0.35);">สแกนจ่ายผ่าน PromptPay ได้เลย 🙏</p>
+      <div id="qr-section" style="display:none; text-align:center; margin-top:1.5rem;">
+        <canvas id="qr-canvas" style="border-radius:12px; border:3px solid white;"></canvas>
+        <p style="font-size:0.8rem; color:rgba(255,255,255,0.35); margin-top:0.75rem;">สแกนจ่ายผ่าน PromptPay ได้เลย 🙏</p>
       </div>
+      <p id="default-note" style="font-size:0.8rem; color:rgba(255,255,255,0.3); margin-top:1rem;">* กดเลือกจำนวนเพื่อดู QR Code</p>
     </div>
 
     <div style="margin-top:2rem;">
@@ -708,12 +705,41 @@ footer a { color: var(--rust); text-decoration: none; }
   <p>สร้างโดย <a href="https://oilalongtheway.github.io/oilalongtheway/">oilalongtheway</a> · Vol. 02 · 2025</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 <script>
-function selectDonate(btn, amount) {
+function generatePromptPayPayload(phone, amount) {
+  const norm = '0066' + phone.substring(1);
+  function f(id, val) {
+    return id + val.length.toString().padStart(2,'0') + val;
+  }
+  function crc16(str) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < str.length; i++) {
+      crc ^= str.charCodeAt(i) << 8;
+      for (let j = 0; j < 8; j++) {
+        crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+      }
+    }
+    return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4,'0');
+  }
+  const merchantInfo = f('00','A000000677010111') + f('01', norm);
+  const payload =
+    f('00','01') + f('01','12') + f('29', merchantInfo) +
+    f('53','764') + f('54', amount.toFixed(2)) +
+    f('58','TH') + f('59','N/A') + f('60','Bangkok') + '6304';
+  return payload + crc16(payload);
+}
+
+function showQR(amount, btn) {
   document.querySelectorAll('.donate-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('qr-area').style.display = 'block';
-  document.getElementById('qr-amount').textContent = 'เลือกจำนวน ฿' + amount;
+  const payload = generatePromptPayPayload('0828642113', amount);
+  QRCode.toCanvas(document.getElementById('qr-canvas'), payload, {
+    width: 200, margin: 2,
+    color: { dark: '#000000', light: '#ffffff' }
+  });
+  document.getElementById('qr-section').style.display = 'block';
+  document.getElementById('default-note').style.display = 'none';
 }
 </script>
 </body>
