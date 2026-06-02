@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เรียนจีนผ่านเรื่องสั้น Vol.2 · oil alongtheway</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Sarabun:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1c1410;
+  --paper: #faf7f2;
+  --warm: #f2ece0;
+  --sand: #e0d5c4;
+  --rust: #b85c2c;
+  --rust-light: #f0ddd2;
+  --jade: #3d7a6a;
+  --jade-light: #d4ebe5;
+  --gold: #c9973a;
+  --muted: #7a6a5a;
+  --white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Sarabun', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,247,242,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--sand);
+  padding: 0 2rem; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav-vol { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); background: var(--rust-light); padding: 0.25rem 0.75rem; border-radius: 100px; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 4rem 2rem;
+  background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: '学';
+  position: absolute;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 40vw; font-weight: 700;
+  color: rgba(255,255,255,0.03);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  pointer-events: none; user-select: none;
+  line-height: 1;
+}
+.cover-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid rgba(201,151,58,0.4);
+  padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2.5rem;
+}
+.cover-title-cn {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  color: var(--white); line-height: 1.2; margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+.cover-title-th {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  color: var(--gold); font-style: italic; margin-bottom: 2rem;
+}
+.cover-features {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+.cover-feat {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem; color: rgba(255,255,255,0.65); font-weight: 300;
+  background: rgba(255,255,255,0.06); padding: 0.5rem 1rem; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.cover-stories {
+  display: flex; flex-direction: column; gap: 0.5rem; text-align: left;
+  margin-bottom: 3rem; max-width: 360px; width: 100%;
+}
+.cover-story-item {
+  display: flex; align-items: center; gap: 1rem;
+  color: rgba(255,255,255,0.6); font-size: 0.88rem; font-weight: 300;
+  padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.cover-story-num {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  color: var(--rust); font-weight: 700; width: 24px; flex-shrink: 0;
+}
+.cover-by { font-size: 0.8rem; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; }
+.cover-by strong { color: var(--gold); font-family: 'Playfair Display', serif; }
+.cover-price-banner {
+  margin-top: 2rem;
+  background: rgba(184,92,44,0.2);
+  border: 1px solid rgba(184,92,44,0.4);
+  border-radius: 1rem; padding: 1rem 2rem;
+  font-size: 0.95rem; color: rgba(255,255,255,0.8);
+}
+.cover-price-banner .price-now { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--gold); }
+.cover-price-banner .price-was { font-size: 0.85rem; text-decoration: line-through; color: rgba(255,255,255,0.4); margin-left: 0.5rem; }
+.btn-scroll {
+  display: inline-block; margin-top: 2rem;
+  background: var(--rust); color: white;
+  padding: 0.9rem 2.5rem; border-radius: 100px;
+  text-decoration: none; font-weight: 700; font-size: 0.95rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-scroll:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(184,92,44,0.4); }
+
+/* STORY SECTION */
+.story-section {
+  max-width: 780px; margin: 0 auto; padding: 5rem 2rem;
+  border-bottom: 1px solid var(--sand);
+}
+.story-header { margin-bottom: 3rem; }
+.story-num-large {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem; font-weight: 900; line-height: 1;
+  color: var(--sand); margin-bottom: -1.5rem;
+}
+.story-title-cn {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 700; color: var(--ink); margin-bottom: 0.3rem;
+}
+.story-title-th {
+  font-size: 1rem; color: var(--muted); font-weight: 300; font-style: italic;
+  margin-bottom: 1rem;
+}
+.story-divider { width: 48px; height: 3px; background: var(--rust); border-radius: 2px; }
+
+/* READING */
+.reading-label {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 1.5rem; margin-top: 2.5rem;
+}
+.reading-label::after { content: ''; flex: 1; height: 1px; background: var(--sand); }
+
+.sentence-block {
+  margin-bottom: 1.75rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--white);
+  border-radius: 1rem;
+  border: 1px solid rgba(224,213,196,0.6);
+  border-left: 4px solid var(--rust);
+}
+.sentence-cn {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.3rem; font-weight: 700; color: var(--ink);
+  margin-bottom: 0.5rem; line-height: 1.6;
+}
+.sentence-pinyin { font-size: 0.95rem; color: var(--jade); font-weight: 400; margin-bottom: 0.35rem; font-style: italic; }
+.sentence-thai { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+
+/* VOCAB TABLE */
+.vocab-label {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--jade); margin-bottom: 1.25rem; margin-top: 3rem;
+}
+.vocab-label::after { content: ''; flex: 1; height: 1px; background: var(--sand); }
+.vocab-count { font-size: 0.72rem; color: var(--muted); background: var(--warm); padding: 0.2rem 0.6rem; border-radius: 100px; }
+
+.vocab-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.vocab-table thead tr { background: var(--ink); }
+.vocab-table thead th { padding: 0.75rem 1rem; color: rgba(255,255,255,0.8); font-weight: 600; text-align: left; font-size: 0.78rem; letter-spacing: 0.08em; }
+.vocab-table tbody tr { border-bottom: 1px solid var(--warm); transition: background 0.15s; }
+.vocab-table tbody tr:hover { background: var(--warm); }
+.vocab-table td { padding: 0.8rem 1rem; vertical-align: middle; }
+.vocab-cn { font-family: 'Noto Serif SC', serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); }
+.vocab-pinyin { color: var(--jade); font-style: italic; }
+.vocab-read { color: var(--muted); }
+.vocab-meaning { color: var(--ink); font-weight: 500; }
+.vocab-pos {
+  display: inline-block; font-size: 0.72rem; font-weight: 700;
+  padding: 0.2rem 0.55rem; border-radius: 6px; letter-spacing: 0.05em;
+}
+.pos-n { background: var(--rust-light); color: var(--rust); }
+.pos-v { background: var(--jade-light); color: var(--jade); }
+.pos-adj { background: rgba(201,151,58,0.15); color: var(--gold); }
+.pos-adv { background: rgba(120,100,180,0.1); color: #7864b4; }
+.pos-q { background: rgba(180,160,140,0.15); color: var(--muted); }
+
+/* TRANSLATION */
+.trans-label {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.25rem; margin-top: 3rem;
+}
+.trans-label::after { content: ''; flex: 1; height: 1px; background: var(--sand); }
+.trans-sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.5rem; font-style: italic; }
+.trans-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;
+  padding: 1rem 1.25rem; background: var(--warm); border-radius: 0.75rem;
+  align-items: start;
+}
+.trans-cn { font-family: 'Noto Serif SC', serif; font-size: 1rem; font-weight: 700; color: var(--ink); }
+.trans-th { font-size: 0.9rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+/* THINK */
+.think-box {
+  margin-top: 3rem;
+  background: linear-gradient(135deg, var(--ink) 0%, #2a1f18 100%);
+  border-radius: 1.25rem; padding: 2rem;
+  color: white;
+}
+.think-title {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  color: var(--gold); margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.think-item { margin-bottom: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+.think-hint { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 0.25rem; font-style: italic; }
+
+/* ENDING */
+.ending {
+  background: var(--ink); padding: 5rem 2rem; text-align: center; color: white;
+}
+.ending-inner { max-width: 560px; margin: 0 auto; }
+.ending-cn { font-family: 'Noto Serif SC', serif; font-size: 3rem; font-weight: 700; color: var(--gold); margin-bottom: 0.5rem; }
+.ending-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; margin-bottom: 1rem; }
+.ending-sub { color: rgba(255,255,255,0.5); font-weight: 300; margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.8; }
+.ending-stories { list-style: none; text-align: left; max-width: 380px; margin: 0 auto 3rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.ending-stories li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+.ending-stories li::before { content: '✦'; color: var(--gold); flex-shrink: 0; }
+
+/* DONATE */
+.donate-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 2rem; margin-top: 2rem; }
+.donate-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+.donate-sub { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; font-weight: 300; }
+.donate-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+.donate-btn {
+  padding: 0.6rem 1.4rem; border-radius: 100px; border: none; cursor: pointer;
+  font-family: 'Sarabun', sans-serif; font-size: 0.9rem; font-weight: 600;
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);
+  transition: all 0.2s;
+}
+.donate-btn:hover, .donate-btn.active { background: var(--rust); color: white; }
+#qr-area { margin-top: 1.5rem; }
+#qr-area img { width: 160px; height: 160px; border-radius: 0.75rem; border: 3px solid white; }
+#qr-amount { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+
+footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem; text-align: center; }
+footer p { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
+footer a { color: var(--rust); text-decoration: none; }
+
+@media (max-width: 600px) {
+  .trans-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .vocab-table { font-size: 0.82rem; }
+  .vocab-table td { padding: 0.65rem 0.6rem; }
+  .sentence-cn { font-size: 1.1rem; }
+  nav { padding: 0 1rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://oilalongtheway.github.io/oilalongtheway/" class="nav-logo">oil alongtheway</a>
+  <span class="nav-vol">Vol. 02</span>
+</nav>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-badge">📗 ภาษาจีน · เล่มที่ 2</div>
+  <div class="cover-title-cn">日常生活<br/>故事集</div>
+  <div class="cover-title-th">เรียนจีนผ่านเรื่องสั้น</div>
+  <div class="cover-features">
+    <span class="cover-feat">✦ ตัวจีน + พินอิน</span>
+    <span class="cover-feat">✦ คำอ่านภาษาไทย</span>
+    <span class="cover-feat">✦ คำศัพท์แยกหน้า</span>
+    <span class="cover-feat">✦ แปลไทยท้ายเรื่อง</span>
+  </div>
+  <div class="cover-stories">
+    <div class="cover-story-item"><span class="cover-story-num">1</span> ไปออกกำลังกายตอนเช้า</div>
+    <div class="cover-story-item"><span class="cover-story-num">2</span> สั่งอาหารออนไลน์</div>
+    <div class="cover-story-item"><span class="cover-story-num">3</span> ไปหาหมอ</div>
+    <div class="cover-story-item"><span class="cover-story-num">4</span> ซื้อของฝากที่สนามบิน</div>
+    <div class="cover-story-item"><span class="cover-story-num">5</span> ทำงานที่ร้านกาแฟ</div>
+  </div>
+  <div class="cover-price-banner">
+    <div>ราคาพิเศษ <span class="price-now">฿99</span> <span class="price-was">฿199</span></div>
+    <div style="font-size:0.8rem; color:rgba(255,255,255,0.45); margin-top:0.25rem;">HSK 1-2 · 5 เรื่อง · 40+ คำศัพท์</div>
+  </div>
+  <a href="#story1" class="btn-scroll">เริ่มอ่านเลย →</a>
+  <div class="cover-by" style="margin-top:2.5rem;">สร้างโดย <strong>oilalongtheway</strong> · Vol. 02 · 2025</div>
+</section>
+
+<!-- ==================== STORY 1 ==================== -->
+<section class="story-section" id="story1">
+  <div class="story-header">
+    <div class="story-num-large">01</div>
+    <div class="story-title-cn">去公园运动</div>
+    <div class="story-title-th">ไปออกกำลังกายที่สวนสาธารณะ</div>
+    <div class="story-divider"></div>
+  </div>
+
+  <div class="reading-label">📖 อ่านเรื่อง</div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">今天天气很好，我决定去公园运动。</div>
+    <div class="sentence-pinyin">Jīntiān tiānqì hěn hǎo, wǒ juédìng qù gōngyuán yùndòng.</div>
+    <div class="sentence-thai">จินเทียน เทียนชี่ เหิน เห่า, หว่อ เจว๋ติ้ง ชวี่ กงหยวน ยวิ้นตง</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">我穿上运动服，带着水瓶出门。</div>
+    <div class="sentence-pinyin">Wǒ chuān shàng yùndòngfú, dàizhe shuǐpíng chūmén.</div>
+    <div class="sentence-thai">หว่อ ชวน ซ่าง ยวิ้นตงฝู, ไต้เจอ ซุ่ยผิง ชูเหมิน</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">公园里有很多人在跑步。</div>
+    <div class="sentence-pinyin">Gōngyuán lǐ yǒu hěn duō rén zài pǎobù.</div>
+    <div class="sentence-thai">กงหยวน หลี่ โหย่ว เหิน ตัว เหริน ไจ้ เผ่าปู้</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">我跑了三十分钟，然后做了一些拉伸。</div>
+    <div class="sentence-pinyin">Wǒ pǎo le sānshí fēnzhōng, ránhòu zuò le yīxiē lāshēn.</div>
+    <div class="sentence-thai">หว่อ เผ่า เลอ ซานสือ เฟินจง, หรานโห่ว จั่ว เลอ อีเซี่ย ลาเซิน</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">运动完，我感觉身体很舒服。</div>
+    <div class="sentence-pinyin">Yùndòng wán, wǒ gǎnjué shēntǐ hěn shūfu.</div>
+    <div class="sentence-thai">ยวิ้นตง วาน, หว่อ กั่นเจว๋ เซินที่ เหิน ซูฝู</div>
+  </div>
+
+  <div class="vocab-label">📚 คำศัพท์สำคัญ — เรื่องที่ 1 <span class="vocab-count">8 คำ</span></div>
+  <div style="overflow-x:auto;">
+  <table class="vocab-table">
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
+    <tbody>
+      <tr><td class="vocab-cn">天气</td><td class="vocab-pinyin">tiānqì</td><td class="vocab-read">เทียนชี่</td><td class="vocab-meaning">อากาศ</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">公园</td><td class="vocab-pinyin">gōngyuán</td><td class="vocab-read">กงหยวน</td><td class="vocab-meaning">สวนสาธารณะ</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">运动</td><td class="vocab-pinyin">yùndòng</td><td class="vocab-read">ยวิ้นตง</td><td class="vocab-meaning">ออกกำลังกาย</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">运动服</td><td class="vocab-pinyin">yùndòngfú</td><td class="vocab-read">ยวิ้นตงฝู</td><td class="vocab-meaning">ชุดออกกำลังกาย</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">跑步</td><td class="vocab-pinyin">pǎobù</td><td class="vocab-read">เผ่าปู้</td><td class="vocab-meaning">วิ่ง / วิ่งจ็อกกิ้ง</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">分钟</td><td class="vocab-pinyin">fēnzhōng</td><td class="vocab-read">เฟินจง</td><td class="vocab-meaning">นาที</td><td><span class="vocab-pos pos-q">ล.</span></td></tr>
+      <tr><td class="vocab-cn">身体</td><td class="vocab-pinyin">shēntǐ</td><td class="vocab-read">เซินที่</td><td class="vocab-meaning">ร่างกาย</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">舒服</td><td class="vocab-pinyin">shūfu</td><td class="vocab-read">ซูฝู</td><td class="vocab-meaning">สบาย / รู้สึกดี</td><td><span class="vocab-pos pos-adj">คุณ.</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="trans-label">🇹🇭 แปลไทย — เรื่องที่ 1</div>
+  <p class="trans-sub">เช็กความเข้าใจของตัวเอง</p>
+  <div class="trans-row"><div class="trans-cn">今天天气很好，我决定去公园运动。</div><div class="trans-th">วันนี้อากาศดีมาก ฉันเลยตัดสินใจไปออกกำลังกายที่สวนสาธารณะ</div></div>
+  <div class="trans-row"><div class="trans-cn">我穿上运动服，带着水瓶出门。</div><div class="trans-th">ฉันสวมชุดออกกำลังกาย แล้วถือขวดน้ำออกไปข้างนอก</div></div>
+  <div class="trans-row"><div class="trans-cn">公园里有很多人在跑步。</div><div class="trans-th">ในสวนสาธารณะมีคนวิ่งอยู่เยอะมาก</div></div>
+  <div class="trans-row"><div class="trans-cn">我跑了三十分钟，然后做了一些拉伸。</div><div class="trans-th">ฉันวิ่งสามสิบนาที แล้วก็ยืดกล้ามเนื้อนิดหน่อย</div></div>
+  <div class="trans-row"><div class="trans-cn">运动完，我感觉身体很舒服。</div><div class="trans-th">หลังออกกำลังกายเสร็จ ฉันรู้สึกว่าร่างกายสบายมาก</div></div>
+
+  <div class="think-box">
+    <div class="think-title">💡 ลองคิดต่อ</div>
+    <div class="think-item">① ถ้าอยากบอกว่า "อากาศเย็นมาก" จะพูดว่าอะไร?<div class="think-hint">힌트: 冷 = เหลิ่ง = เย็น / หนาว</div></div>
+    <div class="think-item">② ลองพูดว่า "ฉันวิ่งหนึ่งชั่วโมง" เป็นภาษาจีน<div class="think-hint">힌트: 一个小时 = อีเกอ เซี่ยวสือ = หนึ่งชั่วโมง</div></div>
+  </div>
+</section>
+
+<!-- ==================== STORY 2 ==================== -->
+<section class="story-section" id="story2">
+  <div class="story-header">
+    <div class="story-num-large">02</div>
+    <div class="story-title-cn">网上点外卖</div>
+    <div class="story-title-th">สั่งอาหารออนไลน์</div>
+    <div class="story-divider"></div>
+  </div>
+
+  <div class="reading-label">📖 อ่านเรื่อง</div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">今天太累了，我不想做饭。</div>
+    <div class="sentence-pinyin">Jīntiān tài lèi le, wǒ bù xiǎng zuòfàn.</div>
+    <div class="sentence-thai">จินเทียน ไท่ เล่ย เลอ, หว่อ ปู้ เซี่ยง จั่วฟาน</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">我用手机打开外卖软件，点了一份炒饭。</div>
+    <div class="sentence-pinyin">Wǒ yòng shǒujī dǎkāi wàimài ruǎnjiàn, diǎn le yī fèn chǎofàn.</div>
+    <div class="sentence-thai">หว่อ ย่ง โส่วจี ต่าไค ไว้ไม่ หรวนเจี้ยน, เตี่ยน เลอ อี เฟิ่น เฉ่าฟาน</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">送餐费是五块钱，三十分钟送到。</div>
+    <div class="sentence-pinyin">Sòng cān fèi shì wǔ kuài qián, sānshí fēnzhōng sòng dào.</div>
+    <div class="sentence-thai">ซ่ง ชาน เฟ่ย ซื่อ อู่ ไคว่ เชียน, ซานสือ เฟินจง ซ่ง เต้า</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">外卖员到了，把食物放在门口。</div>
+    <div class="sentence-pinyin">Wàimàiyuán dào le, bǎ shíwù fàng zài ménkǒu.</div>
+    <div class="sentence-thai">ไว้ไม่หยวน เต้า เลอ, ปา สือหวู่ ฝ่าง ไจ้ เหมินโข่ว</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">炒饭很好吃，我吃完就睡觉了。</div>
+    <div class="sentence-pinyin">Chǎofàn hěn hǎochī, wǒ chī wán jiù shuìjiào le.</div>
+    <div class="sentence-thai">เฉ่าฟาน เหิน เห่าชือ, หว่อ ชือ วาน จิ้ว ซุ่ยเจี้ยว เลอ</div>
+  </div>
+
+  <div class="vocab-label">📚 คำศัพท์สำคัญ — เรื่องที่ 2 <span class="vocab-count">8 คำ</span></div>
+  <div style="overflow-x:auto;">
+  <table class="vocab-table">
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
+    <tbody>
+      <tr><td class="vocab-cn">累</td><td class="vocab-pinyin">lèi</td><td class="vocab-read">เล่ย</td><td class="vocab-meaning">เหนื่อย / อ่อนล้า</td><td><span class="vocab-pos pos-adj">คุณ.</span></td></tr>
+      <tr><td class="vocab-cn">做饭</td><td class="vocab-pinyin">zuòfàn</td><td class="vocab-read">จั่วฟาน</td><td class="vocab-meaning">ทำอาหาร / หุงข้าว</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">外卖</td><td class="vocab-pinyin">wàimài</td><td class="vocab-read">ไว้ไม่</td><td class="vocab-meaning">อาหารส่งถึงบ้าน / เดลิเวอรี</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">炒饭</td><td class="vocab-pinyin">chǎofàn</td><td class="vocab-read">เฉ่าฟาน</td><td class="vocab-meaning">ข้าวผัด</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">送到</td><td class="vocab-pinyin">sòng dào</td><td class="vocab-read">ซ่ง เต้า</td><td class="vocab-meaning">ส่งถึง</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">门口</td><td class="vocab-pinyin">ménkǒu</td><td class="vocab-read">เหมินโข่ว</td><td class="vocab-meaning">หน้าประตู / ทางเข้า</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">好吃</td><td class="vocab-pinyin">hǎochī</td><td class="vocab-read">เห่าชือ</td><td class="vocab-meaning">อร่อย</td><td><span class="vocab-pos pos-adj">คุณ.</span></td></tr>
+      <tr><td class="vocab-cn">睡觉</td><td class="vocab-pinyin">shuìjiào</td><td class="vocab-read">ซุ่ยเจี้ยว</td><td class="vocab-meaning">นอนหลับ</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="trans-label">🇹🇭 แปลไทย — เรื่องที่ 2</div>
+  <p class="trans-sub">เช็กความเข้าใจของตัวเอง</p>
+  <div class="trans-row"><div class="trans-cn">今天太累了，我不想做饭。</div><div class="trans-th">วันนี้เหนื่อยมาก ฉันไม่อยากทำอาหาร</div></div>
+  <div class="trans-row"><div class="trans-cn">我用手机打开外卖软件，点了一份炒饭。</div><div class="trans-th">ฉันเปิดแอปสั่งอาหารบนโทรศัพท์ แล้วสั่งข้าวผัดหนึ่งกล่อง</div></div>
+  <div class="trans-row"><div class="trans-cn">送餐费是五块钱，三十分钟送到。</div><div class="trans-th">ค่าส่งห้าหยวน ส่งถึงภายในสามสิบนาที</div></div>
+  <div class="trans-row"><div class="trans-cn">外卖员到了，把食物放在门口。</div><div class="trans-th">คนส่งอาหารมาถึงแล้ว วางอาหารไว้ที่หน้าประตู</div></div>
+  <div class="trans-row"><div class="trans-cn">炒饭很好吃，我吃完就睡觉了。</div><div class="trans-th">ข้าวผัดอร่อยมาก กินเสร็จก็นอนเลย</div></div>
+
+  <div class="think-box">
+    <div class="think-title">💡 ลองคิดต่อ</div>
+    <div class="think-item">① ถ้าอยากสั่ง "ก๋วยเตี๋ยว" แทนข้าวผัด จะพูดว่าอะไร?<div class="think-hint">힌트: 面条 = เมี่ยนเถียว = เส้นก๋วยเตี๋ยว</div></div>
+    <div class="think-item">② ลองพูดว่า "ฉันไม่อยากนอน" เป็นภาษาจีน<div class="think-hint">힌트: ใช้โครงสร้าง 我不想 + กริยา</div></div>
+  </div>
+</section>
+
+<!-- ==================== STORY 3 ==================== -->
+<section class="story-section" id="story3">
+  <div class="story-header">
+    <div class="story-num-large">03</div>
+    <div class="story-title-cn">去看医生</div>
+    <div class="story-title-th">ไปหาหมอ</div>
+    <div class="story-divider"></div>
+  </div>
+
+  <div class="reading-label">📖 อ่านเรื่อง</div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">我头痛了两天，决定去医院看医生。</div>
+    <div class="sentence-pinyin">Wǒ tóuténg le liǎng tiān, juédìng qù yīyuàn kàn yīshēng.</div>
+    <div class="sentence-thai">หว่อ โถ๋วเทิง เลอ เหลี่ยง เทียน, เจว๋ติ้ง ชวี่ อีหยวน ข่าน อีเซิง</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">护士问我："哪里不舒服？"</div>
+    <div class="sentence-pinyin">Hùshi wèn wǒ: "Nǎlǐ bù shūfu?"</div>
+    <div class="sentence-thai">ฝู่สือ เว้น หว่อ: "หน่าหลี่ ปู้ ซูฝู?"</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">我说："我头痛，有点发烧。"</div>
+    <div class="sentence-pinyin">Wǒ shuō: "Wǒ tóuténg, yǒudiǎn fāshāo."</div>
+    <div class="sentence-thai">หว่อ ซัว: "หว่อ โถ๋วเทิง, โหย่วเตี่ยน ฝาเซา"</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">医生检查后，给我开了药。</div>
+    <div class="sentence-pinyin">Yīshēng jiǎnchá hòu, gěi wǒ kāi le yào.</div>
+    <div class="sentence-thai">อีเซิง เจี่ยนฉา โห่ว, เก่ย หว่อ ไค เลอ เหย่า</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">医生说："多喝水，好好休息。"</div>
+    <div class="sentence-pinyin">Yīshēng shuō: "Duō hē shuǐ, hǎohǎo xiūxi."</div>
+    <div class="sentence-thai">อีเซิง ซัว: "ตัว เฮอ ซุ่ย, เห่าเห่า เซิวซี"</div>
+  </div>
+
+  <div class="vocab-label">📚 คำศัพท์สำคัญ — เรื่องที่ 3 <span class="vocab-count">8 คำ</span></div>
+  <div style="overflow-x:auto;">
+  <table class="vocab-table">
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
+    <tbody>
+      <tr><td class="vocab-cn">头痛</td><td class="vocab-pinyin">tóuténg</td><td class="vocab-read">โถ๋วเทิง</td><td class="vocab-meaning">ปวดหัว</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">医院</td><td class="vocab-pinyin">yīyuàn</td><td class="vocab-read">อีหยวน</td><td class="vocab-meaning">โรงพยาบาล</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">医生</td><td class="vocab-pinyin">yīshēng</td><td class="vocab-read">อีเซิง</td><td class="vocab-meaning">แพทย์ / หมอ</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">护士</td><td class="vocab-pinyin">hùshi</td><td class="vocab-read">ฝู่สือ</td><td class="vocab-meaning">พยาบาล</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">发烧</td><td class="vocab-pinyin">fāshāo</td><td class="vocab-read">ฝาเซา</td><td class="vocab-meaning">มีไข้</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">检查</td><td class="vocab-pinyin">jiǎnchá</td><td class="vocab-read">เจี่ยนฉา</td><td class="vocab-meaning">ตรวจร่างกาย</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">药</td><td class="vocab-pinyin">yào</td><td class="vocab-read">เหย่า</td><td class="vocab-meaning">ยา</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">休息</td><td class="vocab-pinyin">xiūxi</td><td class="vocab-read">เซิวซี</td><td class="vocab-meaning">พักผ่อน</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="trans-label">🇹🇭 แปลไทย — เรื่องที่ 3</div>
+  <p class="trans-sub">เช็กความเข้าใจของตัวเอง</p>
+  <div class="trans-row"><div class="trans-cn">我头痛了两天，决定去医院看医生。</div><div class="trans-th">ฉันปวดหัวมาสองวันแล้ว เลยตัดสินใจไปโรงพยาบาลหาหมอ</div></div>
+  <div class="trans-row"><div class="trans-cn">护士问我："哪里不舒服？"</div><div class="trans-th">พยาบาลถามฉันว่า "ไม่สบายตรงไหนคะ?"</div></div>
+  <div class="trans-row"><div class="trans-cn">我说："我头痛，有点发烧。"</div><div class="trans-th">ฉันบอกว่า "ปวดหัว และมีไข้นิดหน่อย"</div></div>
+  <div class="trans-row"><div class="trans-cn">医生检查后，给我开了药。</div><div class="trans-th">หลังจากหมอตรวจแล้ว ก็สั่งยาให้ฉัน</div></div>
+  <div class="trans-row"><div class="trans-cn">医生说："多喝水，好好休息。"</div><div class="trans-th">หมอบอกว่า "ดื่มน้ำเยอะๆ และพักผ่อนให้เต็มที่"</div></div>
+
+  <div class="think-box">
+    <div class="think-title">💡 ลองคิดต่อ</div>
+    <div class="think-item">① ถ้าปวดท้องแทนปวดหัว จะบอกหมอว่าอะไร?<div class="think-hint">힌트: 肚子痛 = ตู่จือ เทิง = ปวดท้อง</div></div>
+    <div class="think-item">② ลองพูดว่า "ฉันไม่สบายมาสามวัน" เป็นภาษาจีน<div class="think-hint">힌트: 三天 = ซานเทียน = สามวัน</div></div>
+  </div>
+</section>
+
+<!-- ==================== STORY 4 ==================== -->
+<section class="story-section" id="story4">
+  <div class="story-header">
+    <div class="story-num-large">04</div>
+    <div class="story-title-cn">在机场买礼物</div>
+    <div class="story-title-th">ซื้อของฝากที่สนามบิน</div>
+    <div class="story-divider"></div>
+  </div>
+
+  <div class="reading-label">📖 อ่านเรื่อง</div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">我在机场准备回国，想买点礼物。</div>
+    <div class="sentence-pinyin">Wǒ zài jīchǎng zhǔnbèi huí guó, xiǎng mǎi diǎn lǐwù.</div>
+    <div class="sentence-thai">หว่อ ไจ้ จีฉ่าง จุ่นเป้ย หุย กั๋ว, เซี่ยง มาย เตี่ยน หลี่อู้</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">免税店里有很多东西，我有点不知道买什么。</div>
+    <div class="sentence-pinyin">Miǎnshuìdiàn lǐ yǒu hěn duō dōngxi, wǒ yǒudiǎn bù zhīdào mǎi shénme.</div>
+    <div class="sentence-thai">เหมี่ยนซุ่ยเตี้ยน หลี่ โหย่ว เหิน ตัว ตงซี, หว่อ โหย่วเตี่ยน ปู้ จือเต้า มาย เสินเมอ</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">最后，我买了巧克力和一瓶香水。</div>
+    <div class="sentence-pinyin">Zuìhòu, wǒ mǎi le qiǎokèlì hé yī píng xiāngshuǐ.</div>
+    <div class="sentence-thai">จุ้ยโห่ว, หว่อ มาย เลอ เฉียวเค่อลี่ เหอ อี ผิง เซียงซุ่ย</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">店员说："一共三百块。"</div>
+    <div class="sentence-pinyin">Diànyuán shuō: "Yīgòng sān bǎi kuài."</div>
+    <div class="sentence-thai">เตี้ยนหยวน ซัว: "อีก้ง ซาน ปาย ไคว่"</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">我刷卡付钱，然后去登机了。</div>
+    <div class="sentence-pinyin">Wǒ shuā kǎ fù qián, ránhòu qù dēngjī le.</div>
+    <div class="sentence-thai">หว่อ ซัว ข่า ฝู่ เชียน, หรานโห่ว ชวี่ เติงจี เลอ</div>
+  </div>
+
+  <div class="vocab-label">📚 คำศัพท์สำคัญ — เรื่องที่ 4 <span class="vocab-count">8 คำ</span></div>
+  <div style="overflow-x:auto;">
+  <table class="vocab-table">
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
+    <tbody>
+      <tr><td class="vocab-cn">机场</td><td class="vocab-pinyin">jīchǎng</td><td class="vocab-read">จีฉ่าง</td><td class="vocab-meaning">สนามบิน</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">礼物</td><td class="vocab-pinyin">lǐwù</td><td class="vocab-read">หลี่อู้</td><td class="vocab-meaning">ของขวัญ / ของฝาก</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">免税店</td><td class="vocab-pinyin">miǎnshuìdiàn</td><td class="vocab-read">เหมี่ยนซุ่ยเตี้ยน</td><td class="vocab-meaning">ร้านค้าปลอดภาษี</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">巧克力</td><td class="vocab-pinyin">qiǎokèlì</td><td class="vocab-read">เฉียวเค่อลี่</td><td class="vocab-meaning">ช็อกโกแลต</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">香水</td><td class="vocab-pinyin">xiāngshuǐ</td><td class="vocab-read">เซียงซุ่ย</td><td class="vocab-meaning">น้ำหอม</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">一共</td><td class="vocab-pinyin">yīgòng</td><td class="vocab-read">อีก้ง</td><td class="vocab-meaning">รวมทั้งหมด</td><td><span class="vocab-pos pos-adv">วิ.</span></td></tr>
+      <tr><td class="vocab-cn">刷卡</td><td class="vocab-pinyin">shuā kǎ</td><td class="vocab-read">ซัว ข่า</td><td class="vocab-meaning">รูดบัตร</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">登机</td><td class="vocab-pinyin">dēngjī</td><td class="vocab-read">เติงจี</td><td class="vocab-meaning">ขึ้นเครื่องบิน</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="trans-label">🇹🇭 แปลไทย — เรื่องที่ 4</div>
+  <p class="trans-sub">เช็กความเข้าใจของตัวเอง</p>
+  <div class="trans-row"><div class="trans-cn">我在机场准备回国，想买点礼物。</div><div class="trans-th">ฉันอยู่ที่สนามบิน กำลังจะกลับบ้าน อยากซื้อของฝากนิดหน่อย</div></div>
+  <div class="trans-row"><div class="trans-cn">免税店里有很多东西，我有点不知道买什么。</div><div class="trans-th">ในร้านปลอดภาษีมีของเยอะมาก ฉันไม่รู้จะซื้ออะไรดีเลย</div></div>
+  <div class="trans-row"><div class="trans-cn">最后，我买了巧克力和一瓶香水。</div><div class="trans-th">สุดท้ายฉันซื้อช็อกโกแลตกับน้ำหอมหนึ่งขวด</div></div>
+  <div class="trans-row"><div class="trans-cn">店员说："一共三百块。"</div><div class="trans-th">พนักงานบอกว่า "รวมทั้งหมดสามร้อยหยวนครับ"</div></div>
+  <div class="trans-row"><div class="trans-cn">我刷卡付钱，然后去登机了。</div><div class="trans-th">ฉันรูดบัตรจ่ายเงิน แล้วก็ไปขึ้นเครื่อง</div></div>
+
+  <div class="think-box">
+    <div class="think-title">💡 ลองคิดต่อ</div>
+    <div class="think-item">① ถ้าอยากถามว่า "มีของฝากอะไรบ้าง?" จะพูดว่าอะไร?<div class="think-hint">힌트: 有什么礼物? = โหย่ว เสินเมอ หลี่อู้? = มีของขวัญอะไรบ้าง?</div></div>
+    <div class="think-item">② ลองพูดว่า "รวมทั้งหมดเท่าไหร่?" เป็นภาษาจีน<div class="think-hint">힌트: 一共多少钱? = อีก้ง ตัวซ่าว เชียน?</div></div>
+  </div>
+</section>
+
+<!-- ==================== STORY 5 ==================== -->
+<section class="story-section" id="story5">
+  <div class="story-header">
+    <div class="story-num-large">05</div>
+    <div class="story-title-cn">在咖啡馆工作</div>
+    <div class="story-title-th">ทำงานที่ร้านกาแฟ</div>
+    <div class="story-divider"></div>
+  </div>
+
+  <div class="reading-label">📖 อ่านเรื่อง</div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">今天我带电脑去咖啡馆工作。</div>
+    <div class="sentence-pinyin">Jīntiān wǒ dài diànnǎo qù kāfēiguǎn gōngzuò.</div>
+    <div class="sentence-thai">จินเทียน หว่อ ไต้ เตี้ยนเหน่า ชวี่ คาเฟยกวั่น กงจั่ว</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">我点了一杯美式咖啡，找了一个安静的座位坐下。</div>
+    <div class="sentence-pinyin">Wǒ diǎn le yī bēi Měishì kāfēi, zhǎo le yīgè ānjìng de zuòwèi zuò xià.</div>
+    <div class="sentence-thai">หว่อ เตี่ยน เลอ อี เปย เหมยสือ คาเฟย, เจ่า เลอ อีเกอ อานจิ้ง เดอ จั่วเว่ย จั่ว เซี่ย</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">我工作了两个小时，发了三封电子邮件。</div>
+    <div class="sentence-pinyin">Wǒ gōngzuò le liǎng gè xiǎoshí, fā le sān fēng diànzǐ yóujiàn.</div>
+    <div class="sentence-thai">หว่อ กงจั่ว เลอ เหลี่ยง เกอ เซี่ยวสือ, ฝา เลอ ซาน เฟิง เตี้ยนจื่อ โหยเจี้ยน</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">旁边有人打电话，声音太大，有点吵。</div>
+    <div class="sentence-pinyin">Pángbiān yǒu rén dǎ diànhuà, shēngyīn tài dà, yǒudiǎn chǎo.</div>
+    <div class="sentence-thai">ผางเปียน โหย่ว เหริน ต่า เตี้ยนฮว่า, เซิงอิน ไท่ ต้า, โหย่วเตี่ยน เฉ่า</div>
+  </div>
+
+  <div class="sentence-block">
+    <div class="sentence-cn">虽然有点吵，但我还是很喜欢在这里工作。</div>
+    <div class="sentence-pinyin">Suīrán yǒudiǎn chǎo, dàn wǒ háishi hěn xǐhuān zài zhèlǐ gōngzuò.</div>
+    <div class="sentence-thai">ซุยหราน โหย่วเตี่ยน เฉ่า, ตั้น หว่อ ไห่สือ เหิน สี่ฮวน ไจ้ เจ้อหลี่ กงจั่ว</div>
+  </div>
+
+  <div class="vocab-label">📚 คำศัพท์สำคัญ — เรื่องที่ 5 <span class="vocab-count">8 คำ</span></div>
+  <div style="overflow-x:auto;">
+  <table class="vocab-table">
+    <thead><tr><th>ตัวจีน</th><th>พินอิน</th><th>อ่านไทย</th><th>ความหมาย</th><th>ชนิด</th></tr></thead>
+    <tbody>
+      <tr><td class="vocab-cn">电脑</td><td class="vocab-pinyin">diànnǎo</td><td class="vocab-read">เตี้ยนเหน่า</td><td class="vocab-meaning">คอมพิวเตอร์</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">咖啡馆</td><td class="vocab-pinyin">kāfēiguǎn</td><td class="vocab-read">คาเฟยกวั่น</td><td class="vocab-meaning">ร้านกาแฟ</td><td><span class="vocab-pos pos-n">น.</span></td></tr>
+      <tr><td class="vocab-cn">工作</td><td class="vocab-pinyin">gōngzuò</td><td class="vocab-read">กงจั่ว</td><td class="vocab-meaning">ทำงาน / งาน</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">安静</td><td class="vocab-pinyin">ānjìng</td><td class="vocab-read">อานจิ้ง</td><td class="vocab-meaning">เงียบสงบ</td><td><span class="vocab-pos pos-adj">คุณ.</span></td></tr>
+      <tr><td class="vocab-cn">小时</td><td class="vocab-pinyin">xiǎoshí</td><td class="vocab-read">เซี่ยวสือ</td><td class="vocab-meaning">ชั่วโมง</td><td><span class="vocab-pos pos-q">ล.</span></td></tr>
+      <tr><td class="vocab-cn">打电话</td><td class="vocab-pinyin">dǎ diànhuà</td><td class="vocab-read">ต่า เตี้ยนฮว่า</td><td class="vocab-meaning">โทรศัพท์</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+      <tr><td class="vocab-cn">吵</td><td class="vocab-pinyin">chǎo</td><td class="vocab-read">เฉ่า</td><td class="vocab-meaning">อึกทึก / เสียงดัง</td><td><span class="vocab-pos pos-adj">คุณ.</span></td></tr>
+      <tr><td class="vocab-cn">喜欢</td><td class="vocab-pinyin">xǐhuān</td><td class="vocab-read">สี่ฮวน</td><td class="vocab-meaning">ชอบ</td><td><span class="vocab-pos pos-v">ก.</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="trans-label">🇹🇭 แปลไทย — เรื่องที่ 5</div>
+  <p class="trans-sub">เช็กความเข้าใจของตัวเอง</p>
+  <div class="trans-row"><div class="trans-cn">今天我带电脑去咖啡馆工作。</div><div class="trans-th">วันนี้ฉันเอาคอมพิวเตอร์ไปทำงานที่ร้านกาแฟ</div></div>
+  <div class="trans-row"><div class="trans-cn">我点了一杯美式咖啡，找了一个安静的座位坐下。</div><div class="trans-th">ฉันสั่งอเมริกาโน่หนึ่งแก้ว แล้วหาที่นั่งเงียบๆ นั่งลง</div></div>
+  <div class="trans-row"><div class="trans-cn">我工作了两个小时，发了三封电子邮件。</div><div class="trans-th">ฉันทำงานสองชั่วโมง ส่งอีเมลไปสามฉบับ</div></div>
+  <div class="trans-row"><div class="trans-cn">旁边有人打电话，声音太大，有点吵。</div><div class="trans-th">ข้างๆ มีคนโทรศัพท์ เสียงดังมาก อึกทึกนิดหน่อย</div></div>
+  <div class="trans-row"><div class="trans-cn">虽然有点吵，但我还是很喜欢在这里工作。</div><div class="trans-th">แม้จะอึกทึกนิดหน่อย แต่ฉันก็ยังชอบมาทำงานที่นี่อยู่ดี</div></div>
+
+  <div class="think-box">
+    <div class="think-title">💡 ลองคิดต่อ</div>
+    <div class="think-item">① ถ้าอยากบอกว่า "ฉันชอบที่นี่มาก" จะพูดว่าอะไร?<div class="think-hint">힌트: 我很喜欢这里 = หว่อ เหิน สี่ฮวน เจ้อหลี่</div></div>
+    <div class="think-item">② ลองพูดว่า "ฉันทำงานสามชั่วโมง" เป็นภาษาจีน<div class="think-hint">힌트: 三个小时 = ซาน เกอ เซี่ยวสือ = สามชั่วโมง</div></div>
+  </div>
+</section>
+
+<!-- ENDING -->
+<section class="ending">
+  <div class="ending-inner">
+    <div class="ending-cn">完</div>
+    <h2 class="ending-title">อ่านจบเล่ม 2 แล้ว!</h2>
+    <p class="ending-sub">
+      คุณเรียนรู้คำศัพท์ไปแล้วกว่า <strong style="color:var(--gold)">40 คำ</strong><br/>
+      และได้อ่านเรื่องราวในชีวิตประจำวัน 5 เรื่อง
+    </p>
+    <ul class="ending-stories">
+      <li>เรื่องที่ 1 — ไปออกกำลังกายที่สวนสาธารณะ</li>
+      <li>เรื่องที่ 2 — สั่งอาหารออนไลน์</li>
+      <li>เรื่องที่ 3 — ไปหาหมอ</li>
+      <li>เรื่องที่ 4 — ซื้อของฝากที่สนามบิน</li>
+      <li>เรื่องที่ 5 — ทำงานที่ร้านกาแฟ</li>
+    </ul>
+
+    <div class="donate-box">
+      <p class="donate-title">ขอบคุณที่ซื้อ Vol.2! ☕</p>
+      <p class="donate-sub">ถ้าอยากสนับสนุนให้ทำ Vol.3 ต่อไป โดเนทกาแฟให้กูได้เลย</p>
+      <div class="donate-btns">
+        <button class="donate-btn" onclick="selectDonate(this,'49')">฿49</button>
+        <button class="donate-btn" onclick="selectDonate(this,'99')">฿99</button>
+        <button class="donate-btn" onclick="selectDonate(this,'189')">฿189</button>
+      </div>
+      <div id="qr-area" style="display:none; text-align:center; margin-top:1.5rem;">
+        <p id="qr-amount" style="font-size:0.85rem; color:rgba(255,255,255,0.5); margin-bottom:0.75rem;"></p>
+        <p style="font-size:0.8rem; color:rgba(255,255,255,0.35);">สแกนจ่ายผ่าน PromptPay ได้เลย 🙏</p>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <a href="https://oilalongtheway.github.io/oilalongtheway/chineseebook.html" style="color:var(--rust); text-decoration:none; font-size:0.9rem;">← กลับไปอ่าน Vol.1</a>
+      &nbsp;&nbsp;·&nbsp;&nbsp;
+      <a href="https://oilalongtheway.github.io/oilalongtheway/" style="color:rgba(255,255,255,0.4); text-decoration:none; font-size:0.9rem;">หน้าหลัก</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>สร้างโดย <a href="https://oilalongtheway.github.io/oilalongtheway/">oilalongtheway</a> · Vol. 02 · 2025</p>
+</footer>
+
+<script>
+function selectDonate(btn, amount) {
+  document.querySelectorAll('.donate-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('qr-area').style.display = 'block';
+  document.getElementById('qr-amount').textContent = 'เลือกจำนวน ฿' + amount;
+}
+</script>
+</body>
+</html>
