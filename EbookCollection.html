@@ -429,10 +429,9 @@ footer strong {
 @media (max-width: 600px) {
   .books-grid { grid-template-columns: 1fr; }
 }
-  .product-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  .card-cover {
+  position: relative;
+  overflow: hidden;
 }
 </style>
 </head>
@@ -542,12 +541,12 @@ footer strong {
       </div>
     </div>
 
-    <div class="book-card"><div class="products-grid">
-      <div class="product-card">
-        <div class="product-thumb"><img src="https://raw.githubusercontent.com/oilalongtheway/oilalongtheway/main/chineseeb2.jpg" alt="">
+    <div class="book-card">
   <div class="card-cover" style="background: linear-gradient(135deg, #c8602a, #e8864a);">
     <div class="card-cover-pattern"></div>
-    <div class="card-cover-icon">&#10024;</div>
+    <img src="https://raw.githubusercontent.com/oilalongtheway/oilalongtheway/main/chineseeb2.jpg" 
+         alt="เรียนจีนผ่านเรื่องสั้น Vol.2"
+         style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
   </div>
   <div class="card-body">
     <div class="card-tags">
@@ -560,9 +559,6 @@ footer strong {
       <span class="price-paid">฿99</span>
       <a href="https://buy.stripe.com/9B63cv5nLcOo6fP9L52Ji00" target="_blank" class="btn-get btn-paid">กดซื้อ</a>
     </div>
-  </div>
-</div>
-
   </div>
 </div>
 
