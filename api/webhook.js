@@ -39,4 +39,10 @@ export default async function handler(req, res) {
       await transporter.sendMail({
         from: 'oilalongtheway <' + process.env.GMAIL_USER + '>',
         to: customerEmail,
-        subject: 'ขอบคุณที่ซื้อ เรียนจีนผ่านเรื่องสั้น V
+        subject: 'ขอบคุณที่ซื้อ เรียนจีนผ่านเรื่องสั้น Vol.2',
+        html: '<div style="font-family:sans-serif;padding:32px"><h2>ขอบคุณที่ซื้อนะ! 🎉</h2><p>กดปุ่มด้านล่างเพื่อดาวน์โหลด Ebook ได้เลยครับ</p><a href="' + PDF_LINK + '" style="display:inline-block;padding:14px 32px;background:#c8602a;color:white;border-radius:12px;text-decoration:none">ดาวน์โหลด Ebook</a></div>',
+      });
+    }
+  }
+  res.status(200).json({ received: true });
+}
