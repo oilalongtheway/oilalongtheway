@@ -23,17 +23,17 @@ export default async function handler(req, res) {
   try {
     event = stripe.webhooks.constructEvent(buf, sig, process.env.STRIPE_WEBHOOK_SECRET);
   } catch (err) {
-    return res.status(400).send(`Webhook Error: ${err.message}`);
+    return res.status(400).send('Webhook Error: ' + err.message);
   }
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const customerEmail = session.customer_details?.email;
+    const customerEmail = session.customer_details && session.customer_details.email;
     if (customerEmail) {
       await resend.emails.send({
         from: 'oilalongtheway <onboarding@resend.dev>',
         to: customerEmail,
         subject: 'ขอบคุณที่ซื้อ เรียนจีนผ่านเรื่องสั้น Vol.2',
-        html: `<div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:32px 24px"><h2 style="color:#2c1f0e">ขอบคุณที่ซื้อนะ! 🎉</h2><p style="color:#9e8672;line-height:1.8">ได้รับการชำระเงินเรียบร้อยแล้ว กดปุ่มด้านล่างเพื่อดาวน์โหลด Ebook ได้เลยครับ</p><a href="${PDF_LINK}" style="display:inline-block;margin-top:24px;padding:14px 32px;background:#c8602a;color:white;border-radius:12px;text-decoration:none;font-weight:600;font-size:15px">ดาวน์โหลด Ebook</a><p style="margin-top:32px;font-size:12px;color:#9e8672">มีปัญหาหรือคำถามติดต่อได้เลยนะ — oilalongtheway</p></div>`,
+        html: '<div style="font-family:sans-serif;padding:32px"><h2>ขอบคุณที่ซื้อนะ!</h2><p>กดปุ่มด้านล่างเพื่อดาวน์โหลด Ebook ได้เลยครับ</p><a href="' + PDF_LINK + '" style="display:inline-block;padding:14px 32px;background:#c8602a;color:white;border-radius:12px;text-decoration:none">ดาวน์โหลด Ebook</a></div>',
       });
     }
   }
