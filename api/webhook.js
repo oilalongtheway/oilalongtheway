@@ -3,18 +3,32 @@ import { Resend } from 'resend';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const resend = new Resend(process.env.RESEND_API_KEY);
-
 const PDF_LINK = process.env.PDF_LINK;
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+async function buffer(readable) {
+  const chunks = [];
+  for await (const chunk of readable) {
+    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+  }
+  return Buffer.concat(chunks);
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
+  const buf = await buffer(req);
   const sig = req.headers['stripe-signature'];
-  let event;
 
+  let event;
   try {
     event = stripe.webhooks.constructEvent(
-      req.body,
+      buf,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
@@ -28,7 +42,7 @@ export default async function handler(req, res) {
 
     if (customerEmail) {
       await resend.emails.send({
-        from: 'oilalongtheway <noreply@yourdomain.com>',
+        from: 'oilalongtheway <onboarding@resend.dev>',
         to: customerEmail,
         subject: '📚 เรียนจีนผ่านเรื่องสั้น Vol.2 — ขอบคุณที่ซื้อนะ!',
         html: `
@@ -39,18 +53,3 @@ export default async function handler(req, res) {
             </p>
             <a href="${PDF_LINK}"
                style="display:inline-block; margin-top:24px; padding:14px 32px;
-                      background:#c8602a; color:white; border-radius:12px;
-                      text-decoration:none; font-weight:600; font-size:15px;">
-              ดาวน์โหลด Ebook
-            </a>
-            <p style="margin-top: 32px; font-size: 12px; color: #9e8672;">
-              มีปัญหาหรือคำถามติดต่อได้เลยนะ — oilalongtheway
-            </p>
-          </div>
-        `,
-      });
-    }
-  }
-
-  res.status(200).json({ received: true });
-}
