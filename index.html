@@ -129,6 +129,9 @@
   .comment-text { font-size: 0.88rem; color: var(--mid); font-weight: 300; line-height: 1.6; }
   .comment-empty { font-size: 0.88rem; color: var(--mid); text-align: center; padding: 1.5rem 0; font-weight: 300; }
 
+  /* honeypot hidden */
+  .hp-field { display: none !important; }
+
   @media (max-width: 680px) {
     .about-inner { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
     nav { padding: 1rem; }
@@ -202,6 +205,7 @@
     <h2 class="section-title">เรียนรู้กับกู</h2>
     <p class="section-sub">เลือกสิ่งที่เหมาะกับมึงได้เลย ทั้งฟรีและมีค่าใช้จ่าย</p>
     <div class="products-grid">
+
       <div class="product-card">
         <div class="product-thumb"><img src="https://raw.githubusercontent.com/oilalongtheway/oilalongtheway/main/S__11804697.jpg" alt=""></div>
         <div class="product-body">
@@ -210,10 +214,12 @@
           <p class="product-desc">พวกมึงลองดูว่าคอร์สนี้สอนอะไรและพวกมึงได้อะไรกลับไปบ้าง</p>
           <div class="product-footer">
             <span class="product-price free">ฟรี</span>
-            <a href="#" class="btn-buy">รับเลย</a>
+            <!-- ข้อ 3: เปลี่ยน # เป็น link จริง เช่น https://forms.gle/xxx หรือ page คอร์สฟรี -->
+            <a href="LINK_FREE_COURSE_HERE" class="btn-buy">รับเลย</a>
           </div>
         </div>
       </div>
+
       <div class="product-card">
         <div class="product-thumb"><img src="https://raw.githubusercontent.com/oilalongtheway/oilalongtheway/main/pfebook.jpg" alt=""></div>
         <div class="product-body">
@@ -226,6 +232,7 @@
           </div>
         </div>
       </div>
+
       <div class="product-card">
         <div class="product-thumb"><img src="https://raw.githubusercontent.com/oilalongtheway/oilalongtheway/main/IMG_3066.jpeg" alt=""></div>
         <div class="product-body">
@@ -234,10 +241,12 @@
           <p class="product-desc">อยากให้กูดูแลการเติบโตของมึงหรอ จ่ายกูสิ</p>
           <div class="product-footer">
             <span class="product-price">฿3990+</span>
-            <a href="#" class="btn-buy">ซื้อเลย</a>
+            <!-- ข้อ 2: เปลี่ยน STRIPE_PAYMENT_LINK_HERE เป็น Stripe link จริง เช่น https://buy.stripe.com/xxx -->
+            <a href="STRIPE_PAYMENT_LINK_HERE" class="btn-buy">ซื้อเลย</a>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -267,7 +276,7 @@
     <div style="background:#fff;border-radius:1.25rem;padding:1.75rem;text-align:left;border:1px solid rgba(180,160,140,0.2)">
       <div style="margin-bottom:1rem">
         <label style="font-size:0.85rem;font-weight:600;color:var(--dark);display:block;margin-bottom:0.4rem">ชื่อ</label>
-        <input id="f-name" type="text" placeholder="ชื่อของมึง" style="width:100%;padding:0.75rem 1rem;border-radius:0.75rem;border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;font-size:0.95rem;outline:none;background:var(--cream);" />
+        <input id="f-name" type="text" placeholder="ชื่อของมึง" maxlength="80" style="width:100%;padding:0.75rem 1rem;border-radius:0.75rem;border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;font-size:0.95rem;outline:none;background:var(--cream);" />
       </div>
       <div style="margin-bottom:1rem">
         <label style="font-size:0.85rem;font-weight:600;color:var(--dark);display:block;margin-bottom:0.4rem">ให้คะแนนกูหน่อย</label>
@@ -281,8 +290,14 @@
       </div>
       <div style="margin-bottom:1.25rem">
         <label style="font-size:0.85rem;font-weight:600;color:var(--dark);display:block;margin-bottom:0.4rem">ข้อความถึงกู</label>
-        <textarea id="f-msg" placeholder="เขียนอะไรก็ได้เลย..." rows="3" style="width:100%;padding:0.75rem 1rem;border-radius:0.75rem;border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;font-size:0.95rem;outline:none;resize:none;background:var(--cream);"></textarea>
+        <textarea id="f-msg" placeholder="เขียนอะไรก็ได้เลย..." rows="3" maxlength="500" style="width:100%;padding:0.75rem 1rem;border-radius:0.75rem;border:1.5px solid rgba(180,160,140,0.3);font-family:'Sarabun',sans-serif;font-size:0.95rem;outline:none;resize:none;background:var(--cream);"></textarea>
       </div>
+
+      <!-- honeypot: บอท auto-fill จะกรอก field นี้ — human จะมองไม่เห็นเพราะซ่อนไว้ -->
+      <div class="hp-field" aria-hidden="true">
+        <input id="f-hp" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
       <button onclick="submitForm()" style="width:100%;background:var(--accent);color:#fff;padding:0.85rem;border-radius:100px;border:none;font-size:1rem;font-weight:600;font-family:'Sarabun',sans-serif;cursor:pointer;transition:all 0.2s;">
         ส่งข้อความ ❤️
       </button>
@@ -306,6 +321,20 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxxxc7J80Hv2iCMX1lYl
 let starVal = 0;
 let notifTimer = null;
 
+// ─── rate limit: กัน double-submit ───────────────────────────────────
+let lastSubmitTime = 0;
+const SUBMIT_COOLDOWN_MS = 15000; // 15 วินาทีต่อครั้ง
+
+// ─── ข้อ 1: escape HTML — ป้องกัน XSS ────────────────────────────────
+function escapeHTML(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function setStar(n) {
   starVal = n;
   document.querySelectorAll('.star').forEach((s, i) => {
@@ -317,6 +346,7 @@ function setStar(n) {
 function showNotif(data) {
   const icons = ['🎉','💬','🙏','✨','❤️'];
   document.getElementById('notif-icon-wrap').textContent = icons[Math.floor(Math.random() * icons.length)];
+  // ใช้ textContent แทน innerHTML — ปลอดภัยกว่า ไม่ต้อง escape
   document.getElementById('notif-name').textContent = data.name;
   document.getElementById('notif-msg').textContent = data.message;
   const notif = document.getElementById('notif');
@@ -334,24 +364,41 @@ function renderComments(data) {
     list.innerHTML = '<p class="comment-empty">ยังไม่มีความคิดเห็น เป็นคนแรกได้เลย 👆</p>';
     return;
   }
+  // ข้อ 1: ใช้ escapeHTML() ทุก field ที่มาจาก user ก่อน render
   list.innerHTML = real.map(d => `
     <div class="comment-item">
-      <div class="comment-avatar">${d.name.charAt(0).toUpperCase()}</div>
+      <div class="comment-avatar">${escapeHTML(d.name.charAt(0).toUpperCase())}</div>
       <div class="comment-body">
         <div class="comment-meta">
-          <span class="comment-name">${d.name}</span>
-          <span class="comment-score">${d.score || ''}</span>
+          <span class="comment-name">${escapeHTML(d.name)}</span>
+          <span class="comment-score">${escapeHTML(d.score || '')}</span>
         </div>
-        <p class="comment-text">${d.message}</p>
+        <p class="comment-text">${escapeHTML(d.message)}</p>
       </div>
     </div>
   `).join('');
 }
 
 async function submitForm() {
+  // ข้อ 4: honeypot check — ถ้ามีค่าใน hidden field = บอท → เงียบๆ ไม่ส่ง
+  if (document.getElementById('f-hp').value) return;
+
+  // ข้อ 4: rate limit — กัน spam click
+  const now = Date.now();
+  if (now - lastSubmitTime < SUBMIT_COOLDOWN_MS) {
+    alert('รอแป๊บนึงก่อนนะ! ส่งได้ทุก 15 วินาที');
+    return;
+  }
+
   const name = document.getElementById('f-name').value.trim();
   const msg = document.getElementById('f-msg').value.trim();
   if (!name || !msg || !starVal) { alert('กรอกให้ครบนะ! ชื่อ คะแนน และข้อความ'); return; }
+
+  // ข้อ 4: ตัด input ยาวเกิน (ซ้อน server-side ด้วยถ้าจะทำ Apps Script ต่อ)
+  if (name.length > 80 || msg.length > 500) { alert('ข้อความยาวเกินไป'); return; }
+
+  lastSubmitTime = now;
+
   const hearts = '❤️'.repeat(starVal);
   await fetch(SCRIPT_URL, {
     method: 'POST', mode: 'no-cors',
