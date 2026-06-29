@@ -231,49 +231,52 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
 <script>
 const lessons = [
   {
-    badge: "โมดูล 1 · บทที่นำ",
+    badge: "โมดูล 1 · บทนำ",
     title: "บทนำ — ทำไมต้องมีระบบ",
-    desc: "ก่อนจะสร้างอะไร กูอยากให้มึงเข้าใจก่อนว่าทำไมธุรกิจดิจิทัลถึงต้องการ 'ระบบหลังบ้าน' และมันคืออะไรกันแน่",
+    desc: "ก่อนจะสร้างอะไร กอยากให้มึงเข้าใจก่อนว่าทำไมธุรกิจดิจิทัลถึงต้องการ 'ระบบหลังบ้าน' และมันคออะไรกันแน่",
     yt: "pJfdsUGNa2U"
   },
   {
     badge: "โมดูล 1 · บทที่ 1",
-    title: "รู้จักคำว่า "ระบบ"",
-    desc: "ก่อนเริ่มเราต้องรู้จักทั้งหมดคร่าวๆให้เข้าใจก่อน",
+    title: "รูจักคำว่า "ระบบ"",
+    desc: "ก่อนเริ่มเราต้องรจักทั้งหมดคร่าวๆให้เข้าใจก่อน",
     yt: "HVT9jHj1Rts"
   },
   {
-    badge: "โมดูล 1 · บทที่ 3",
+    badge: "โมดูล 1 · บทที่ 2",
     title: "สอน — ส่วนที่ 2",
-    desc: "ต่อจากส่วนแรก เพิ่มระบบที่จำเป็นเข้าไปอีกขั้น",
+    desc: "ต่อจากส่วนแรก เพิ่มระบบที่จำเป็นเขาไปอีกขั้น",
     yt: ""
   },
   {
-    badge: "โมดูล 1 · บทที่ 4",
+    badge: "โมดล 1 · บทที่ 3",
     title: "สอน — ส่วนที่ 3",
-    desc: "ปิดโมดูลแรก เชื่อมทุกอย่างเข้าด้วยกันให้เป็นระบบที่ใช้ได้จริง",
+    desc: "ปิดโมดูลแรก เชื่อมทกอย่างเข้าด้วยกันให้เป็นระบบที่ใช้ได้จริง",
     yt: ""
   },
   {
-    badge: "โมดูล 2 · ตัวเสริม ✨",
+    badge: "โมดูล 2 · ตวเสริม ✨",
     title: "เพิ่มความพิเศษให้ระบบ",
     desc: "สำหรับคนที่อยากไปต่อ — เพิ่มฟีเจอร์พิเศษที่ทำให้ระบบของมึงแตกต่างและน่าประทับใจขึ้นอีก",
     yt: ""
   }
 ];
 
-// ✅ ประกาศตัวแปรครั้งเดียว
 let current = 0;
 let done = new Set(JSON.parse(localStorage.getItem('done') || '[]'));
 let player = null;
 let playerReady = false;
+let pendingVideoId = null;
 
-// ✅ YouTube API callback
-function onYouTubeIframeAPIReady() {
+// YouTube API พร้อมแล้ว
+window.onYouTubeIframeAPIReady = function() {
   const ytId = lessons[current].yt;
-  if (!ytId) return;
-  createPlayer(ytId);
-}
+  if (ytId) {
+    createPlayer(ytId);
+  } else {
+    showPlaceholder();
+  }
+};
 
 function createPlayer(ytId) {
   player = new YT.Player('yt-player', {
@@ -284,8 +287,11 @@ function createPlayer(ytId) {
     events: {
       onReady: function() {
         playerReady = true;
+        if (pendingVideoId) {
+          player.loadVideoById(pendingVideoId);
+          pendingVideoId = null;
+        }
       },
-      // ✅ จุดหลัก: ดูจบ → ติ๊กถูกอัตโนมัติ
       onStateChange: function(e) {
         if (e.data === YT.PlayerState.ENDED) {
           if (!done.has(current)) {
@@ -299,30 +305,29 @@ function createPlayer(ytId) {
   });
 }
 
-function loadVideo(ytId) {
-  const placeholder = document.getElementById('video-placeholder');
+function showPlaceholder() {
+  document.getElementById('video-placeholder').classList.remove('hidden');
+}
 
+function hidePlaceholder() {
+  document.getElementById('video-placeholder').classList.add('hidden');
+}
+
+function loadVideo(ytId) {
   if (!ytId) {
-    // ไม่มีคลิป — แสดง placeholder
-    placeholder.classList.remove('hidden');
-    if (player && playerReady) {
-      player.stopVideo();
-    }
+    showPlaceholder();
+    if (player && playerReady) player.stopVideo();
     return;
   }
-
-  placeholder.classList.add('hidden');
+  hidePlaceholder();
 
   if (!player) {
-    // ยัง init ไม่ได้ (API ยังโหลด) — รอก่อน
-    const interval = setInterval(() => {
-      if (typeof YT !== 'undefined' && YT.Player) {
-        clearInterval(interval);
-        createPlayer(ytId);
-      }
-    }, 200);
+    // API ยังโหลดไม่เสร็จ — เก็บไว้ก่อน
+    pendingVideoId = ytId;
   } else if (playerReady) {
     player.loadVideoById(ytId);
+  } else {
+    pendingVideoId = ytId;
   }
 }
 
@@ -346,11 +351,7 @@ function updateSidebar() {
     if (idx === current) el.classList.add('active');
     if (done.has(idx) && idx !== current) el.classList.add('done');
     const check = el.querySelector('.check');
-    if (done.has(idx)) {
-      check.textContent = '✓';
-    } else {
-      check.textContent = '▶';
-    }
+    check.textContent = done.has(idx) ? '✓' : '▶';
   });
 }
 
@@ -367,27 +368,16 @@ function renderLesson(idx) {
 
   const marked = done.has(idx);
   const markBtn = document.getElementById('btn-mark');
-  const markIcon = document.getElementById('mark-icon');
-  const markLabel = document.getElementById('mark-label');
-  if (marked) {
-    markBtn.classList.add('marked');
-    markIcon.textContent = '✓';
-    markLabel.textContent = 'เสร็จแล้ว!';
-  } else {
-    markBtn.classList.remove('marked');
-    markIcon.textContent = '○';
-    markLabel.textContent = 'ทำเสร็จแล้ว';
-  }
+  markBtn.classList.toggle('marked', marked);
+  document.getElementById('mark-icon').textContent = marked ? '✓' : '○';
+  document.getElementById('mark-label').textContent = marked ? 'เสร็จแล้ว!' : 'ทำเสร็จแล้ว';
 
   updateSidebar();
   updateProgress();
 }
 
 function goLesson(idx) {
-  if (idx === 5) {
-    showDonate();
-    return;
-  }
+  if (idx === 5) { showDonate(); return; }
   current = idx;
   document.getElementById('lesson-view').classList.remove('hidden');
   document.getElementById('donate-view').classList.add('hidden');
@@ -395,11 +385,8 @@ function goLesson(idx) {
 }
 
 function nextLesson() {
-  if (current < lessons.length - 1) {
-    goLesson(current + 1);
-  } else {
-    showDonate();
-  }
+  if (current < lessons.length - 1) goLesson(current + 1);
+  else showDonate();
 }
 
 function prevLesson() {
@@ -407,11 +394,8 @@ function prevLesson() {
 }
 
 function markDone() {
-  if (done.has(current)) {
-    done.delete(current);
-  } else {
-    done.add(current);
-  }
+  if (done.has(current)) done.delete(current);
+  else done.add(current);
   saveDone();
   renderLesson(current);
 }
@@ -433,8 +417,5 @@ function selectAmount(btn) {
   document.getElementById('qr-box').style.display = 'block';
 }
 
-// เริ่มต้น
+// เริ่มต้น — render UI ก่อน, video โหลดทีหลังเมื่อ API พร้อม
 renderLesson(0);
-</script>
-</body>
-</html>
