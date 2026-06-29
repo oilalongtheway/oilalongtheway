@@ -10,101 +10,93 @@
     gtag('config', 'G-M1WV1C75LC');
   </script>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<script src="https://www.youtube.com/iframe_api"></script>
-<title>สร้างระบบธุรกิจหลังบ้าน — Oil Along The Way</title>
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--cream:#FAF7F2;--warm:#F0EAE0;--dark:#1A1614;--mid:#6B5F58;--accent:#C97B4B;--accent-light:#F2D9C4;--white:#fff;--green:#3A9B6F;--green-light:#E8F5EE}
-body{font-family:'Sarabun',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh;display:flex;flex-direction:column}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <title>สร้างระบบธุรกิจหลังบ้าน — Oil Along The Way</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--cream:#FAF7F2;--warm:#F0EAE0;--dark:#1A1614;--mid:#6B5F58;--accent:#C97B4B;--accent-light:#F2D9C4;--white:#fff;--green:#3A9B6F;--green-light:#E8F5EE}
+    body{font-family:'Sarabun',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh;display:flex;flex-direction:column}
 
-/* NAV */
-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid rgba(180,160,140,0.2);background:var(--cream);position:sticky;top:0;z-index:100}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1rem;text-decoration:none;color:var(--dark)}
-.nav-back{font-size:0.85rem;color:var(--mid);text-decoration:none;display:flex;align-items:center;gap:0.4rem}
-.nav-back:hover{color:var(--accent)}
+    /* NAV */
+    nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid rgba(180,160,140,0.2);background:var(--cream);position:sticky;top:0;z-index:100}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1rem;text-decoration:none;color:var(--dark)}
+    .nav-back{font-size:0.85rem;color:var(--mid);text-decoration:none;display:flex;align-items:center;gap:0.4rem}
+    .nav-back:hover{color:var(--accent)}
 
-/* LAYOUT */
-.app{display:grid;grid-template-columns:300px 1fr;flex:1;min-height:calc(100vh - 57px)}
+    /* LAYOUT */
+    .app{display:grid;grid-template-columns:300px 1fr;flex:1;min-height:calc(100vh - 57px)}
 
-/* SIDEBAR */
-.sidebar{background:var(--white);border-right:1px solid rgba(180,160,140,0.2);overflow-y:auto;padding:1.5rem 0}
-.sidebar-title{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);font-weight:600;padding:0 1.5rem;margin-bottom:1rem}
-.module-group{margin-bottom:0.5rem}
-.module-header{display:flex;align-items:center;gap:0.6rem;padding:0.75rem 1.5rem;font-weight:600;font-size:0.9rem;color:var(--dark);background:var(--warm)}
-.module-num{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:0.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.lesson-item{display:flex;align-items:center;gap:0.75rem;padding:0.7rem 1.5rem 0.7rem 2.5rem;font-size:0.88rem;color:var(--mid);cursor:pointer;transition:background 0.15s;border-left:3px solid transparent}
-.lesson-item:hover{background:var(--cream)}
-.lesson-item.active{background:var(--accent-light);color:var(--dark);border-left-color:var(--accent);font-weight:600}
-.lesson-item.done{color:var(--green)}
-.check{width:18px;height:18px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.65rem;transition:all 0.2s}
-.lesson-item.done .check{background:var(--green);border-color:var(--green);color:#fff}
-.lesson-title-text{flex:1;line-height:1.3}
+    /* SIDEBAR */
+    .sidebar{background:var(--white);border-right:1px solid rgba(180,160,140,0.2);overflow-y:auto;padding:1.5rem 0}
+    .sidebar-title{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);font-weight:600;padding:0 1.5rem;margin-bottom:1rem}
+    .module-group{margin-bottom:0.5rem}
+    .module-header{display:flex;align-items:center;gap:0.6rem;padding:0.75rem 1.5rem;font-weight:600;font-size:0.9rem;color:var(--dark);background:var(--warm)}
+    .module-num{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:0.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .lesson-item{display:flex;align-items:center;gap:0.75rem;padding:0.7rem 1.5rem 0.7rem 2.5rem;font-size:0.88rem;color:var(--mid);cursor:pointer;transition:background 0.15s;border-left:3px solid transparent}
+    .lesson-item:hover{background:var(--cream)}
+    .lesson-item.active{background:var(--accent-light);color:var(--dark);border-left-color:var(--accent);font-weight:600}
+    .lesson-item.done{color:var(--green)}
+    .check{width:18px;height:18px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.65rem;transition:all 0.2s}
+    .lesson-item.done .check{background:var(--green);border-color:var(--green);color:#fff}
+    .lesson-title-text{flex:1;line-height:1.3}
+    .lesson-item.finale{color:var(--accent)}
 
-/* SPECIAL ITEMS */
-.lesson-item.special-module .module-label{font-size:0.68rem;background:var(--accent-light);color:var(--accent);padding:0.15rem 0.5rem;border-radius:100px;font-weight:700;flex-shrink:0}
-.lesson-item.finale{color:var(--accent)}
+    /* MAIN */
+    .main{display:flex;flex-direction:column;overflow-y:auto}
 
-/* MAIN */
-.main{display:flex;flex-direction:column;overflow-y:auto}
+    /* VIDEO AREA */
+    .video-area{background:#000;width:100%;position:relative;padding-top:56.25%}
+    #yt-player{position:absolute;top:0;left:0;width:100%;height:100%}
+    .video-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:rgba(255,255,255,0.5);text-align:center;padding:2rem;position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+    .video-placeholder .play-icon{width:64px;height:64px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+    .video-placeholder p{font-size:0.9rem}
 
-/* VIDEO AREA */
-.video-area{background:#000;width:100%;position:relative;padding-top:56.25%}/* 16:9 */
-#yt-player{position:absolute;top:0;left:0;width:100%;height:100%}
-#yt-player iframe{width:100%;height:100%}
-.video-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:rgba(255,255,255,0.5);text-align:center;padding:2rem;position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
-.video-placeholder .play-icon{width:64px;height:64px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
-.video-placeholder p{font-size:0.9rem}
+    /* CONTENT AREA */
+    .content-area{padding:2rem 2.5rem;flex:1}
+    .lesson-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.75rem}
+    .lesson-main-title{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:0.75rem;line-height:1.3}
+    .lesson-desc{color:var(--mid);font-weight:300;line-height:1.9;max-width:620px}
 
-/* CONTENT AREA */
-.content-area{padding:2rem 2.5rem;flex:1}
-.lesson-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.75rem}
-.lesson-main-title{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:0.75rem;line-height:1.3}
-.lesson-desc{color:var(--mid);font-weight:300;line-height:1.9;max-width:620px}
+    /* PROGRESS BAR */
+    .progress-bar-wrap{background:var(--warm);border-radius:100px;height:6px;margin:1.5rem 0;max-width:400px}
+    .progress-bar-fill{height:6px;border-radius:100px;background:var(--accent);transition:width 0.4s ease}
+    .progress-label{font-size:0.8rem;color:var(--mid);margin-bottom:0.5rem}
 
-/* PROGRESS BAR */
-.progress-bar-wrap{background:var(--warm);border-radius:100px;height:6px;margin:1.5rem 0;max-width:400px}
-.progress-bar-fill{height:6px;border-radius:100px;background:var(--accent);transition:width 0.4s ease}
-.progress-label{font-size:0.8rem;color:var(--mid);margin-bottom:0.5rem}
+    /* NAV BUTTONS */
+    .nav-btns{display:flex;align-items:center;gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(180,160,140,0.15)}
+    .btn{padding:0.75rem 1.75rem;border-radius:100px;font-size:0.9rem;font-weight:600;cursor:pointer;border:none;font-family:'Sarabun',sans-serif;transition:all 0.2s}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,123,75,0.3)}
+    .btn-primary:disabled{background:rgba(180,160,140,0.3);color:var(--mid);transform:none;box-shadow:none;cursor:not-allowed}
+    .btn-secondary{background:transparent;color:var(--mid);border:1.5px solid rgba(180,160,140,0.4)}
+    .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+    .mark-done-btn{margin-left:auto;background:var(--green-light);color:var(--green);border:1.5px solid rgba(58,155,111,0.3);padding:0.6rem 1.2rem;border-radius:100px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;transition:all 0.2s;display:flex;align-items:center;gap:0.4rem}
+    .mark-done-btn:hover{background:var(--green);color:#fff}
+    .mark-done-btn.marked{background:var(--green);color:#fff}
 
-/* NAV BUTTONS */
-.nav-btns{display:flex;align-items:center;gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(180,160,140,0.15)}
-.btn{padding:0.75rem 1.75rem;border-radius:100px;font-size:0.9rem;font-weight:600;cursor:pointer;border:none;font-family:'Sarabun',sans-serif;transition:all 0.2s}
-.btn-primary{background:var(--accent);color:#fff}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,123,75,0.3)}
-.btn-primary:disabled{background:rgba(180,160,140,0.3);color:var(--mid);transform:none;box-shadow:none;cursor:not-allowed}
-.btn-secondary{background:transparent;color:var(--mid);border:1.5px solid rgba(180,160,140,0.4)}
-.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
-.btn-done{background:var(--green-light);color:var(--green);border:1.5px solid var(--green)}
-.mark-done-btn{margin-left:auto;background:var(--green-light);color:var(--green);border:1.5px solid rgba(58,155,111,0.3);padding:0.6rem 1.2rem;border-radius:100px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;transition:all 0.2s;display:flex;align-items:center;gap:0.4rem}
-.mark-done-btn:hover{background:var(--green);color:#fff}
-.mark-done-btn.marked{background:var(--green);color:#fff}
+    /* DONATE PAGE */
+    .donate-page{padding:3rem 2.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1}
+    .donate-emoji{font-size:4rem;margin-bottom:1.5rem}
+    .donate-title{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:1rem}
+    .donate-sub{color:var(--mid);font-weight:300;line-height:1.9;max-width:480px;margin:0 auto 2.5rem}
+    .donate-card{background:var(--white);border:1px solid rgba(180,160,140,0.2);border-radius:1.5rem;padding:2rem;max-width:380px;width:100%;margin:0 auto}
+    .donate-amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.25rem}
+    .amount-btn{padding:0.75rem;border-radius:0.75rem;border:1.5px solid rgba(180,160,140,0.3);background:transparent;font-size:0.95rem;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;color:var(--dark);transition:all 0.2s}
+    .amount-btn:hover,.amount-btn.selected{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
+    .skip-link{margin-top:1rem;font-size:0.85rem;color:var(--mid);text-decoration:none}
+    .skip-link:hover{color:var(--accent)}
 
-/* DONATE PAGE */
-.donate-page{padding:3rem 2.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1}
-.donate-emoji{font-size:4rem;margin-bottom:1.5rem}
-.donate-title{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:1rem}
-.donate-sub{color:var(--mid);font-weight:300;line-height:1.9;max-width:480px;margin:0 auto 2.5rem}
-.donate-card{background:var(--white);border:1px solid rgba(180,160,140,0.2);border-radius:1.5rem;padding:2rem;max-width:380px;width:100%;margin:0 auto}
-.donate-amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.25rem}
-.amount-btn{padding:0.75rem;border-radius:0.75rem;border:1.5px solid rgba(180,160,140,0.3);background:transparent;font-size:0.95rem;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;color:var(--dark);transition:all 0.2s}
-.amount-btn:hover,.amount-btn.selected{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
-.donate-link{display:block;background:var(--accent);color:#fff;padding:0.9rem 2rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:1rem;margin-top:0.5rem;transition:all 0.2s}
-.donate-link:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,123,75,0.3)}
-.skip-link{margin-top:1rem;font-size:0.85rem;color:var(--mid);text-decoration:none}
-.skip-link:hover{color:var(--accent)}
+    .hidden{display:none!important}
 
-/* HIDDEN */
-.hidden{display:none!important}
-
-@media(max-width:768px){
-  .app{grid-template-columns:1fr}
-  .sidebar{display:none}
-  .content-area{padding:1.5rem}
-  .donate-page{padding:2rem 1.5rem}
-}
-</style>
+    @media(max-width:768px){
+      .app{grid-template-columns:1fr}
+      .sidebar{display:none}
+      .content-area{padding:1.5rem}
+      .donate-page{padding:2rem 1.5rem}
+    }
+  </style>
 </head>
 <body>
 
@@ -168,9 +160,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
     <!-- VIDEO + CONTENT (lessons 0-4) -->
     <div id="lesson-view">
       <div class="video-area">
-        <!-- YouTube IFrame API จะ inject ตรงนี้ -->
         <div id="yt-player"></div>
-        <!-- Placeholder สำหรับบทที่ยังไม่มีคลิป -->
         <div class="video-placeholder hidden" id="video-placeholder">
           <div class="play-icon">▶</div>
           <p>ยังไม่มีวิดีโอสำหรับบทนี้</p>
@@ -180,7 +170,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
       <div class="content-area">
         <p class="lesson-badge" id="lesson-badge">โมดูล 1</p>
         <h1 class="lesson-main-title" id="lesson-title">บทนำ — ทำไมต้องมีระบบ</h1>
-        <p class="lesson-desc" id="lesson-desc">ก่อนจะสร้างอะไร กูอยากให้มึงเข้าใจก่อนว่าทำไมธุรกิจดิจิทัลถึงต้องการ "ระบบหลังบ้าน" และมันคืออะไรกันแน่</p>
+        <p class="lesson-desc" id="lesson-desc"></p>
 
         <div style="margin-top:1.5rem">
           <p class="progress-label" id="progress-label">ความคืบหน้า: 0 / 5 บท</p>
@@ -216,11 +206,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
           <button class="amount-btn selected" onclick="selectAmount(this)">฿99</button>
           <button class="amount-btn" onclick="selectAmount(this)">฿189</button>
         </div>
-        <div id="qr-box" style="display:none; margin-bottom:1rem; text-align:center">
-          <img id="qr-img" style="width:200px; border-radius:1rem;" />
-          <p style="font-size:0.8rem; color:var(--mid); margin-top:0.5rem">สแกน QR เพื่อโอนได้เลย</p>
+        <div id="qr-box" style="display:none;margin-bottom:1rem;text-align:center">
+          <img id="qr-img" style="width:200px;border-radius:1rem;" />
+          <p style="font-size:0.8rem;color:var(--mid);margin-top:0.5rem">สแกน QR เพื่อโอนได้เลย</p>
         </div>
-        <p style="font-size:0.75rem;color:var(--mid);margin-top:1rem">* </p>
       </div>
       <a href="library.html" class="skip-link">กลับหน้าคลังคอร์ส →</a>
     </div>
@@ -229,71 +218,85 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2
 </div>
 
 <script>
+// ========== DATA ==========
 const lessons = [
   {
     badge: "โมดูล 1 · บทนำ",
     title: "บทนำ — ทำไมต้องมีระบบ",
-    desc: "ก่อนจะสร้างอะไร กูอยากให้มึงเข้าใจกอนว่าทำไมธุรกิจดิจิทัลถึงต้องการ 'ระบบหลังบ้าน' และมันคืออะไรกันแน่",
+    desc: "ก่อนจะสร้างอะไร กูอยากให้มึงเข้าใจก่อนว่าทำไมธุรกิจดิจิทัลถึงต้องการ 'ระบบหลังบ้าน' และมันคืออะไรกันแน่",
     yt: "https://youtu.be/pJfdsUGNa2U?si=19d9CsN7AkJcnCTl"
   },
   {
     badge: "โมดูล 1 · บทที่ 1",
-    title: "รจักคำว่า ระบบ",
-    desc: "ก่อนเริ่มเราตองรู้จักทั้งหมดคร่าวๆใหเข้าใจก่อน",
+    title: "รู้จักคำว่า ระบบ",
+    desc: "ก่อนเริ่มเราต้องรู้จักทั้งหมดคร่าวๆ ให้เข้าใจก่อน",
     yt: "https://youtu.be/IDzF4mHho4c?si=NQz0RmVGw9BOS07v"
   },
   {
     badge: "โมดูล 1 · บทที่ 2",
     title: "สอน — ส่วนที่ 2",
-    desc: "ต่อจากส่วนแรก เพิ่มระบบที่จำเป็นเข้าไปอีกขน",
+    desc: "ต่อจากส่วนแรก เพิ่มระบบที่จำเป็นเข้าไปอีกขั้น",
     yt: ""
   },
   {
     badge: "โมดูล 1 · บทที่ 3",
     title: "สอน — ส่วนที่ 3",
-    desc: "ปิดโมดูลแรก เชื่อมทกอย่างเข้าด้วยกันให้เป็นระบบทีใช้ได้จริง",
+    desc: "ปิดโมดูลแรก เชื่อมทุกอย่างเข้าด้วยกันให้เป็นระบบที่ใช้ได้จริง",
     yt: ""
   },
   {
-    badge: "โมดูล 2 · ตวเสริม ✨",
-    title: "เพมความพิเศษให้ระบบ",
-    desc: "สำหรับคนที่อยากไปต่อ — เพิ่มฟีเจอร์พิเศษที่ทำให้ระบบของมงแตกต่างและน่าประทับใจขึ้นอีก",
+    badge: "โมดูล 2 · ตัวเสริม ✨",
+    title: "เพิ่มความพิเศษให้ระบบ",
+    desc: "สำหรับคนที่อยากไปต่อ — เพิ่มฟีเจอร์พิเศษที่ทำให้ระบบของมึงแตกต่างและน่าประทับใจขึ้นอีก",
     yt: ""
   }
 ];
 
-
+// ========== STATE ==========
 let current = 0;
-let done = new Set(JSON.parse(localStorage.getItem('done') || '[]'));
+let done = new Set(JSON.parse(localStorage.getItem('course_done') || '[]'));
 let player = null;
 let playerReady = false;
 let pendingVideoId = null;
 
-// YouTube API พร้อมแล้ว
-window.onYouTubeIframeAPIReady = function() {
-  const ytId = lessons[current].yt;
-  if (ytId) {
-    createPlayer(ytId);
-  } else {
-    showPlaceholder();
-  }
-};
+// ========== YOUTUBE HELPERS ==========
 
-function createPlayer(ytId) {
+// ดึงแค่ Video ID จาก URL เต็ม
+// รองรับทั้ง youtu.be/ID และ youtube.com/watch?v=ID
+function extractVideoId(url) {
+  if (!url) return '';
+  const m = url.match(/(?:youtu\.be\/|[?&]v=)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : '';
+}
+
+// YouTube IFrame API โหลดเสร็จ — สร้าง player ทันที
+window.onYouTubeIframeAPIReady = function() {
+  const firstId = extractVideoId(lessons[current].yt);
   player = new YT.Player('yt-player', {
     width: '100%',
     height: '100%',
-    videoId: ytId,
-    playerVars: { rel: 0, modestbranding: 1 },
+    videoId: firstId || '',          // ถ้าไม่มีก็ส่ง '' — player ยังสร้างได้
+    playerVars: { rel: 0, modestbranding: 1, enablejsapi: 1 },
     events: {
       onReady: function() {
         playerReady = true;
-        if (pendingVideoId) {
-          player.loadVideoById(pendingVideoId);
+        if (!firstId) {
+          showPlaceholder();
+        }
+        // ถ้ามี pending (เกิดจากการกด lesson ก่อน API พร้อม)
+        if (pendingVideoId !== null) {
+          if (pendingVideoId) {
+            hidePlaceholder();
+            player.loadVideoById(pendingVideoId);
+          } else {
+            showPlaceholder();
+            player.stopVideo();
+          }
           pendingVideoId = null;
         }
       },
       onStateChange: function(e) {
+        // วิดีโอจบ → mark done อัตโนมัติ
         if (e.data === YT.PlayerState.ENDED) {
           if (!done.has(current)) {
             done.add(current);
@@ -304,7 +307,7 @@ function createPlayer(ytId) {
       }
     }
   });
-}
+};
 
 function showPlaceholder() {
   document.getElementById('video-placeholder').classList.remove('hidden');
@@ -314,28 +317,32 @@ function hidePlaceholder() {
   document.getElementById('video-placeholder').classList.add('hidden');
 }
 
-function loadVideo(ytId) {
+function loadVideo(url) {
+  const ytId = extractVideoId(url);
+
   if (!ytId) {
     showPlaceholder();
-    if (player && playerReady) player.stopVideo();
+    if (playerReady) player.stopVideo();
+    else pendingVideoId = '';
     return;
   }
+
   hidePlaceholder();
 
-  if (!player) {
-    // API ยังโหลดไม่เสร็จ — เก็บไว้ก่อน
-    pendingVideoId = ytId;
-  } else if (playerReady) {
+  if (playerReady) {
     player.loadVideoById(ytId);
   } else {
+    // API ยังไม่พร้อม — เก็บไว้รอ
     pendingVideoId = ytId;
   }
 }
 
+// ========== PERSISTENCE ==========
 function saveDone() {
-  localStorage.setItem('done', JSON.stringify([...done]));
+  localStorage.setItem('course_done', JSON.stringify([...done]));
 }
 
+// ========== UI ==========
 function updateProgress() {
   const count = done.size;
   const total = lessons.length;
@@ -346,27 +353,30 @@ function updateProgress() {
 }
 
 function updateSidebar() {
-  document.querySelectorAll('.lesson-item[data-lesson]').forEach(el => {
+  document.querySelectorAll('.lesson-item[data-lesson]').forEach(function(el) {
     const idx = parseInt(el.dataset.lesson);
     el.classList.remove('active', 'done');
     if (idx === current) el.classList.add('active');
-    if (done.has(idx) && idx !== current) el.classList.add('done');
+    else if (done.has(idx)) el.classList.add('done');
     const check = el.querySelector('.check');
-    check.textContent = done.has(idx) ? '✓' : '▶';
+    if (check) check.textContent = done.has(idx) ? '✓' : '▶';
   });
 }
 
 function renderLesson(idx) {
   const l = lessons[idx];
+
   document.getElementById('lesson-badge').textContent = l.badge;
   document.getElementById('lesson-title').textContent = l.title;
   document.getElementById('lesson-desc').textContent = l.desc;
 
   loadVideo(l.yt || '');
 
+  // ปุ่ม prev/next
   document.getElementById('btn-prev').disabled = idx === 0;
   document.getElementById('btn-next').textContent = idx === lessons.length - 1 ? 'กล่าวจบ →' : 'ถัดไป →';
 
+  // ปุ่ม mark done
   const marked = done.has(idx);
   const markBtn = document.getElementById('btn-mark');
   markBtn.classList.toggle('marked', marked);
@@ -377,6 +387,7 @@ function renderLesson(idx) {
   updateProgress();
 }
 
+// ========== NAVIGATION ==========
 function goLesson(idx) {
   if (idx === 5) { showDonate(); return; }
   current = idx;
@@ -404,13 +415,17 @@ function markDone() {
 function showDonate() {
   document.getElementById('lesson-view').classList.add('hidden');
   document.getElementById('donate-view').classList.remove('hidden');
-  document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.lesson-item').forEach(function(el) {
+    el.classList.remove('active');
+  });
   const el = document.querySelector('[data-lesson="5"]');
   if (el) el.classList.add('active');
 }
 
 function selectAmount(btn) {
-  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.amount-btn').forEach(function(b) {
+    b.classList.remove('selected');
+  });
   btn.classList.add('selected');
   const amount = btn.textContent.replace('฿', '');
   const phone = '0828642113';
@@ -418,5 +433,10 @@ function selectAmount(btn) {
   document.getElementById('qr-box').style.display = 'block';
 }
 
-// เริ่มต้น — render UI ก่อน, video โหลดทีหลังเมื่อ API พร้อม
+// ========== INIT ==========
+// render UI ก่อน (ไม่รอ YT API)
 renderLesson(0);
+</script>
+
+</body>
+</html>
