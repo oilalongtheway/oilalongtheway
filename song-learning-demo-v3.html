@@ -1207,13 +1207,16 @@ songData.stanzas.forEach(stanza => {
 /* ============================================================
    Render Page 1: vocab table — ทุกคำในเพลง (auto-collected, deduped)
    ============================================================ */
+// รายการคำที่พบบ่อยมาก ไม่ต้องขึ้นในตารางคำศัพท์ (แก้/เพิ่มลดได้ตามต้องการ)
+const stopWords = new Set(['的','了','着','是','不','也','很','就','都','和','在','这','那','我','你','他','它','之','又','却']);
+
 const vocabTableBody = document.getElementById('vocabTableBody');
 const seen = new Set();
 const allVocab = [];
 songData.stanzas.forEach(stanza => {
   stanza.lines.forEach(line => {
     line.words.forEach(word => {
-      if (!seen.has(word.w)) {
+      if (!seen.has(word.w) && !stopWords.has(word.w)) {
         seen.add(word.w);
         allVocab.push(word);
       }
