@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>เรียนจีนจากเพลง — Demo v3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family:'Sarabun','FreeSerif',sans-serif;
+    background:#f4f4f6;
+    color:#222;
+    line-height:1.8;
+    padding-bottom:60px;
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    background:linear-gradient(135deg,#1a1a2e 0%,#16213e 40%,#0f3460 100%);
+    color:#fff;
+    padding:50px 24px 40px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cover::before {
+    content:'音乐';
+    position:absolute;
+    font-size:180px;
+    color:rgba(255,255,255,0.04);
+    top:-20px; left:-10px;
+    font-weight:700;
+  }
+  .cover-badge {
+    display:inline-block;
+    background:#e94560;
+    color:#fff;
+    padding:5px 16px;
+    border-radius:20px;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  .cover-title { font-size:28px; font-weight:700; margin-bottom:8px; position:relative; }
+  .cover-title span { color:#e94560; }
+  .cover-sub { font-size:14px; color:rgba(255,255,255,0.65); position:relative; }
+  .demo-notice {
+    max-width:640px; margin:20px auto 0;
+    background:rgba(233,69,96,0.15);
+    border:1px solid rgba(233,69,96,0.4);
+    border-radius:10px;
+    padding:12px 16px;
+    font-size:13px;
+    color:#ffd7de;
+    position:relative;
+  }
+
+  /* ===== PAGE NAV ===== */
+  .page-nav {
+    max-width:900px; margin:18px auto 0; padding:0 16px;
+    display:flex; gap:10px;
+  }
+  .nav-btn {
+    flex:1;
+    background:#fff;
+    border:2px solid #e4e4e8;
+    color:#333;
+    font-family:inherit;
+    font-size:14px;
+    font-weight:600;
+    padding:12px;
+    border-radius:12px;
+    cursor:pointer;
+    text-align:center;
+  }
+  .nav-btn.active { border-color:#e94560; color:#e94560; background:#fff5f6; }
+
+  .wrap { max-width:900px; margin:0 auto; padding:0 16px; }
+  .page-section { display:none; }
+  .page-section.active { display:block; }
+
+  /* ===== PAGE 1: CONTINUOUS LYRICS ===== */
+  .lyrics-panel {
+    background:#fff;
+    border-radius:14px;
+    margin-top:20px;
+    padding:30px 32px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+  .stanza-label {
+    font-size:12px;
+    font-weight:700;
+    color:#e94560;
+    letter-spacing:2px;
+    margin:26px 0 10px;
+    text-transform:uppercase;
+  }
+  .stanza-label:first-child { margin-top:0; }
+
+  /* บรรทัดเนื้อเพลงไหลต่อกันเป็นเนื้อเดียว ไม่มีกล่อง/เส้นแบ่งต่อบรรทัด */
+  .lyric-zh-line {
+    font-size:19px;
+    font-weight:600;
+    color:#1a1a2e;
+  }
+  .lyric-pinyin-line {
+    font-size:13px;
+    color:#e94560;
+    font-style:italic;
+    margin-bottom:12px;
+  }
+  .zh-word {
+    cursor:pointer;
+    border-radius:4px;
+    padding:0 1px;
+    transition:background .15s;
+  }
+  .zh-word:hover { background:#ffe1e6; }
+  .zh-word.learned { border-bottom:2px solid #2ecc71; }
+  .zh-word.learning { border-bottom:2px solid #f5b942; }
+
+  /* ===== VOCAB TABLE (คำศัพท์ทุกคำในเพลง) ===== */
+  .vocab-panel {
+    background:#fff;
+    border-radius:14px;
+    margin-top:20px;
+    padding:22px 26px 8px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+  .vocab-panel-title {
+    font-size:16px; font-weight:700; color:#1a1a2e;
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .vocab-count {
+    background:#f0f0f0; color:#888; font-size:12px;
+    padding:2px 10px; border-radius:10px; font-weight:600;
+  }
+  .vocab-table { width:100%; border-collapse:collapse; margin-bottom:18px; }
+  .vocab-table thead tr { background:#1a1a2e; color:#fff; }
+  .vocab-table thead th { padding:8px 10px; font-size:12px; text-align:left; font-weight:600; }
+  .vocab-table thead th:first-child { border-radius:8px 0 0 0; }
+  .vocab-table thead th:last-child { border-radius:0 8px 0 0; }
+  .vocab-table tbody tr { cursor:pointer; }
+  .vocab-table tbody tr:nth-child(odd) { background:#f9f9f9; }
+  .vocab-table tbody tr:hover { background:#ffe1e6; }
+  .vocab-table td { padding:8px 10px; font-size:13px; border-bottom:1px solid #f0f0f0; }
+  .vocab-zh { font-size:17px; font-weight:600; color:#1a1a2e; }
+  .vocab-pinyin { color:#e94560; font-style:italic; }
+  .vocab-type {
+    display:inline-block; background:#f0f0f0; color:#666;
+    font-size:11px; padding:1px 8px; border-radius:10px;
+  }
+
+  /* ===== PAGE 2: TRANSLATION ===== */
+  .translation-panel {
+    background:#fff;
+    border-radius:14px;
+    margin-top:20px;
+    padding:28px 30px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+  .translation-panel.blurred .t-stanza { filter:blur(6px); user-select:none; }
+  .reveal-toggle-row { text-align:center; margin-top:20px; }
+  .reveal-btn {
+    background:#1a1a2e; color:#fff; border:none;
+    padding:10px 22px; border-radius:20px;
+    font-size:14px; font-family:inherit; font-weight:600; cursor:pointer;
+  }
+  .reveal-btn:hover { background:#e94560; }
+  .t-stanza { font-size:15px; color:#333; margin-bottom:18px; transition:filter .2s; }
+  .t-stanza-label { font-size:11px; font-weight:700; color:#e94560; letter-spacing:2px; margin-bottom:6px; text-transform:uppercase; }
+
+  /* ===== POPUP ===== */
+  .overlay {
+    display:none; position:fixed; inset:0;
+    background:rgba(0,0,0,0.35);
+    align-items:center; justify-content:center;
+    z-index:50; padding:16px;
+  }
+  .overlay.show { display:flex; }
+  .popup { background:#fff; border-radius:16px; padding:26px 26px 20px; max-width:320px; width:100%; text-align:center; position:relative; }
+  .popup-zh { font-size:36px; font-weight:700; color:#1a1a2e; }
+  .popup-pinyin { color:#e94560; font-style:italic; margin:6px 0 14px; font-size:16px; }
+  .popup-meaning { font-size:16px; font-weight:600; margin-bottom:6px; }
+  .popup-type { display:inline-block; background:#f0f0f0; color:#666; font-size:12px; padding:2px 10px; border-radius:12px; margin-bottom:10px; }
+  .popup-close { position:absolute; top:10px; right:14px; border:none; background:none; font-size:20px; color:#999; cursor:pointer; }
+
+  footer { text-align:center; font-size:12px; color:#999; margin-top:40px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-badge">🎵 เรียนจีนจากเพลง</div>
+  <div class="cover-title">Demo v3: <span>山间的信</span></div>
+  <div class="cover-sub">เพลงตัวอย่างสมมติ (แต่งขึ้นเพื่อสาธิตโครงสร้าง ไม่ใช่เพลงจริง) · หน้า 1 เนื้อเพลงทั้งเพลง / หน้า 2 คำแปล</div>
+  <div class="demo-notice">
+    ⚠️ เนื้อเพลงในไฟล์นี้เป็น<strong>ของสมมติ</strong> — ระบบเป็นแบบ array-driven
+    เพิ่ม/ลดจำนวนบรรทัดได้อิสระใน <code>songData</code> ท้ายไฟล์ โดยไม่ต้องแก้ CSS/HTML ส่วนอื่นเลย
+    ตารางคำศัพท์ด้านล่างดึงมาจากทุกคำที่ปรากฏในเนื้อเพลงอัตโนมัติ (ไม่ต้องพิมพ์ vocab แยกอีกชุด)
+  </div>
+</div>
+
+<div class="page-nav">
+  <button class="nav-btn active" id="navPage1" onclick="showPage(1)">📖 หน้า 1 — เนื้อเพลง + พินอิน + คำศัพท์</button>
+  <button class="nav-btn" id="navPage2" onclick="showPage(2)">🇹🇭 หน้า 2 — คำแปลไทยทั้งเพลง</button>
+</div>
+
+<div class="wrap">
+
+  <!-- ===== PAGE 1 ===== -->
+  <div class="page-section active" id="page1">
+    <div class="lyrics-panel" id="lyricsPanel"></div>
+    <div class="vocab-panel">
+      <div class="vocab-panel-title">📚 คำศัพท์ทั้งหมดในเพลง <span class="vocab-count" id="vocabCount">0 คำ</span></div>
+      <table class="vocab-table">
+        <thead><tr><th>汉字</th><th>Pinyin</th><th>ความหมาย</th><th>ชนิดคำ</th></tr></thead>
+        <tbody id="vocabTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 2 ===== -->
+  <div class="page-section" id="page2">
+    <div class="translation-panel" id="translationPanel">
+      <div id="translationStanzas"></div>
+      <div class="reveal-toggle-row">
+        <button class="reveal-btn" id="revealBtn" onclick="toggleReveal()">🔎 ลองเดาความหมายก่อน → กดดูคำแปล</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>oilalongtheway · song-learning system (continuous layout)</footer>
+
+<div class="overlay" id="overlay" onclick="closeOnBackdrop(event)">
+  <div class="popup">
+    <button class="popup-close" onclick="closePopup()">✕</button>
+    <div class="popup-zh" id="popZh"></div>
+    <div class="popup-pinyin" id="popPinyin"></div>
+    <div class="popup-type" id="popType"></div>
+    <div class="popup-meaning" id="popMeaning"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   songData — โครงสร้างข้อมูลของเพลง
+   -------------------------------------------------------------
+   stanzas: แบ่งเป็นท่อน (Verse 1, Chorus, ...) เพื่อขึ้น label กำกับ
+     - lines: แต่ละบรรทัดเนื้อเพลง -> words: [{w, pinyin, meaning, type}]
+       (พินอินต่อคำจะถูกต่อกันแสดงใต้บรรทัดนั้นอัตโนมัติ)
+     - translation: คำแปลไทยของทั้งท่อน (โชว์ในหน้า 2)
+
+   ไม่ต้องพิมพ์ vocab list แยกอีกชุด — ระบบจะไล่เก็บทุกคำที่ปรากฏ
+   ในเนื้อเพลง (จาก words ของทุกบรรทัด) มาขึ้นตารางคำศัพท์ท้ายหน้า 1
+   ให้อัตโนมัติ (คำซ้ำจะถูกรวมเป็นแถวเดียว)
+
+   -> ตอนได้เนื้อเพลงจริงมา แทนที่ก้อนนี้ทั้งหมดตามโครงสร้างเดียวกัน
+      ยาวแค่ไหนก็ได้ ไม่ต้องแก้โค้ดส่วนอื่น
+   ============================================================ */
+const songData = {
+  title: "山间的信 (เพลงตัวอย่างสมมติ)",
+  stanzas: [
+    {
+      label: "Verse 1",
+      lines: [
+        { words: [
+          {w:"山",pinyin:"shān",meaning:"ภูเขา",type:"น."},
+          {w:"间",pinyin:"jiān",meaning:"ระหว่าง/กลาง",type:"น."},
+          {w:"有",pinyin:"yǒu",meaning:"มี",type:"ก."},
+          {w:"一",pinyin:"yì",meaning:"หนึ่ง",type:"เลข."},
+          {w:"封",pinyin:"fēng",meaning:"ลักษณนามของจดหมาย",type:"ลักษณนาม"},
+          {w:"信",pinyin:"xìn",meaning:"จดหมาย",type:"น."}
+        ]},
+        { words: [
+          {w:"写",pinyin:"xiě",meaning:"เขียน",type:"ก."},
+          {w:"着",pinyin:"zhe",meaning:"กำลัง (คำช่วยแสดงการดำเนินอยู่)",type:"คำช่วย"},
+          {w:"我",pinyin:"wǒ",meaning:"ฉัน",type:"สรรพนาม"},
+          {w:"的",pinyin:"de",meaning:"คำช่วยแสดงความเป็นเจ้าของ",type:"คำช่วย"},
+          {w:"心",pinyin:"xīn",meaning:"หัวใจ",type:"น."},
+          {w:"事",pinyin:"shì",meaning:"เรื่องราว",type:"น."}
+        ]},
+        { words: [
+          {w:"风",pinyin:"fēng",meaning:"ลม",type:"น."},
+          {w:"吹",pinyin:"chuī",meaning:"พัด",type:"ก."},
+          {w:"不",pinyin:"bù",meaning:"ไม่",type:"วิ."},
+          {w:"散",pinyin:"sàn",meaning:"กระจาย/สลาย",type:"ก."},
+          {w:"这",pinyin:"zhè",meaning:"นี้",type:"สรรพนาม"},
+          {w:"份",pinyin:"fèn",meaning:"ลักษณนาม",type:"ลักษณนาม"},
+          {w:"思",pinyin:"sī",meaning:"ความคิดถึง",type:"น."}
+        ]}
+      ],
+      translation: "บนภูเขามีจดหมายฉบับหนึ่ง เขียนเรื่องราวในใจของฉันเอาไว้ ลมพัดยังไงก็พัดความคิดถึงนี้ไม่หายไป"
+    },
+    {
+      label: "Chorus",
+      lines: [
+        { words: [
+          {w:"你",pinyin:"nǐ",meaning:"เธอ",type:"สรรพนาม"},
+          {w:"是",pinyin:"shì",meaning:"คือ/เป็น",type:"ก."},
+          {w:"我",pinyin:"wǒ",meaning:"ฉัน",type:"สรรพนาม"},
+          {w:"心",pinyin:"xīn",meaning:"หัวใจ",type:"น."},
+          {w:"里",pinyin:"lǐ",meaning:"ข้างใน",type:"น."},
+          {w:"的",pinyin:"de",meaning:"คำช่วยแสดงความเป็นเจ้าของ",type:"คำช่วย"},
+          {w:"光",pinyin:"guāng",meaning:"แสงสว่าง",type:"น."}
+        ]},
+        { words: [
+          {w:"照",pinyin:"zhào",meaning:"ส่องแสง",type:"ก."},
+          {w:"亮",pinyin:"liàng",meaning:"สว่าง",type:"คุณ."},
+          {w:"每",pinyin:"měi",meaning:"ทุกๆ",type:"วิ."},
+          {w:"一",pinyin:"yì",meaning:"หนึ่ง",type:"เลข."},
+          {w:"个",pinyin:"gè",meaning:"ลักษณนามทั่วไป",type:"ลักษณนาม"},
+          {w:"夜",pinyin:"yè",meaning:"กลางคืน",type:"น."},
+          {w:"晚",pinyin:"wǎn",meaning:"ค่ำ",type:"น."}
+        ]}
+      ],
+      translation: "เธอคือแสงสว่างในหัวใจของฉัน ส่องสว่างทุกค่ำคืนที่ผ่านไป"
+    },
+    {
+      label: "Verse 2",
+      lines: [
+        { words: [
+          {w:"路",pinyin:"lù",meaning:"ถนน/เส้นทาง",type:"น."},
+          {w:"再",pinyin:"zài",meaning:"อีก",type:"วิ."},
+          {w:"远",pinyin:"yuǎn",meaning:"ไกล",type:"คุณ."},
+          {w:"也",pinyin:"yě",meaning:"ก็",type:"วิ."},
+          {w:"要",pinyin:"yào",meaning:"ต้องการ/จะ",type:"ก."},
+          {w:"走",pinyin:"zǒu",meaning:"เดิน",type:"ก."},
+          {w:"下去",pinyin:"xiàqù",meaning:"เดินต่อไป",type:"ก."}
+        ]},
+        { words: [
+          {w:"因为",pinyin:"yīnwèi",meaning:"เพราะว่า",type:"สันธาน"},
+          {w:"有",pinyin:"yǒu",meaning:"มี",type:"ก."},
+          {w:"你",pinyin:"nǐ",meaning:"เธอ",type:"สรรพนาม"},
+          {w:"在",pinyin:"zài",meaning:"อยู่",type:"ก."},
+          {w:"等",pinyin:"děng",meaning:"รอ",type:"ก."},
+          {w:"我",pinyin:"wǒ",meaning:"ฉัน",type:"สรรพนาม"}
+        ]}
+      ],
+      translation: "ทางจะไกลแค่ไหนก็ต้องเดินต่อไป เพราะรู้ว่าเธอกำลังรอฉันอยู่"
+    },
+    {
+      label: "Chorus (ซ้ำ)",
+      lines: [
+        { words: [
+          {w:"你",pinyin:"nǐ",meaning:"เธอ",type:"สรรพนาม"},
+          {w:"是",pinyin:"shì",meaning:"คือ/เป็น",type:"ก."},
+          {w:"我",pinyin:"wǒ",meaning:"ฉัน",type:"สรรพนาม"},
+          {w:"心",pinyin:"xīn",meaning:"หัวใจ",type:"น."},
+          {w:"里",pinyin:"lǐ",meaning:"ข้างใน",type:"น."},
+          {w:"的",pinyin:"de",meaning:"คำช่วยแสดงความเป็นเจ้าของ",type:"คำช่วย"},
+          {w:"光",pinyin:"guāng",meaning:"แสงสว่าง",type:"น."}
+        ]},
+        { words: [
+          {w:"照",pinyin:"zhào",meaning:"ส่องแสง",type:"ก."},
+          {w:"亮",pinyin:"liàng",meaning:"สว่าง",type:"คุณ."},
+          {w:"每",pinyin:"měi",meaning:"ทุกๆ",type:"วิ."},
+          {w:"一",pinyin:"yì",meaning:"หนึ่ง",type:"เลข."},
+          {w:"个",pinyin:"gè",meaning:"ลักษณนามทั่วไป",type:"ลักษณนาม"},
+          {w:"夜",pinyin:"yè",meaning:"กลางคืน",type:"น."},
+          {w:"晚",pinyin:"wǎn",meaning:"ค่ำ",type:"น."}
+        ]}
+      ],
+      translation: "เธอคือแสงสว่างในหัวใจของฉัน ส่องสว่างทุกค่ำคืนที่ผ่านไป"
+    },
+    {
+      label: "Outro",
+      lines: [
+        { words: [
+          {w:"这",pinyin:"zhè",meaning:"นี้",type:"สรรพนาม"},
+          {w:"封",pinyin:"fēng",meaning:"ลักษณนามจดหมาย",type:"ลักษณนาม"},
+          {w:"信",pinyin:"xìn",meaning:"จดหมาย",type:"น."},
+          {w:"寄",pinyin:"jì",meaning:"ส่ง (ไปรษณีย์)",type:"ก."},
+          {w:"给",pinyin:"gěi",meaning:"ให้",type:"บุพบท"},
+          {w:"未来",pinyin:"wèilái",meaning:"อนาคต",type:"น."}
+        ]}
+      ],
+      translation: "จดหมายฉบับนี้ ฉันขอส่งไปถึงอนาคต"
+    }
+  ]
+};
+
+/* ============================================================
+   Render Page 1: continuous lyrics (no per-line box/notes), grouped by stanza label only
+   ============================================================ */
+const lyricsPanel = document.getElementById('lyricsPanel');
+
+songData.stanzas.forEach(stanza => {
+  const labelEl = document.createElement('div');
+  labelEl.className = 'stanza-label';
+  labelEl.textContent = stanza.label;
+  lyricsPanel.appendChild(labelEl);
+
+  stanza.lines.forEach(line => {
+    const zhEl = document.createElement('div');
+    zhEl.className = 'lyric-zh-line';
+    line.words.forEach(word => {
+      const span = document.createElement('span');
+      span.className = 'zh-word';
+      span.textContent = word.w;
+      span.dataset.status = 'new';
+      span.onclick = () => openPopup(word, span);
+      zhEl.appendChild(span);
+    });
+    lyricsPanel.appendChild(zhEl);
+
+    const pinyinEl = document.createElement('div');
+    pinyinEl.className = 'lyric-pinyin-line';
+    pinyinEl.textContent = line.words.map(w => w.pinyin).join(' ');
+    lyricsPanel.appendChild(pinyinEl);
+  });
+});
+
+/* ============================================================
+   Render Page 1: vocab table — ทุกคำในเพลง (auto-collected, deduped)
+   ============================================================ */
+const vocabTableBody = document.getElementById('vocabTableBody');
+const seen = new Set();
+const allVocab = [];
+songData.stanzas.forEach(stanza => {
+  stanza.lines.forEach(line => {
+    line.words.forEach(word => {
+      if (!seen.has(word.w)) {
+        seen.add(word.w);
+        allVocab.push(word);
+      }
+    });
+  });
+});
+document.getElementById('vocabCount').textContent = allVocab.length + ' คำ';
+allVocab.forEach(word => {
+  const tr = document.createElement('tr');
+  tr.onclick = () => openPopup(word, null);
+  tr.innerHTML = `
+    <td class="vocab-zh">${word.w}</td>
+    <td class="vocab-pinyin">${word.pinyin}</td>
+    <td>${word.meaning}</td>
+    <td><span class="vocab-type">${word.type}</span></td>
+  `;
+  vocabTableBody.appendChild(tr);
+});
+
+/* ============================================================
+   Render Page 2: full translation, grouped by stanza
+   ============================================================ */
+const translationStanzas = document.getElementById('translationStanzas');
+songData.stanzas.forEach(stanza => {
+  const block = document.createElement('div');
+  block.className = 't-stanza';
+  block.innerHTML = `<div class="t-stanza-label">${stanza.label}</div><div>${stanza.translation}</div>`;
+  translationStanzas.appendChild(block);
+});
+
+/* ============================================================
+   Page nav
+   ============================================================ */
+function showPage(n) {
+  document.getElementById('page1').classList.toggle('active', n === 1);
+  document.getElementById('page2').classList.toggle('active', n === 2);
+  document.getElementById('navPage1').classList.toggle('active', n === 1);
+  document.getElementById('navPage2').classList.toggle('active', n === 2);
+}
+
+/* ============================================================
+   Reveal toggle on Page 2 (guess-first)
+   ============================================================ */
+let revealed = false;
+function toggleReveal() {
+  revealed = !revealed;
+  document.getElementById('translationPanel').classList.toggle('blurred', !revealed);
+  document.getElementById('revealBtn').textContent = revealed
+    ? '🙈 ซ่อนคำแปลอีกครั้ง'
+    : '🔎 ลองเดาความหมายก่อน → กดดูคำแปล';
+}
+document.getElementById('translationPanel').classList.add('blurred');
+
+/* ============================================================
+   Word popup
+   ============================================================ */
+function openPopup(word, sourceEl) {
+  document.getElementById('popZh').textContent = word.w;
+  document.getElementById('popPinyin').textContent = word.pinyin;
+  document.getElementById('popType').textContent = word.type;
+  document.getElementById('popMeaning').textContent = word.meaning;
+  document.getElementById('overlay').classList.add('show');
+
+  if (sourceEl && sourceEl.classList.contains('zh-word')) {
+    if (sourceEl.dataset.status === 'new') { sourceEl.dataset.status = 'learning'; sourceEl.classList.add('learning'); }
+    else if (sourceEl.dataset.status === 'learning') { sourceEl.dataset.status = 'learned'; sourceEl.classList.remove('learning'); sourceEl.classList.add('learned'); }
+  }
+}
+function closePopup() { document.getElementById('overlay').classList.remove('show'); }
+function closeOnBackdrop(e) { if (e.target.id === 'overlay') closePopup(); }
+</script>
+
+</body>
+</html>
