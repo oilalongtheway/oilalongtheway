@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เลี้ยงข้าวกูมื้อนี้ — oil along the way</title>
+<meta name="description" content="เลี้ยงข้าวกูมื้อนี้ oil along the way ผ่านพร้อมเพย์ ทรูมันนี่ เพย์พาว หรือบัตรเครดิต">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #17140f;
+    --bg-soft: #1e1a13;
+    --card: #221d15;
+    --line: #3a331f;
+    --cream: #f2ead9;
+    --cream-dim: #b8ac93;
+    --amber: #e8a33d;
+    --amber-dim: #9c7433;
+    --teal: #4f8079;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse 700px 400px at 50% -10%, rgba(232,163,61,0.10), transparent 60%);
+    color: var(--cream);
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap{
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 64px 20px 80px;
+  }
+
+  /* --- Hero --- */
+  .eyebrow{
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 18px; height:1px;
+    background: var(--amber-dim);
+    display:inline-block;
+  }
+  h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(34px, 7vw, 52px);
+    line-height: 1.1;
+    margin: 18px 0 14px;
+    color: var(--cream);
+  }
+  h1 em{
+    font-style: italic;
+    font-weight: 500;
+    color: var(--amber);
+  }
+  .lede{
+    color: var(--cream-dim);
+    font-size: 16px;
+    max-width: 46ch;
+    margin: 0 0 8px;
+  }
+
+  /* --- signature: the path --- */
+  .path{
+    position: relative;
+    margin-top: 56px;
+    padding-left: 34px;
+    border-left: 1px dashed var(--line);
+  }
+  .stop{
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .stop::before{
+    content:"";
+    position:absolute;
+    left: -38px;
+    top: 28px;
+    width: 8px; height:8px;
+    border-radius:50%;
+    background: var(--bg);
+    border: 1px solid var(--amber-dim);
+  }
+  .stop.done::before{
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+
+  .card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 22px;
+  }
+  .card-head{
+    display:flex;
+    align-items:baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .card-title{
+    font-family:'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .card-tag{
+    font-family:'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--cream-dim);
+    white-space: nowrap;
+  }
+  .card-sub{
+    color: var(--cream-dim);
+    font-size: 14px;
+    margin: 0 0 16px;
+  }
+
+  /* PromptPay */
+  .pp-body{
+    display:flex;
+    gap: 20px;
+    align-items:center;
+    flex-wrap: wrap;
+  }
+  .qr-box{
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 0;
+    flex-shrink: 0;
+  }
+  .qr-box img{
+    width: 148px; height:148px;
+    display:block;
+  }
+  .pp-info{ flex:1; min-width: 180px; }
+  .pp-number{
+    font-family:'Space Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    color: var(--amber);
+    margin: 4px 0 12px;
+  }
+  .copy-btn{
+    font-family:'IBM Plex Sans Thai', sans-serif;
+    font-size: 13px;
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .copy-btn:hover, .copy-btn:focus-visible{
+    border-color: var(--amber);
+    color: var(--amber);
+  }
+  .copy-btn.copied{
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  /* generic link buttons */
+  .btn{
+    display: inline-flex;
+    align-items:center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    text-decoration:none;
+    font-family:'IBM Plex Sans Thai', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 13px 16px;
+    border-radius: 9px;
+    border: 1px solid var(--line);
+    color: var(--cream);
+    background: var(--bg-soft);
+    transition: border-color .15s ease, transform .1s ease, background .15s ease;
+  }
+  .btn:hover, .btn:focus-visible{
+    border-color: var(--amber);
+    background: #26200f;
+  }
+  .btn:active{ transform: translateY(1px); }
+  .btn-row{ display:flex; flex-direction:column; gap:10px; }
+
+  .tier-row{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .tier{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 4px;
+    text-decoration:none;
+    padding: 14px 8px;
+    border-radius: 9px;
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+    color: var(--cream);
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .tier:hover, .tier:focus-visible{
+    border-color: var(--amber);
+    background: #26200f;
+  }
+  .tier .amt{
+    font-family:'Space Mono', monospace;
+    font-size: 17px;
+    color: var(--amber);
+  }
+  .tier .lbl{
+    font-size: 12px;
+    color: var(--cream-dim);
+  }
+
+  .placeholder-note{
+    font-size: 12px;
+    color: var(--cream-dim);
+    margin-top: 10px;
+  }
+  .placeholder-note code{
+    background: var(--bg-soft);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: var(--amber);
+  }
+
+  footer{
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--cream-dim);
+    text-align:center;
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .card{ animation: rise .5s ease both; }
+    .stop:nth-child(1) .card{ animation-delay: .02s; }
+    .stop:nth-child(2) .card{ animation-delay: .10s; }
+    .stop:nth-child(3) .card{ animation-delay: .18s; }
+    .stop:nth-child(4) .card{ animation-delay: .26s; }
+  }
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(8px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px){
+    .tier-row{ grid-template-columns: 1fr 1fr 1fr; }
+    .qr-box img{ width: 128px; height:128px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">oil along the way</div>
+  <h1>เลี้ยงข้าว<br><em>มื้อนี้</em>ให้กู</h1>
+  <p class="lede"> สนับสนุนค่าข้าวมื้อนี้ให้กู เลือกช่องทางเลยด้านล่าง กูจะได้มีแรงมาแชร์ความรู้ ประสบการณ์ให้พวกมึงเยอะๆ </p>
+
+  <div class="path">
+
+    <div class="stop done">
+      <div class="card" id="promptpay">
+        <div class="card-head">
+          <div class="card-title">พร้อมเพย์</div>
+          <div class="card-tag">TH · ไม่มีค่าธรรมเนียม</div>
+        </div>
+        <p class="card-sub">สแกนจากแอปธนาคารได้เลย หรือกดคัดลอกเลขไปโอนเอง</p>
+        <div class="pp-body">
+          <div class="qr-box">
+            <img src="https://promptpay.io/0828642113.png" alt="QR พร้อมเพย์ 082-864-2113" loading="lazy" width="148" height="148">
+          </div>
+          <div class="pp-info">
+            <div class="pp-number">082-864-2113</div>
+            <button class="copy-btn" type="button" data-copy="0828642113">คัดลอกเลขพร้อมเพย์</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop done">
+      <div class="card" id="truemoney">
+        <div class="card-head">
+          <div class="card-title">ทรูมันนี่</div>
+          <div class="card-tag">TrueMoney Wallet</div>
+        </div>
+        <p class="card-sub">เปิดลิงก์แล้วโอนผ่านแอป TrueMoney Wallet ได้ทันที</p>
+        <div class="btn-row">
+          <a class="btn" href="https://tmn.app.link/vukOtxnPE5b" target="_blank" rel="noopener">เปิด TrueMoney Wallet →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop done">
+      <div class="card" id="paypal">
+        <div class="card-head">
+          <div class="card-title">PayPal</div>
+          <div class="card-tag">สำหรับผู้ชมต่างประเทศ</div>
+        </div>
+        <p class="card-sub">จ่ายด้วยบัญชี PayPal หรือบัตรที่ผูกไว้กับ PayPal</p>
+        <div class="btn-row">
+          <a class="btn" href="https://paypal.me/DONATELING" target="_blank" rel="noopener">ไปที่ PayPal.me →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card" id="card">
+        <div class="card-head">
+          <div class="card-title">บัตรเครดิต / เดบิต</div>
+          <div class="card-tag">ผ่าน Stripe</div>
+        </div>
+        <p class="card-sub"> เลือกมื้อที่อยากเลี้ยงกูได้เลย </p>
+        <div class="tier-row">
+          <a class="tier" href="https://buy.stripe.com/28E7sL17vdSsgUtf5p2Ji04" target="_blank" rel="noopener">
+            <span class="amt">฿50</span>
+            <span class="lbl">ข้าวจานนึง</span>
+          </a>
+          <a class="tier" href="https://buy.stripe.com/eVq9ATeYlaGgbA92iD2Ji05" target="_blank" rel="noopener">
+            <span class="amt">฿100</span>
+            <span class="lbl">ข้าวมื้ออิ่ม</span>
+          </a>
+          <a class="tier" href="https://buy.stripe.com/9B614nbM99CceMlaP92Ji06" target="_blank" rel="noopener">
+            <span class="amt">฿500</span>
+            <span class="lbl">แดกชาบูเลย</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>ขอบคุณพวกมึงสำหรับมื้อนี้ 🙏 </footer>
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var val = btn.getAttribute('data-copy');
+      navigator.clipboard.writeText(val).then(function(){
+        var original = btn.textContent;
+        btn.textContent = 'คัดลอกแล้ว ✓';
+        btn.classList.add('copied');
+        setTimeout(function(){
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1800);
+      });
+    });
+  });
+</script>
+</body>
+</html>
