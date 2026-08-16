@@ -38,7 +38,6 @@
     padding: 64px 20px 80px;
   }
 
-  /* --- Hero --- */
   .eyebrow{
     font-family: 'Space Mono', monospace;
     font-size: 12px;
@@ -75,7 +74,6 @@
     margin: 0 0 8px;
   }
 
-  /* --- signature: the path --- */
   .path{
     position: relative;
     margin-top: 56px;
@@ -132,7 +130,6 @@
     margin: 0 0 16px;
   }
 
-  /* PromptPay */
   .pp-body{
     display:flex;
     gap: 20px;
@@ -178,7 +175,6 @@
     color: var(--teal);
   }
 
-  /* generic link buttons */
   .btn{
     display: inline-flex;
     align-items:center;
@@ -328,7 +324,7 @@
       </div>
     </div>
 
-    <div class="stop">
+    <div class="stop done">
       <div class="card" id="card">
         <div class="card-head">
           <div class="card-title">บัตรเครดิต / เดบิต</div>
