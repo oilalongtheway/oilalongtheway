@@ -1,0 +1,8 @@
+{
+	"name": "oilalongtheway",
+	"compatibility_date": "2025-06-05",
+	"assets": {
+		"directory": "./",
+		"not_found_handling": "404-page"
+	}
+}
